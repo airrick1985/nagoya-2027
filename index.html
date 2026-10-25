@@ -61,6 +61,8 @@
   --i-umbrella:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 12a10 10 0 0 0-20 0zM12 12v7a2 2 0 0 0 4 0M12 2v1'/%3E%3C/svg%3E");
   --i-alert:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9.5'/%3E%3Cpath d='M12 7.5v5.5M12 16.5h.01'/%3E%3C/svg%3E");
   --i-check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+  --i-pin:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21.5s-7-6.1-7-11.6a7 7 0 0 1 14 0c0 5.5-7 11.6-7 11.6z'/%3E%3Ccircle cx='12' cy='9.8' r='2.6'/%3E%3C/svg%3E");
+  --i-bowl:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12h18a9 8 0 0 1-18 0zM8 8.5c0-1.6 1.2-2 1.2-3.6M12 8.5c0-1.6 1.2-2 1.2-3.6M16 8.5c0-1.6 1.2-2 1.2-3.6'/%3E%3C/svg%3E");
   --i-wave:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 10'%3E%3Cpath d='M0 5Q6 0 12 5T24 5' fill='none' stroke='black' stroke-width='3.2'/%3E%3C/svg%3E");
 }
 
@@ -233,6 +235,45 @@ ol.tl time{font:800 14px/1.75 var(--display);color:var(--dc-ink);font-variant-nu
 ol.tl li.meal{background:var(--sun-soft)}
 ol.tl li.meal::before{background:var(--sun);border-color:var(--sun)}
 @media (max-width:440px){ol.tl li{grid-template-columns:1fr;gap:0}}
+/* place names in the itinerary open Google Maps */
+a.gm{color:inherit;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:color-mix(in srgb,var(--dc,var(--sky)) 55%,transparent);border-radius:4px;transition:background .15s,text-decoration-color .15s}
+a.gm::after{content:"";display:inline-block;width:.8em;height:.8em;margin-left:2px;vertical-align:-.05em;background:var(--dc,var(--sky));-webkit-mask:var(--i-pin) center/contain no-repeat;mask:var(--i-pin) center/contain no-repeat}
+a.gm:hover{background:color-mix(in srgb,var(--dc,var(--sky)) 14%,transparent);text-decoration-color:var(--dc,var(--sky))}
+/* sight photos inside the itinerary; each opens the photo viewer */
+.pics{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.pic{margin:0;width:132px;display:grid;gap:5px;align-content:start}
+.pic .zoom{height:auto;aspect-ratio:16/10;border-radius:12px;overflow:hidden;background:var(--tint);box-shadow:var(--shadow)}
+.pic img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.pic .zoom:hover img{transform:scale(1.06)}
+.pic .zoom::after{right:6px;bottom:6px;width:24px;height:24px;background-size:13px}
+.pic figcaption{font:800 12px/1.35 var(--display);color:var(--muted)}
+@media (max-width:440px){.pic{width:calc(50% - 5px)}}
+
+/* dish names open a food card */
+a.dish{color:inherit;text-decoration:underline dashed;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:color-mix(in srgb,var(--persimmon) 65%,transparent);border-radius:4px;cursor:pointer;transition:background .15s}
+a.dish::after{content:"";display:inline-block;width:.9em;height:.9em;margin-left:2px;vertical-align:-.08em;background:var(--persimmon);-webkit-mask:var(--i-bowl) center/contain no-repeat;mask:var(--i-bowl) center/contain no-repeat}
+a.dish:hover{background:color-mix(in srgb,var(--persimmon) 14%,transparent)}
+.dish-pop{padding:0;border:0;background:transparent;color:var(--ink);width:calc(100% - 32px);max-width:440px;margin:auto;overflow:visible}
+.dish-pop::backdrop{background:rgba(10,24,44,.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.dp-card{position:relative;background:var(--paper);border-radius:24px;overflow:hidden auto;max-height:calc(100dvh - 48px);box-shadow:var(--shadow-up)}
+.dp-photo{position:relative;aspect-ratio:16/10;background:var(--tint)}
+.dp-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.dp-body{padding:16px 20px 22px;display:grid;gap:9px;justify-items:start}
+.dp-body h3{font-size:22px}
+.dp-desc{font-size:15px}
+.dp-when{font:800 12.5px/1 var(--display);padding:6px 10px;border-radius:99px;color:color-mix(in srgb,var(--persimmon) 82%,var(--ink));background:color-mix(in srgb,var(--persimmon) 13%,var(--paper))}
+.dp-where{justify-self:stretch;font-size:13.5px;background:var(--tint);border-radius:12px;padding:9px 12px}
+.dp-close{position:absolute;top:10px;left:10px;z-index:2;display:grid;place-items:center;width:40px;height:40px;border:0;border-radius:50%;background:rgba(8,18,26,.6);color:#fff;font-size:24px;line-height:1;cursor:pointer}
+.dp-close:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+@media (max-width:600px){
+  .dish-pop{width:100%;max-width:none;margin:auto 0 0}
+  .dp-card{border-radius:24px 24px 0 0;padding-bottom:env(safe-area-inset-bottom,0px)}
+}
+@media (prefers-reduced-motion:no-preference){
+  .dish-pop[open] .dp-card{animation:dp-in .3s cubic-bezier(.2,.9,.3,1.1)}
+  .dish-pop[open]::backdrop{animation:lb-fade .2s ease-out}
+}
+@keyframes dp-in{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 .must{display:inline-block;font:900 12.5px/1.55 var(--display);color:#fff;letter-spacing:.08em;padding:0 8px 0 6px;margin-right:6px;vertical-align:1px;
   border-radius:6px;background:linear-gradient(135deg,#ff6a3d,#e0201b 60%,#b3100f);transform:rotate(-3deg);
   box-shadow:0 2px 0 #7d0b0b,0 3px 10px rgba(224,32,27,.45);text-shadow:0 1px 0 rgba(0,0,0,.3)}
@@ -331,6 +372,44 @@ ol.tl li.meal::before{background:var(--sun);border-color:var(--sun)}
 .pl-name{font:inherit;background:none;border:0;padding:0;color:var(--ink);cursor:pointer;text-align:left;display:flex;align-items:center}
 .pl-name:hover{color:var(--sky-ink);text-decoration:underline}
 .pl-links{display:flex;gap:10px;font-size:13px}
+.mk-here{display:block;width:22px;height:22px;border-radius:50%;background:var(--sky);border:3px solid #fff;box-shadow:0 0 0 7px color-mix(in srgb,var(--sky) 28%,transparent),0 2px 6px rgba(0,0,0,.35)}
+
+/* near me: this page's sights and food ranked by distance from the visitor or a chosen spot */
+.near{background:var(--paper);border-radius:26px;padding:20px;box-shadow:var(--shadow);display:grid;gap:18px;min-width:0}
+.near-bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.near-go{display:inline-flex;align-items:center;gap:9px;font:900 16px/1 var(--display);padding:14px 22px 14px 18px;border:0;border-radius:99px;background:var(--c-d1);color:#fff;cursor:pointer;box-shadow:0 4px 0 color-mix(in srgb,var(--c-d1) 55%,#000);transition:transform .15s,box-shadow .15s}
+.near-go::before{content:"";width:20px;height:20px;background:currentColor;-webkit-mask:var(--i-pin) center/contain no-repeat;mask:var(--i-pin) center/contain no-repeat}
+.near-go:active{transform:translateY(3px);box-shadow:0 1px 0 color-mix(in srgb,var(--c-d1) 55%,#000)}
+.near-go:disabled{cursor:progress}
+.near-go:disabled::before{animation:near-blink 1s ease-in-out infinite}
+@keyframes near-blink{50%{opacity:.25}}
+.near-status{flex:1 1 260px;font-size:14px;color:var(--muted)}
+.near-status b{color:var(--ink)}
+.near-row{display:grid;gap:8px;min-width:0}
+.near-row > span{font:800 12.5px/1.2 var(--display);letter-spacing:.06em;color:var(--muted)}
+.near .chips{margin:0}
+.near .chip{box-shadow:none;background:var(--tint)}
+.near .chip.on{background:var(--cc);color:#fff}
+.chip.place::before{width:13px;height:13px;border-radius:0;-webkit-mask:var(--i-pin) center/contain no-repeat;mask:var(--i-pin) center/contain no-repeat}
+@media (max-width:600px){.near .near-areas{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-20px;padding-inline:20px}.near-areas::-webkit-scrollbar{display:none}.near-areas .chip{flex:none}}
+.chip[data-k="all"]{--cc:var(--ink)}.chip[data-k="spot"]{--cc:var(--c-d1)}.chip[data-k="food"]{--cc:var(--c-d2)}.chip[data-k="snack"]{--cc:var(--c-d7)}
+.near .chip[data-k="all"].on{color:var(--bg)}
+.chip[data-k="all"].on::before{background:var(--bg)}
+.near-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:10px}
+.ni{--kc:var(--c-d1);display:grid;grid-template-columns:34px minmax(0,1fr);gap:2px 12px;align-items:start;padding:12px 14px;border-radius:18px;background:var(--tint);min-width:0}
+.ni.k-food{--kc:var(--c-d2)}
+.ni.k-snack{--kc:var(--c-d7)}
+.ni-mk{grid-row:span 3;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--kc);color:#fff;font:900 14px/1 var(--display)}
+.ni-name{font:900 15.5px/1.4 var(--display)}
+.ni-note{font-size:13px;line-height:1.55;color:var(--muted)}
+.ni-foot{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:6px}
+.ni-dist{font:800 13px/1.2 var(--display);font-variant-numeric:tabular-nums;color:color-mix(in srgb,var(--kc) 72%,var(--ink))}
+.ni-off{font:800 11.5px/1 var(--display);padding:5px 8px;border-radius:99px;background:var(--berry-soft);color:var(--berry)}
+.ni-go{margin-left:auto;font:800 13px/1 var(--display);text-decoration:none;padding:8px 13px;border-radius:99px;background:var(--paper);color:var(--sky-ink);box-shadow:var(--shadow);transition:background .2s,color .2s}
+.ni-go:hover{background:var(--sky);color:var(--on-sky)}
+.ni-none{grid-column:1/-1;font-size:14px;color:var(--muted);background:var(--tint);border-radius:16px;padding:12px 14px}
+.near-more{justify-self:start;padding-left:14px}
+.near-more::before{display:none}
 
 /* transport tiles */
 .tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
@@ -466,7 +545,7 @@ html.lb-on{overflow:hidden}
 </header>
 
 <nav class="toc" aria-label="目錄"><div class="in wrap">
-  <a href="#stays">住宿</a><a href="#itinerary">每日行程</a><a href="#food">美食推薦</a><a href="#spots">景點備案</a><a href="#gifts">必買伴手禮</a><a href="#map">地圖與連結</a><a href="#transport">交通</a><a href="#ready">預算・待辦</a><a href="#changes">更新紀錄</a>
+  <a href="#stays">住宿</a><a href="#itinerary">每日行程</a><a href="#nearby">附近推薦</a><a href="#food">美食推薦</a><a href="#spots">景點備案</a><a href="#gifts">必買伴手禮</a><a href="#map">地圖與連結</a><a href="#transport">交通</a><a href="#ready">預算・待辦</a><a href="#changes">更新紀錄</a>
 </div></nav>
 
 <main class="wrap">
@@ -491,7 +570,7 @@ html.lb-on{overflow:hidden}
 </section>
 
 <section id="itinerary">
-  <div class="sec-head"><span class="eyebrow">Day by day</span><h2>7 天 6 夜行程</h2><p>時段為親子節奏估算，非確認班次。黃底是用餐，綠框是當天備案。</p></div>
+  <div class="sec-head"><span class="eyebrow">Day by day</span><h2>7 天 6 夜行程</h2><p>時段為親子節奏估算，非確認班次。黃底是用餐，綠框是當天備案。店家與景點名稱可直接點開 Google 地圖；點菜名可看美食照片與介紹，景點照片點了可放大。</p></div>
   <ol class="strip" aria-label="7 天總覽">
     <li><a href="#day1"><img src="images/d1.webp" alt="" width="800" height="500" loading="lazy" decoding="async"><span class="s-date">2/4 週四</span><b>抵達・則武之森</b><span class="s-city">住名古屋</span></a></li>
     <li><a href="#day2"><img src="images/d2.webp" alt="" width="800" height="500" loading="lazy" decoding="async"><span class="s-date">2/5 週五</span><b>樂高樂園</b><span class="s-city">住名古屋</span></a></li>
@@ -510,16 +589,16 @@ html.lb-on{overflow:hidden}
     <div class="day-body">
       <div class="day-top"><span class="date">2/4 週四</span><h3>抵達名古屋・則武之森散步</h3><span class="pill">輕鬆</span></div>
       <ol class="tl">
-        <li><time>05:30</time><div>桃園 T2 報到（CI154 07:40 起飛）。機上會有早餐。</div></li>
-        <li><time>11:10</time><div>抵達中部國際機場 T1。入境＋領行李抓 60 分鐘。</div></li>
-        <li><time>12:15</time><div>名鐵 μ-SKY 到名鐵名古屋站，約 28 分。</div></li>
-        <li class="meal"><time>13:00</time><div><span class="must">必吃</span><b>味噌豬排</b> 矢場とん（名古屋站エスカ地下街店）。備案：同地下街的きしめん（碁子麵）或名古屋站內餐廳。</div></li>
+        <li><time>05:30</time><div><a class="gm" href="https://www.google.com/maps/search/?api=1&query=Taoyuan%20International%20Airport%20Terminal%202" target="_blank" rel="noopener">桃園 T2</a> 報到（CI154 07:40 起飛）。機上會有早餐。</div></li>
+        <li><time>11:10</time><div>抵達<a class="gm" href="https://www.google.com/maps/search/?api=1&query=Chubu%20Centrair%20International%20Airport%20Terminal%201" target="_blank" rel="noopener">中部國際機場 T1</a>。入境＋領行李抓 60 分鐘。</div></li>
+        <li><time>12:15</time><div>名鐵 μ-SKY 到<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%90%8D%E9%89%84%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85" target="_blank" rel="noopener">名鐵名古屋站</a>，約 28 分。</div></li>
+        <li class="meal"><time>13:00</time><div><span class="must">必吃</span><b><a class="dish" href="#food" data-food="f_misokatsu" aria-haspopup="dialog">味噌豬排</a></b> <a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E7%9F%A2%E5%A0%B4%E3%81%A8%E3%82%93%20%E3%82%A8%E3%82%B9%E3%82%AB%E5%BA%97" target="_blank" rel="noopener">矢場とん（名古屋站エスカ地下街店）</a>。備案：同地下街的<a class="dish" href="#food" data-food="f_kishimen" aria-haspopup="dialog">きしめん（碁子麵）</a>或名古屋站內餐廳。</div></li>
         <li><time>14:15</time><div>先問房東能否提早放行李；不行就放名古屋站置物櫃。</div></li>
-        <li><time>14:30</time><div><b>ノリタケの森（則武之森）</b>：民宿附近的紅磚老工廠庭園，免費入園。孩子可在クラフトセンター做盤子彩繪（不需預約），館內也有 Noritake 餐具店。週一休。</div></li>
-        <li><time>16:00</time><div>入住名站二丁目民宿，休息、整理。</div></li>
-        <li class="meal"><time>18:00</time><div><span class="must">必吃</span><b>手羽先（名古屋炸雞翅）</b> 世界の山ちゃん 名站附近分店。備案：風来坊。順路到超商買隔天早餐。</div></li>
+        <li><time>14:30</time><div><b><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%83%8E%E3%83%AA%E3%82%BF%E3%82%B1%E3%81%AE%E6%A3%AE" target="_blank" rel="noopener">ノリタケの森（則武之森）</a></b>：民宿附近的紅磚老工廠庭園，免費入園。孩子可在クラフトセンター做盤子彩繪（不需預約），館內也有 Noritake 餐具店。週一休。<div class="pics"><figure class="pic"><button type="button" class="zoom" data-k="s_noritake" aria-label="放大檢視：ノリタケの森"><img src="images/s_noritake.webp" alt="ノリタケの森" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>ノリタケの森</figcaption></figure></div></div></li>
+        <li><time>16:00</time><div>入住<a class="gm" href="https://www.google.com/maps/search/?api=1&query=2-chome-27-1%20Meieki%2C%20Nishi%20Ward%2C%20Nagoya" target="_blank" rel="noopener">名站二丁目民宿</a>，休息、整理。</div></li>
+        <li class="meal"><time>18:00</time><div><span class="must">必吃</span><b><a class="dish" href="#food" data-food="f_tebasaki" aria-haspopup="dialog">手羽先（名古屋炸雞翅）</a></b> <a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E4%B8%96%E7%95%8C%E3%81%AE%E5%B1%B1%E3%81%A1%E3%82%83%E3%82%93%20%E5%90%8D%E9%A7%85" target="_blank" rel="noopener">世界の山ちゃん</a> 名站附近分店。備案：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E9%A2%A8%E6%9D%A5%E5%9D%8A%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85" target="_blank" rel="noopener">風来坊</a>。順路到超商買隔天早餐。</div></li>
       </ol>
-      <div class="plan-b"><b>備案</b>　太累就省略則武之森，改逛 JR 名古屋高島屋與 Gate Tower，或直接回民宿讓孩子玩抱石牆。若想讓孩子看飛機，可落地後先在機場 FLIGHT OF DREAMS（787 實機展示）待一小時再進市區，營業時間以官網為準。</div>
+      <div class="plan-b"><b>備案</b>　太累就省略則武之森，改逛 <a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%82%B8%E3%82%A7%E3%82%A4%E3%82%A2%E3%83%BC%E3%83%AB%E5%90%8D%E5%8F%A4%E5%B1%8B%E3%82%BF%E3%82%AB%E3%82%B7%E3%83%9E%E3%83%A4" target="_blank" rel="noopener">JR 名古屋高島屋</a>與 <a class="gm" href="https://www.google.com/maps/search/?api=1&query=JR%E3%82%B2%E3%83%BC%E3%83%88%E3%82%BF%E3%83%AF%E3%83%BC" target="_blank" rel="noopener">Gate Tower</a>，或直接回民宿讓孩子玩抱石牆。若想讓孩子看飛機，可落地後先在機場 <a class="gm" href="https://www.google.com/maps/search/?api=1&query=FLIGHT%20OF%20DREAMS%20%E4%B8%AD%E9%83%A8%E5%9B%BD%E9%9A%9B%E7%A9%BA%E6%B8%AF" target="_blank" rel="noopener">FLIGHT OF DREAMS</a>（787 實機展示）待一小時再進市區，營業時間以官網為準。<div class="pics"><figure class="pic"><button type="button" class="zoom" data-k="s_flight" aria-label="放大檢視：FLIGHT OF DREAMS"><img src="images/s_flight.webp" alt="FLIGHT OF DREAMS" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>FLIGHT OF DREAMS</figcaption></figure></div></div>
     </div>
   </article>
 
@@ -530,14 +609,14 @@ html.lb-on{overflow:hidden}
     <div class="day-body">
       <div class="day-top"><span class="date">2/5 週五</span><h3>樂高樂園冒險日</h3><span class="pill">小孩最愛</span></div>
       <ol class="tl">
-        <li class="meal"><time>08:00</time><div>民宿早餐，或到名古屋站附近的 <b>Komeda 珈琲</b> 吃「早餐 morning」（點飲料附吐司），體驗名古屋早餐文化。</div></li>
-        <li><time>09:00</time><div>步行至名古屋站，搭青波線（あおなみ線）到「金城埠頭」，約 24 分。</div></li>
-        <li><time>10:00</time><div>LEGOLAND Japan 開園即入，先玩最熱門設施。</div></li>
+        <li class="meal"><time>08:00</time><div>民宿早餐，或到名古屋站附近的 <b><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%82%B3%E3%83%A1%E3%83%80%E7%8F%88%E7%90%B2%E5%BA%97%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85" target="_blank" rel="noopener">Komeda 珈琲</a></b> 吃「<a class="dish" href="#food" data-food="f_morning" aria-haspopup="dialog">早餐 morning</a>」（點飲料附吐司），體驗名古屋早餐文化。</div></li>
+        <li><time>09:00</time><div>步行至名古屋站，搭青波線（あおなみ線）到「<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E5%9F%8E%E3%81%B5%E9%A0%AD%E9%A7%85" target="_blank" rel="noopener">金城埠頭</a>」，約 24 分。</div></li>
+        <li><time>10:00</time><div><a class="gm" href="https://www.google.com/maps/search/?api=1&query=LEGOLAND%20Japan" target="_blank" rel="noopener">LEGOLAND Japan</a> 開園即入，先玩最熱門設施。</div></li>
         <li class="meal"><time>12:00</time><div>園內午餐（披薩、炸雞套餐），避開 12:30 高峰。</div></li>
-        <li><time>15:30</time><div>視體力加 SEA LIFE 名古屋（同區，買聯票較省）或繼續玩樂高。</div></li>
-        <li class="meal"><time>18:00</time><div><span class="must">必吃</span><b>味噌煮込みうどん（味噌燉烏龍麵）</b> 山本屋本店 名古屋站附近分店。麵偏硬是正常特色，可加點白飯泡湯給孩子。備案：名古屋站うまいもん通り。</div></li>
+        <li><time>15:30</time><div>視體力加 <a class="gm" href="https://www.google.com/maps/search/?api=1&query=SEA%20LIFE%20Nagoya" target="_blank" rel="noopener">SEA LIFE 名古屋</a>（同區，買聯票較省）或繼續玩樂高。<div class="pics"><figure class="pic"><button type="button" class="zoom" data-k="s_sealife" aria-label="放大檢視：SEA LIFE 名古屋"><img src="images/s_sealife.webp" alt="SEA LIFE 名古屋" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>SEA LIFE 名古屋</figcaption></figure></div></div></li>
+        <li class="meal"><time>18:00</time><div><span class="must">必吃</span><b><a class="dish" href="#food" data-food="f_misonikomi" aria-haspopup="dialog">味噌煮込みうどん（味噌燉烏龍麵）</a></b> <a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%B1%B1%E6%9C%AC%E5%B1%8B%E6%9C%AC%E5%BA%97%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85" target="_blank" rel="noopener">山本屋本店</a> 名古屋站附近分店。麵偏硬是正常特色，可加點白飯泡湯給孩子。備案：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%86%E3%81%BE%E3%81%84%E3%82%82%E3%82%93%E9%80%9A%E3%82%8A%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85" target="_blank" rel="noopener">名古屋站うまいもん通り</a>。</div></li>
       </ol>
-      <div class="plan-b"><b>備案</b>　樂高當天未營業或下大雨：同站的 <b>磁浮・鐵道館</b>（週二休，週五可去）或名古屋港水族館（搭地鐵名港線）。</div>
+      <div class="plan-b"><b>備案</b>　樂高當天未營業或下大雨：同站的 <b><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%83%AA%E3%83%8B%E3%82%A2%E3%83%BB%E9%89%84%E9%81%93%E9%A4%A8" target="_blank" rel="noopener">磁浮・鐵道館</a></b>（週二休，週五可去）或<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%90%8D%E5%8F%A4%E5%B1%8B%E6%B8%AF%E6%B0%B4%E6%97%8F%E9%A4%A8" target="_blank" rel="noopener">名古屋港水族館</a>（搭地鐵名港線）。<div class="pics"><figure class="pic"><button type="button" class="zoom" data-k="s_maglev" aria-label="放大檢視：磁浮・鐵道館"><img src="images/s_maglev.webp" alt="磁浮・鐵道館" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>磁浮・鐵道館</figcaption></figure><figure class="pic"><button type="button" class="zoom" data-k="s_aquarium" aria-label="放大檢視：名古屋港水族館"><img src="images/s_aquarium.webp" alt="名古屋港水族館" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>名古屋港水族館</figcaption></figure></div></div>
     </div>
   </article>
 
@@ -548,13 +627,13 @@ html.lb-on{overflow:hidden}
     <div class="day-body">
       <div class="day-top"><span class="date">2/6 週六</span><h3>吉卜力公園一整天</h3><span class="pill">需預約</span></div>
       <ol class="tl">
-        <li><time>08:00</time><div>步行到名古屋站搭地鐵東山線，藤丘轉 Linimo 到「愛・地球博記念公園」，約 50–70 分。</div></li>
-        <li><time>10:00</time><div>依門票入場時段進「吉卜力大倉庫」，室內區域最適合冬天。</div></li>
+        <li><time>08:00</time><div>步行到名古屋站搭地鐵東山線，藤丘轉 Linimo 到「<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E6%84%9B%E3%83%BB%E5%9C%B0%E7%90%83%E5%8D%9A%E8%A8%98%E5%BF%B5%E5%85%AC%E5%9C%92" target="_blank" rel="noopener">愛・地球博記念公園</a>」，約 50–70 分。</div></li>
+        <li><time>10:00</time><div>依門票入場時段進「<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%82%B8%E3%83%96%E3%83%AA%E3%81%AE%E5%A4%A7%E5%80%89%E5%BA%AB" target="_blank" rel="noopener">吉卜力大倉庫</a>」，室內區域最適合冬天。<div class="pics"><figure class="pic"><button type="button" class="zoom" data-k="s_warehouse" aria-label="放大檢視：吉卜力大倉庫"><img src="images/s_warehouse.webp" alt="吉卜力大倉庫" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>吉卜力大倉庫</figcaption></figure></div></div></li>
         <li class="meal"><time>12:30</time><div>園內午餐（大倉庫內餐廳），週六人多，提早排或錯開。</div></li>
         <li><time>14:00</time><div>依票種逛其他區域，室外偏冷，孩子備手套。</div></li>
-        <li class="meal"><time>18:00</time><div><span class="must">必吃</span><b>ひつまぶし（鰻魚飯三吃）</b>：先原味、再加蔥與山葵、最後倒高湯做茶泡飯。推薦 <b>あつた蓬莱軒</b>（松坂屋店在榮，搭地鐵 5 分）。週六晚排隊長，備案：<b>まるや本店</b> 名古屋站附近分店。</div></li>
+        <li class="meal"><time>18:00</time><div><span class="must">必吃</span><b><a class="dish" href="#food" data-food="f_hitsumabushi" aria-haspopup="dialog">ひつまぶし（鰻魚飯三吃）</a></b>：先原味、再加蔥與山葵、最後倒高湯做茶泡飯。推薦 <b><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%82%E3%81%A4%E3%81%9F%E8%93%AC%E8%8E%B1%E8%BB%92%20%E6%9D%BE%E5%9D%82%E5%B1%8B%E5%BA%97" target="_blank" rel="noopener">あつた蓬莱軒</a></b>（松坂屋店在榮，搭地鐵 5 分）。週六晚排隊長，備案：<b><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%BE%E3%82%8B%E3%82%84%E6%9C%AC%E5%BA%97%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85" target="_blank" rel="noopener">まるや本店</a></b> 名古屋站附近分店。</div></li>
       </ol>
-      <div class="plan-b"><b>備案</b>　沒搶到吉卜力門票：上午 <b>磁浮・鐵道館</b>＋下午 <b>名古屋港水族館</b>；或 <b>名古屋市科學館</b>（世界級大型天象儀，週一休）＋榮 Oasis 21。</div>
+      <div class="plan-b"><b>備案</b>　沒搶到吉卜力門票：上午 <b><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%83%AA%E3%83%8B%E3%82%A2%E3%83%BB%E9%89%84%E9%81%93%E9%A4%A8" target="_blank" rel="noopener">磁浮・鐵道館</a></b>＋下午 <b><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%90%8D%E5%8F%A4%E5%B1%8B%E6%B8%AF%E6%B0%B4%E6%97%8F%E9%A4%A8" target="_blank" rel="noopener">名古屋港水族館</a></b>；或 <b><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E7%A7%91%E5%AD%A6%E9%A4%A8" target="_blank" rel="noopener">名古屋市科學館</a></b>（世界級大型天象儀，週一休）＋榮 <a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%82%AA%E3%82%A2%E3%82%B7%E3%82%B921" target="_blank" rel="noopener">Oasis 21</a>。<div class="pics"><figure class="pic"><button type="button" class="zoom" data-k="s_maglev" aria-label="放大檢視：磁浮・鐵道館"><img src="images/s_maglev.webp" alt="磁浮・鐵道館" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>磁浮・鐵道館</figcaption></figure><figure class="pic"><button type="button" class="zoom" data-k="s_aquarium" aria-label="放大檢視：名古屋港水族館"><img src="images/s_aquarium.webp" alt="名古屋港水族館" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>名古屋港水族館</figcaption></figure><figure class="pic"><button type="button" class="zoom" data-k="s_science" aria-label="放大檢視：名古屋市科學館"><img src="images/s_science.webp" alt="名古屋市科學館" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>名古屋市科學館</figcaption></figure><figure class="pic"><button type="button" class="zoom" data-k="s_oasis" aria-label="放大檢視：Oasis 21"><img src="images/s_oasis.webp" alt="Oasis 21" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>Oasis 21</figcaption></figure></div></div>
     </div>
   </article>
 
@@ -565,16 +644,16 @@ html.lb-on{overflow:hidden}
     <div class="day-body">
       <div class="day-top"><span class="date">2/7 週日</span><h3>名古屋城 × 名花之里燈海</h3><span class="pill">夜間亮點</span></div>
       <ol class="tl">
-        <li><time>08:45</time><div>出發前往名古屋城（地鐵名城線「名古屋城站」或計程車約 15 分）。</div></li>
-        <li><time>09:30</time><div>名古屋城本丸御殿、天守外觀、庭園散步。</div></li>
-        <li class="meal"><time>11:30</time><div><b>金シャチ横丁</b>午餐：城門口的名古屋美食街，可吃味噌煮込み、名古屋交趾雞親子丼等。順便買 <span class="must">必吃</span> 鬼まんじゅう或抹茶甜點。</div></li>
+        <li><time>08:45</time><div>出發前往<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%9F%8E" target="_blank" rel="noopener">名古屋城</a>（地鐵名城線「名古屋城站」或計程車約 15 分）。<div class="pics"><figure class="pic"><button type="button" class="zoom" data-k="s_castle" aria-label="放大檢視：名古屋城"><img src="images/s_castle.webp" alt="名古屋城" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>名古屋城</figcaption></figure></div></div></li>
+        <li><time>09:30</time><div><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%9F%8E%20%E6%9C%AC%E4%B8%B8%E5%BE%A1%E6%AE%BF" target="_blank" rel="noopener">名古屋城本丸御殿</a>、天守外觀、庭園散步。<div class="pics"><figure class="pic"><button type="button" class="zoom" data-k="s_hommaru" aria-label="放大檢視：本丸御殿"><img src="images/s_hommaru.webp" alt="本丸御殿" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>本丸御殿</figcaption></figure></div></div></li>
+        <li class="meal"><time>11:30</time><div><b><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E3%82%B7%E3%83%A3%E3%83%81%E6%A8%AA%E4%B8%81" target="_blank" rel="noopener">金シャチ横丁</a></b>午餐：城門口的名古屋美食街，可吃<a class="dish" href="#food" data-food="f_misonikomi" aria-haspopup="dialog">味噌煮込み</a>、<a class="dish" href="#food" data-food="f_oyakodon" aria-haspopup="dialog">名古屋交趾雞親子丼</a>等。順便買 <span class="must">必吃</span> <a class="dish" href="#food" data-food="f_onimanju" aria-haspopup="dialog">鬼まんじゅう</a>或抹茶甜點。<div class="pics"><figure class="pic"><button type="button" class="zoom" data-k="s_kinshachi" aria-label="放大檢視：金シャチ横丁"><img src="images/s_kinshachi.webp" alt="金シャチ横丁" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>金シャチ横丁</figcaption></figure></div></div></li>
         <li><time>13:30</time><div>回民宿午休、加衣服，順便先打包明天要搬去高山的行李。</div></li>
-        <li><time>14:45</time><div>近鐵名古屋站 → 近鐵長島站 → 園區接駁巴士，含候車抓 40–60 分。</div></li>
+        <li><time>14:45</time><div><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E8%BF%91%E9%89%84%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85" target="_blank" rel="noopener">近鐵名古屋站</a> → <a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E8%BF%91%E9%89%84%E9%95%B7%E5%B3%B6%E9%A7%85" target="_blank" rel="noopener">近鐵長島站</a> → 園區接駁巴士，含候車抓 40–60 分。</div></li>
         <li class="meal"><time>16:20</time><div>入園，門票含 ¥1,000 園內金券，可直接拿來吃晚餐或買點心（園內有餐廳與輕食）。</div></li>
-        <li><time>17:30–19:00</time><div>天黑點燈後走「光之隧道」與主燈區，點燈時間隨日落調整。</div></li>
+        <li><time>17:30–19:00</time><div>天黑點燈後走「<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%AA%E3%81%B0%E3%81%AA%E3%81%AE%E9%87%8C" target="_blank" rel="noopener">光之隧道</a>」與主燈區，點燈時間隨日落調整。<div class="pics"><figure class="pic"><button type="button" class="zoom" data-k="s_nabana" aria-label="放大檢視：名花之里燈海"><img src="images/s_nabana.webp" alt="名花之里燈海" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>名花之里燈海</figcaption></figure></div></div></li>
         <li><time>19:15</time><div>接駁＋近鐵回名古屋，約 21:00 回民宿。週日回程人多，先確認末班。</div></li>
       </ol>
-      <div class="plan-b"><b>備案</b>　下雨或孩子累：上午改 <b>大須商店街＋大須觀音</b>（室內外都有、小吃多）。名花之里雨天照常點燈，但可把下午出發時間延後到 15:30，只看燈不逛花園。</div>
+      <div class="plan-b"><b>備案</b>　下雨或孩子累：上午改 <b><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E9%A0%88%E5%95%86%E5%BA%97%E8%A1%97" target="_blank" rel="noopener">大須商店街</a>＋<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E9%A0%88%E8%A6%B3%E9%9F%B3" target="_blank" rel="noopener">大須觀音</a></b>（室內外都有、小吃多）。<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%AA%E3%81%B0%E3%81%AA%E3%81%AE%E9%87%8C" target="_blank" rel="noopener">名花之里</a>雨天照常點燈，但可把下午出發時間延後到 15:30，只看燈不逛花園。<div class="pics"><figure class="pic"><button type="button" class="zoom" data-k="s_osu" aria-label="放大檢視：大須商店街・大須觀音"><img src="images/s_osu.webp" alt="大須商店街・大須觀音" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>大須商店街・大須觀音</figcaption></figure></div></div>
     </div>
   </article>
 
@@ -587,13 +666,13 @@ html.lb-on{overflow:hidden}
       <ol class="tl">
         <li><time>08:30</time><div>早餐、退房檢查（民宿 10:00 前退房）。</div></li>
         <li><time>09:00</time><div>步行到 JR 名古屋站，搭約 09:30–10:00 的特急飛驒號，約 2.5 小時。車窗右側沿飛驒川景色好，指定席先訂。</div></li>
-        <li><time>12:20</time><div>抵達高山站，步行 4 分到 Mercure 寄放行李。</div></li>
-        <li class="meal"><time>12:45</time><div><span class="must">必吃</span><b>飛驒牛燒肉</b> 丸明 飛驒高山店（午餐 11:00–15:00，先確認）。備案：味藏天國（另有公休日，先查）或 <b>京や</b> 的朴葉味噌飛驒牛。</div></li>
-        <li><time>14:15</time><div>三町古街（さんまち）邊走邊吃：<span class="must">必吃</span> <b>飛驒牛握壽司</b>（こって牛，以仙貝當盤子）、<span class="must">必吃</span> <b>御手洗團子</b>（高山是醬油口味，不甜）。</div></li>
+        <li><time>12:20</time><div>抵達<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E9%AB%98%E5%B1%B1%E9%A7%85" target="_blank" rel="noopener">高山站</a>，步行 4 分到 <a class="gm" href="https://www.google.com/maps/search/?api=1&query=Mercure%20Hida%20Takayama" target="_blank" rel="noopener">Mercure</a> 寄放行李。</div></li>
+        <li class="meal"><time>12:45</time><div><span class="must">必吃</span><b><a class="dish" href="#food" data-food="f_hidagyu" aria-haspopup="dialog">飛驒牛燒肉</a></b> <a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E4%B8%B8%E6%98%8E%20%E9%A3%9B%E9%A8%A8%E9%AB%98%E5%B1%B1%E5%BA%97" target="_blank" rel="noopener">丸明 飛驒高山店</a>（午餐 11:00–15:00，先確認）。備案：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%91%B3%E8%94%B5%E5%A4%A9%E5%9B%BD%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">味藏天國</a>（另有公休日，先查）或 <b><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E4%BA%AC%E3%82%84%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">京や</a></b> 的<a class="dish" href="#food" data-food="f_hoba" aria-haspopup="dialog">朴葉味噌飛驒牛</a>。</div></li>
+        <li><time>14:15</time><div><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%95%E3%82%93%E3%81%BE%E3%81%A1%E9%80%9A%E3%82%8A%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">三町古街（さんまち）</a>邊走邊吃：<span class="must">必吃</span> <b><a class="dish" href="#food" data-food="f_gyusushi" aria-haspopup="dialog">飛驒牛握壽司</a></b>（<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%93%E3%81%A3%E3%81%A6%E7%89%9B%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">こって牛</a>，以仙貝當盤子）、<span class="must">必吃</span> <b><a class="dish" href="#food" data-food="f_mitarashi" aria-haspopup="dialog">御手洗團子</a></b>（高山是醬油口味，不甜）。<div class="pics"><figure class="pic"><button type="button" class="zoom" data-k="s_sanmachi" aria-label="放大檢視：三町古街"><img src="images/s_sanmachi.webp" alt="三町古街" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>三町古街</figcaption></figure></div></div></li>
         <li><time>15:00</time><div>回 Mercure 辦入住，孩子午休。</div></li>
-        <li class="meal"><time>18:00</time><div><b>高山拉麵（中華そば）</b>：細捲麵、清醬油湯，小孩接受度高。推薦まさごそば、豆天狗。備案：飯店附近居酒屋或站前超市熟食。</div></li>
+        <li class="meal"><time>18:00</time><div><b><a class="dish" href="#food" data-food="f_takayamaramen" aria-haspopup="dialog">高山拉麵（中華そば）</a></b>：細捲麵、清醬油湯，小孩接受度高。推薦<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%BE%E3%81%95%E3%81%94%E3%81%9D%E3%81%B0%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">まさごそば</a>、<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E8%B1%86%E5%A4%A9%E7%8B%97%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">豆天狗</a>。備案：飯店附近居酒屋或站前超市熟食。</div></li>
       </ol>
-      <div class="plan-b"><b>備案</b>　2/8 是週一，部分老街小店會休息。時間多可加 <b>高山陣屋</b>（江戶時代官所，室內參觀）或中橋拍照；下雪太大就回飯店休息，老街改明晚或 2/10 早上逛。</div>
+      <div class="plan-b"><b>備案</b>　2/8 是週一，部分老街小店會休息。時間多可加 <b><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E9%AB%98%E5%B1%B1%E9%99%A3%E5%B1%8B" target="_blank" rel="noopener">高山陣屋</a></b>（江戶時代官所，室內參觀）或<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E4%B8%AD%E6%A9%8B%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">中橋</a>拍照；下雪太大就回飯店休息，老街改明晚或 2/10 早上逛。<div class="pics"><figure class="pic"><button type="button" class="zoom" data-k="s_jinya" aria-label="放大檢視：高山陣屋"><img src="images/s_jinya.webp" alt="高山陣屋" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>高山陣屋</figcaption></figure><figure class="pic"><button type="button" class="zoom" data-k="s_nakabashi" aria-label="放大檢視：中橋"><img src="images/s_nakabashi.webp" alt="中橋" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>中橋</figcaption></figure></div></div>
     </div>
   </article>
 
@@ -605,14 +684,14 @@ html.lb-on{overflow:hidden}
       <div class="day-top"><span class="date">2/9 週二</span><h3>高山往返白川鄉合掌村</h3><span class="pill">雪景</span></div>
       <ol class="tl">
         <li><time>07:45</time><div>早餐，大行李留在房間，輕裝出門。</div></li>
-        <li><time>08:40</time><div>步行到高山濃飛巴士中心（站旁），搭約 09:00–10:00 往白川鄉的巴士，約 50 分。來回座位先預約。</div></li>
-        <li><time>10:30</time><div>荻町散步、合掌造民家（和田家）參觀，搭接駁車上城山展望台拍全景。</div></li>
-        <li class="meal"><time>12:00</time><div>白川鄉午餐：<b>朴葉味噌定食</b>或手打蕎麥（推薦「いろり」等合掌造餐廳），<span class="must">必吃</span> 路邊攤的 <b>飛驒牛可樂餅</b>，熱騰騰最適合雪地。</div></li>
+        <li><time>08:40</time><div>步行到<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E6%BF%83%E9%A3%9B%E3%83%90%E3%82%B9%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">高山濃飛巴士中心</a>（站旁），搭約 09:00–10:00 往白川鄉的巴士，約 50 分。來回座位先預約。</div></li>
+        <li><time>10:30</time><div><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E7%99%BD%E5%B7%9D%E9%83%B7%20%E8%8D%BB%E7%94%BA" target="_blank" rel="noopener">荻町</a>散步、合掌造民家（<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%92%8C%E7%94%B0%E5%AE%B6%20%E7%99%BD%E5%B7%9D%E9%83%B7" target="_blank" rel="noopener">和田家</a>）參觀，搭接駁車上<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E8%8D%BB%E7%94%BA%E5%9F%8E%E8%B7%A1%E5%B1%95%E6%9C%9B%E5%8F%B0" target="_blank" rel="noopener">城山展望台</a>拍全景。<div class="pics"><figure class="pic"><button type="button" class="zoom" data-k="s_wada" aria-label="放大檢視：和田家"><img src="images/s_wada.webp" alt="和田家" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>和田家</figcaption></figure></div></div></li>
+        <li class="meal"><time>12:00</time><div>白川鄉午餐：<b><a class="dish" href="#food" data-food="f_hoba" aria-haspopup="dialog">朴葉味噌定食</a></b>或<a class="dish" href="#food" data-food="f_soba" aria-haspopup="dialog">手打蕎麥</a>（推薦「<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%84%E3%82%8D%E3%82%8A%20%E7%99%BD%E5%B7%9D%E9%83%B7" target="_blank" rel="noopener">いろり</a>」等合掌造餐廳），<span class="must">必吃</span> 路邊攤的 <b><a class="dish" href="#food" data-food="f_korokke" aria-haspopup="dialog">飛驒牛可樂餅</a></b>，熱騰騰最適合雪地。</div></li>
         <li><time>13:30</time><div>依雪況再逛，買合掌村小物，提早回巴士站。</div></li>
         <li><time>15:00–16:00</time><div>搭巴士回高山。</div></li>
-        <li class="meal"><time>18:00</time><div><b>京や</b>：古民家地爐，吃朴葉味噌燒飛驒牛、五平餅。備案：高山站附近燒肉或飛驒牛丼。</div></li>
+        <li class="meal"><time>18:00</time><div><b><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E4%BA%AC%E3%82%84%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">京や</a></b>：古民家地爐，吃<a class="dish" href="#food" data-food="f_hoba" aria-haspopup="dialog">朴葉味噌燒飛驒牛</a>、<a class="dish" href="#food" data-food="f_soba" aria-haspopup="dialog">五平餅</a>。備案：高山站附近燒肉或飛驒牛丼。</div></li>
       </ol>
-      <div class="plan-b"><b>備案</b>　大雪巴士停駛：改 <b>飛驒之里（飛驒民俗村）</b>，在高山就能看到移築的合掌屋（市區巴士約 10 分）；再加高山祭屋台會館、陣屋等室內點。</div>
+      <div class="plan-b"><b>備案</b>　大雪巴士停駛：改 <b><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E9%A3%9B%E9%A8%A8%E3%81%AE%E9%87%8C" target="_blank" rel="noopener">飛驒之里（飛驒民俗村）</a></b>，在高山就能看到移築的合掌屋（市區巴士約 10 分）；再加<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E9%AB%98%E5%B1%B1%E7%A5%AD%E5%B1%8B%E5%8F%B0%E4%BC%9A%E9%A4%A8" target="_blank" rel="noopener">高山祭屋台會館</a>、<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E9%AB%98%E5%B1%B1%E9%99%A3%E5%B1%8B" target="_blank" rel="noopener">陣屋</a>等室內點。<div class="pics"><figure class="pic"><button type="button" class="zoom" data-k="s_hidanosato" aria-label="放大檢視：飛驒之里"><img src="images/s_hidanosato.webp" alt="飛驒之里" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>飛驒之里</figcaption></figure><figure class="pic"><button type="button" class="zoom" data-k="s_yatai" aria-label="放大檢視：高山祭屋台會館"><img src="images/s_yatai.webp" alt="高山祭屋台會館" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>高山祭屋台會館</figcaption></figure></div></div>
     </div>
   </article>
 
@@ -624,16 +703,16 @@ html.lb-on{overflow:hidden}
       <div class="day-top"><span class="date">2/10 週三</span><h3>宮川朝市・名古屋採買・晚班機返台</h3><span class="pill">晚班機 22:50</span></div>
       <ol class="tl">
         <li><time>07:30</time><div>飯店早餐。</div></li>
-        <li><time>08:15</time><div><b>宮川朝市</b>（每日開市到中午）：漬物、蘋果、手作小物，攤販都是在地農家。可順走到陣屋前朝市。</div></li>
+        <li><time>08:15</time><div><b><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%AE%AE%E5%B7%9D%E6%9C%9D%E5%B8%82" target="_blank" rel="noopener">宮川朝市</a></b>（每日開市到中午）：漬物、蘋果、手作小物，攤販都是在地農家。可順走到<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E9%99%A3%E5%B1%8B%E5%89%8D%E6%9C%9D%E5%B8%82" target="_blank" rel="noopener">陣屋前朝市</a>。<div class="pics"><figure class="pic"><button type="button" class="zoom" data-k="g_apple" aria-label="放大檢視：宮川朝市"><img src="images/g_apple.webp" alt="宮川朝市" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>宮川朝市</figcaption></figure></div></div></li>
         <li><time>10:30</time><div>回飯店退房（11:00 前），行李請櫃台代為保管。</div></li>
-        <li><time>11:00</time><div>三町古街最後採買：さるぼぼ、一位一刀彫、地酒、高山布丁。</div></li>
-        <li class="meal"><time>11:45</time><div><span class="must">必吃</span><b>高山拉麵</b>（若 2/8 晚上已吃，改丸明二訪或飛驒牛丼）。</div></li>
+        <li><time>11:00</time><div><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%95%E3%82%93%E3%81%BE%E3%81%A1%E9%80%9A%E3%82%8A%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">三町古街</a>最後採買：さるぼぼ、一位一刀彫、地酒、<a class="dish" href="#food" data-food="f_pudding" aria-haspopup="dialog">高山布丁</a>。<div class="pics"><figure class="pic"><button type="button" class="zoom" data-k="s_sanmachi2" aria-label="放大檢視：三町古街"><img src="images/s_sanmachi2.webp" alt="三町古街" width="800" height="500" loading="lazy" decoding="async"></button><figcaption>三町古街</figcaption></figure></div></div></li>
+        <li class="meal"><time>11:45</time><div><span class="must">必吃</span><b><a class="dish" href="#food" data-food="f_takayamaramen" aria-haspopup="dialog">高山拉麵</a></b>（若 2/8 晚上已吃，改<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E4%B8%B8%E6%98%8E%20%E9%A3%9B%E9%A8%A8%E9%AB%98%E5%B1%B1%E5%BA%97" target="_blank" rel="noopener">丸明</a>二訪或飛驒牛丼）。</div></li>
         <li><time>13:00–14:00</time><div>取行李，搭特急飛驒號回名古屋（約 2.5 小時），約 15:30–16:30 抵達。雪天可能誤點，所以不建議搭更晚的車。</div></li>
-        <li><time>16:30</time><div>名古屋站集中買伴手禮：JR 名古屋高島屋 B1、站內 Grand Kiosk／Gift Kiosk（名古屋限定點心最齊）。</div></li>
-        <li class="meal"><time>17:45</time><div><b>最後一餐</b>：補吃前幾天沒吃到的必吃名古屋美食（鰻魚飯三吃或味噌豬排）。<span class="must">必吃</span> 想給孩子驚喜就買 <b>ぴよりん</b>（名古屋站限定小雞布丁，需冷藏，當場吃）。</div></li>
+        <li><time>16:30</time><div>名古屋站集中買伴手禮：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%82%B8%E3%82%A7%E3%82%A4%E3%82%A2%E3%83%BC%E3%83%AB%E5%90%8D%E5%8F%A4%E5%B1%8B%E3%82%BF%E3%82%AB%E3%82%B7%E3%83%9E%E3%83%A4" target="_blank" rel="noopener">JR 名古屋高島屋</a> B1、站內 <a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%82%B0%E3%83%A9%E3%83%B3%E3%83%89%E3%82%AD%E3%83%A8%E3%82%B9%E3%82%AF%E5%90%8D%E5%8F%A4%E5%B1%8B" target="_blank" rel="noopener">Grand Kiosk</a>／Gift Kiosk（名古屋限定點心最齊）。</div></li>
+        <li class="meal"><time>17:45</time><div><b>最後一餐</b>：補吃前幾天沒吃到的必吃名古屋美食（<a class="dish" href="#food" data-food="f_hitsumabushi" aria-haspopup="dialog">鰻魚飯三吃</a>或<a class="dish" href="#food" data-food="f_misokatsu" aria-haspopup="dialog">味噌豬排</a>）。<span class="must">必吃</span> 想給孩子驚喜就買 <b><a class="dish" href="#food" data-food="f_piyorin" aria-haspopup="dialog">ぴよりん</a></b>（名古屋站限定小雞布丁，需冷藏，當場吃）。</div></li>
         <li><time>19:00</time><div>名鐵 μ-SKY 到機場，約 28 分。</div></li>
         <li><time>19:40</time><div>Peach 報到、託運（以官網截止時間為準）；手提每人 7kg 含免稅店購物。機場 4 樓也有名古屋美食與伴手禮店可補買。</div></li>
-        <li><time>22:50</time><div>MM723 起飛 → 2/11 01:30 桃園 T1。機捷已收班，搭預約接送；也可搭 24 小時營運的國光客運 1819 往台北車站。</div></li>
+        <li><time>22:50</time><div>MM723 起飛 → 2/11 01:30 <a class="gm" href="https://www.google.com/maps/search/?api=1&query=Taoyuan%20International%20Airport%20Terminal%201" target="_blank" rel="noopener">桃園 T1</a>。機捷已收班，搭預約接送；也可搭 24 小時營運的國光客運 1819 往台北車站。</div></li>
       </ol>
       <div class="plan-b"><b>備案</b>　大雪擔心 JR 誤點：改搭 11:00–12:00 的班次，提早回名古屋，下午改逛 <b>名古屋站周邊</b>或到機場早點吃飯購物。JR 停駛時，可改濃飛／名鐵高速巴士高山→名古屋（約 2.5–3 小時，需預約）。</div>
     </div>
@@ -641,37 +720,61 @@ html.lb-on{overflow:hidden}
   </div>
 </section>
 
+<section id="nearby">
+  <div class="sec-head"><span class="eyebrow">Near me</span><h2>附近推薦</h2><p>到了當地按一下，從這份行程收錄的景點、餐廳和小吃裡，找出離你最近的，附步行時間和 Google 地圖導航。位置只在手機上計算，不會存下或上傳；按「導航」時才會交給 Google 地圖。</p></div>
+  <div class="near">
+    <div class="near-bar">
+      <button type="button" class="near-go" id="nearGo">用我的位置找</button>
+      <p class="near-status" id="nearStatus" aria-live="polite">還沒定位。出發前也可以先選下面的地點，看看那附近有什麼。</p>
+    </div>
+    <div class="near-row"><span>或選一個地點</span><div class="chips near-areas" id="nearAreas"></div></div>
+    <div class="near-row"><span>想找</span>
+      <div class="chips" id="nearKinds">
+        <button type="button" class="chip on" data-k="all" aria-pressed="true">全部</button>
+        <button type="button" class="chip" data-k="spot" aria-pressed="false">景點</button>
+        <button type="button" class="chip" data-k="food" aria-pressed="false">餐廳</button>
+        <button type="button" class="chip" data-k="snack" aria-pressed="false">小吃・甜點</button>
+      </div>
+    </div>
+    <ol class="near-list" id="nearList" hidden></ol>
+    <button type="button" class="chip near-more" id="nearMore" hidden>再多看幾個</button>
+    <div class="near-row" id="nearGm" hidden><span>清單以外的店，用 Google 地圖找附近的</span><div class="links" id="nearGmLinks"></div></div>
+  </div>
+</section>
+
 <section id="food" class="band warm">
-  <div class="sec-head"><span class="eyebrow">Eat</span><h2>美食推薦</h2><p>每個都已排進上面的行程，標示是哪一天吃。餐廳分店多，找離當天動線最近的即可；營業時間與公休日請出發前再查。</p></div>
+  <div class="sec-head"><span class="eyebrow">Eat</span><h2>美食推薦</h2><p>每個都已排進上面的行程，標示是哪一天吃。餐廳分店多，找離當天動線最近的即可；營業時間與公休日請出發前再查。店名可直接點開 Google 地圖。</p></div>
   <div class="legend"><span><span class="must">必吃</span>不吃會後悔</span><span class="muted">其餘為推薦或備案</span></div>
 
   <div class="food-group">
     <h3>名古屋めし <span class="pill">名古屋在地美食</span></h3>
     <div class="cards">
-      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_hitsumabushi" aria-label="放大檢視：ひつまぶし 鰻魚飯三吃"><img src="images/f_hitsumabushi.webp" alt="ひつまぶし 鰻魚飯三吃" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/6 晚餐</span><h4>ひつまぶし 鰻魚飯三吃</h4><p class="small">名古屋代表菜。一碗吃三種吃法，孩子通常最愛最後的茶泡飯。</p><p class="where">推薦：あつた蓬莱軒（老舖，熱田本店／榮松坂屋店）<br>備案：まるや本店（名古屋站附近、機場也有）</p></div>
-      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_misokatsu" aria-label="放大檢視：味噌カツ 味噌豬排"><img src="images/f_misokatsu.webp" alt="味噌カツ 味噌豬排" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/4 午餐</span><h4>味噌カツ 味噌豬排</h4><p class="small">炸豬排淋上甜甜的赤味噌醬，口味小孩容易接受。</p><p class="where">推薦：矢場とん（名古屋站エスカ店、榮本店）<br>備案：名古屋站地下街其他豬排店</p></div>
-      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_tebasaki" aria-label="放大檢視：手羽先 名古屋炸雞翅"><img src="images/f_tebasaki.webp" alt="手羽先 名古屋炸雞翅" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/4 晚餐</span><h4>手羽先 名古屋炸雞翅</h4><p class="small">胡椒鹹香、酥脆，是大人的下酒菜也是孩子的零食。</p><p class="where">推薦：世界の山ちゃん（胡椒重）<br>備案：風来坊（手羽先元祖，口味較甜）</p></div>
-      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_misonikomi" aria-label="放大檢視：味噌煮込みうどん 味噌燉烏龍麵"><img src="images/f_misonikomi.webp" alt="味噌煮込みうどん 味噌燉烏龍麵" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">排在 2/5 晚餐</span><h4>味噌煮込みうどん 味噌燉烏龍麵</h4><p class="small">陶鍋上桌，麵條刻意煮得偏硬。鍋蓋可以當小碗分給孩子。</p><p class="where">推薦：山本屋本店／山本屋総本家</p></div>
-      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_kishimen" aria-label="放大檢視：きしめん 碁子麵（寬扁麵）"><img src="images/f_kishimen.webp" alt="きしめん 碁子麵（寬扁麵）" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">名古屋站隨時</span><h4>きしめん 碁子麵（寬扁麵）</h4><p class="small">名古屋站月台上的立食麵攤很有名，15 分鐘就能吃完，等車時順手吃。</p><p class="where">推薦：JR 名古屋站月台「住よし」</p></div>
-      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_morning" aria-label="放大檢視：小倉吐司・早餐 morning"><img src="images/f_morning.webp" alt="小倉吐司・早餐 morning" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">任一早餐</span><h4>小倉吐司・早餐 morning</h4><p class="small">點一杯咖啡就附吐司與水煮蛋，小倉紅豆吐司是名古屋限定吃法。</p><p class="where">推薦：Komeda 珈琲（コメダ珈琲店，名古屋起家）</p></div>
-      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_tenmusu" aria-label="放大檢視：天むす 炸蝦飯糰"><img src="images/f_tenmusu.webp" alt="天むす 炸蝦飯糰" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">備案</span><h4>天むす 炸蝦飯糰</h4><p class="small">一口大小的小飯糰包炸蝦，適合買來在新幹線或 JR 上吃。</p><p class="where">推薦：千寿、地雷也（名古屋站可買）</p></div>
-      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_taiwanramen" aria-label="放大檢視：台灣拉麵"><img src="images/f_taiwanramen.webp" alt="台灣拉麵" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">備案・大人限定</span><h4>台灣拉麵</h4><p class="small">名古屋發明、台灣沒有的辣味拉麵，很辣，不適合小孩。</p><p class="where">推薦：味仙（名古屋站附近有分店）</p></div>
-      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_ankake" aria-label="放大檢視：あんかけスパ 勾芡義大利麵"><img src="images/f_ankake.webp" alt="あんかけスパ 勾芡義大利麵" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">備案</span><h4>あんかけスパ 勾芡義大利麵</h4><p class="small">粗麵淋上胡椒勾芡醬，名古屋獨有的洋食。</p><p class="where">推薦：ヨコイ（スパゲッティハウス ヨコイ）</p></div>
-      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_piyorin" aria-label="放大檢視：ぴよりん 小雞布丁"><img src="images/f_piyorin.webp" alt="ぴよりん 小雞布丁" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/10 傍晚</span><h4>ぴよりん 小雞布丁</h4><p class="small">名古屋交趾雞蛋做的小雞造型布丁，名古屋站限定，必須冷藏不適合帶回台灣，當場吃最好。</p><p class="where">名古屋站 Cafe Gentiane 等站內店（數量有限）</p></div>
+      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_hitsumabushi" aria-label="放大檢視：ひつまぶし 鰻魚飯三吃"><img src="images/f_hitsumabushi.webp" alt="ひつまぶし 鰻魚飯三吃" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/6 晚餐</span><h4>ひつまぶし 鰻魚飯三吃</h4><p class="small">名古屋代表菜。一碗吃三種吃法，孩子通常最愛最後的茶泡飯。</p><p class="where">推薦：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%82%E3%81%A4%E3%81%9F%E8%93%AC%E8%8E%B1%E8%BB%92" target="_blank" rel="noopener">あつた蓬莱軒</a>（老舖，<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%82%E3%81%A4%E3%81%9F%E8%93%AC%E8%8E%B1%E8%BB%92%20%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener">熱田本店</a>／<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%82%E3%81%A4%E3%81%9F%E8%93%AC%E8%8E%B1%E8%BB%92%20%E6%9D%BE%E5%9D%82%E5%B1%8B%E5%BA%97" target="_blank" rel="noopener">榮松坂屋店</a>）<br>備案：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%BE%E3%82%8B%E3%82%84%E6%9C%AC%E5%BA%97%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85" target="_blank" rel="noopener">まるや本店</a>（名古屋站附近、機場也有）</p></div>
+      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_misokatsu" aria-label="放大檢視：味噌カツ 味噌豬排"><img src="images/f_misokatsu.webp" alt="味噌カツ 味噌豬排" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/4 午餐</span><h4>味噌カツ 味噌豬排</h4><p class="small">炸豬排淋上甜甜的赤味噌醬，口味小孩容易接受。</p><p class="where">推薦：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E7%9F%A2%E5%A0%B4%E3%81%A8%E3%82%93" target="_blank" rel="noopener">矢場とん</a>（<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E7%9F%A2%E5%A0%B4%E3%81%A8%E3%82%93%20%E3%82%A8%E3%82%B9%E3%82%AB%E5%BA%97" target="_blank" rel="noopener">名古屋站エスカ店</a>、<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E7%9F%A2%E5%A0%B4%E3%81%A8%E3%82%93%20%E7%9F%A2%E5%A0%B4%E7%94%BA%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener">榮本店</a>）<br>備案：名古屋站地下街其他豬排店</p></div>
+      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_tebasaki" aria-label="放大檢視：手羽先 名古屋炸雞翅"><img src="images/f_tebasaki.webp" alt="手羽先 名古屋炸雞翅" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/4 晚餐</span><h4>手羽先 名古屋炸雞翅</h4><p class="small">胡椒鹹香、酥脆，是大人的下酒菜也是孩子的零食。</p><p class="where">推薦：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E4%B8%96%E7%95%8C%E3%81%AE%E5%B1%B1%E3%81%A1%E3%82%83%E3%82%93%20%E5%90%8D%E9%A7%85" target="_blank" rel="noopener">世界の山ちゃん</a>（胡椒重）<br>備案：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E9%A2%A8%E6%9D%A5%E5%9D%8A%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85" target="_blank" rel="noopener">風来坊</a>（手羽先元祖，口味較甜）</p></div>
+      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_misonikomi" aria-label="放大檢視：味噌煮込みうどん 味噌燉烏龍麵"><img src="images/f_misonikomi.webp" alt="味噌煮込みうどん 味噌燉烏龍麵" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">排在 2/5 晚餐</span><h4>味噌煮込みうどん 味噌燉烏龍麵</h4><p class="small">陶鍋上桌，麵條刻意煮得偏硬。鍋蓋可以當小碗分給孩子。</p><p class="where">推薦：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%B1%B1%E6%9C%AC%E5%B1%8B%E6%9C%AC%E5%BA%97%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85" target="_blank" rel="noopener">山本屋本店</a>／<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%B1%B1%E6%9C%AC%E5%B1%8B%E7%B7%8F%E6%9C%AC%E5%AE%B6" target="_blank" rel="noopener">山本屋総本家</a></p></div>
+      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_oyakodon" aria-label="放大檢視：名古屋交趾雞親子丼"><img src="images/f_oyakodon.webp" alt="名古屋交趾雞親子丼" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">2/7 午餐可選</span><h4>名古屋交趾雞親子丼</h4><p class="small">名古屋コーチン是日本三大土雞之一，肉有嚼勁、蛋黃顏色深又香，做成滑嫩的親子丼，孩子也吃得慣。</p><p class="where"><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E3%82%B7%E3%83%A3%E3%83%81%E6%A8%AA%E4%B8%81" target="_blank" rel="noopener">金シャチ横丁</a>、<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%90%8D%E5%8F%A4%E5%B1%8B%E3%82%B3%E3%83%BC%E3%83%81%E3%83%B3%20%E8%A6%AA%E5%AD%90%E4%B8%BC%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85" target="_blank" rel="noopener">名古屋站周邊的名古屋コーチン料理店</a></p></div>
+      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_onimanju" aria-label="放大檢視：鬼まんじゅう 番薯蒸糕"><img src="images/f_onimanju.webp" alt="鬼まんじゅう 番薯蒸糕" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/7 午餐後</span><h4>鬼まんじゅう 番薯蒸糕</h4><p class="small">番薯切丁拌麵粉蒸成的名古屋傳統點心，表面凹凸像鬼的角而得名。Q 彈不太甜，放久會變硬，買了當天吃完。</p><p class="where"><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E3%82%B7%E3%83%A3%E3%83%81%E6%A8%AA%E4%B8%81" target="_blank" rel="noopener">金シャチ横丁</a>、名古屋各地和菓子店（覚王山的<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E8%A6%9A%E7%8E%8B%E5%B1%B1%20%E6%A2%85%E8%8A%B1%E5%A0%82" target="_blank" rel="noopener">梅花堂</a>最有名）</p></div>
+      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_kishimen" aria-label="放大檢視：きしめん 碁子麵（寬扁麵）"><img src="images/f_kishimen.webp" alt="きしめん 碁子麵（寬扁麵）" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">名古屋站隨時</span><h4>きしめん 碁子麵（寬扁麵）</h4><p class="small">名古屋站月台上的立食麵攤很有名，15 分鐘就能吃完，等車時順手吃。</p><p class="where">推薦：JR 名古屋站月台「<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E4%BD%8F%E3%82%88%E3%81%97%20%E3%81%8D%E3%81%97%E3%82%81%E3%82%93%20JR%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85" target="_blank" rel="noopener">住よし</a>」</p></div>
+      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_morning" aria-label="放大檢視：小倉吐司・早餐 morning"><img src="images/f_morning.webp" alt="小倉吐司・早餐 morning" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">任一早餐</span><h4>小倉吐司・早餐 morning</h4><p class="small">點一杯咖啡就附吐司與水煮蛋，小倉紅豆吐司是名古屋限定吃法。</p><p class="where">推薦：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%82%B3%E3%83%A1%E3%83%80%E7%8F%88%E7%90%B2%E5%BA%97%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85" target="_blank" rel="noopener">Komeda 珈琲</a>（コメダ珈琲店，名古屋起家）</p></div>
+      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_tenmusu" aria-label="放大檢視：天むす 炸蝦飯糰"><img src="images/f_tenmusu.webp" alt="天むす 炸蝦飯糰" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">備案</span><h4>天むす 炸蝦飯糰</h4><p class="small">一口大小的小飯糰包炸蝦，適合買來在新幹線或 JR 上吃。</p><p class="where">推薦：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%8D%83%E5%AF%BF%20%E5%A4%A9%E3%82%80%E3%81%99%20%E5%90%8D%E5%8F%A4%E5%B1%8B" target="_blank" rel="noopener">千寿</a>、<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%9C%B0%E9%9B%B7%E4%B9%9F%20%E5%A4%A9%E3%82%80%E3%81%99%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85" target="_blank" rel="noopener">地雷也</a>（名古屋站可買）</p></div>
+      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_taiwanramen" aria-label="放大檢視：台灣拉麵"><img src="images/f_taiwanramen.webp" alt="台灣拉麵" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">備案・大人限定</span><h4>台灣拉麵</h4><p class="small">名古屋發明、台灣沒有的辣味拉麵，很辣，不適合小孩。</p><p class="where">推薦：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%91%B3%E4%BB%99%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85" target="_blank" rel="noopener">味仙</a>（名古屋站附近有分店）</p></div>
+      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_ankake" aria-label="放大檢視：あんかけスパ 勾芡義大利麵"><img src="images/f_ankake.webp" alt="あんかけスパ 勾芡義大利麵" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">備案</span><h4>あんかけスパ 勾芡義大利麵</h4><p class="small">粗麵淋上胡椒勾芡醬，名古屋獨有的洋食。</p><p class="where">推薦：ヨコイ（<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%82%B9%E3%83%91%E3%82%B2%E3%83%83%E3%83%86%E3%82%A3%E3%83%8F%E3%82%A6%E3%82%B9%20%E3%83%A8%E3%82%B3%E3%82%A4" target="_blank" rel="noopener">スパゲッティハウス ヨコイ</a>）</p></div>
+      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_piyorin" aria-label="放大檢視：ぴよりん 小雞布丁"><img src="images/f_piyorin.webp" alt="ぴよりん 小雞布丁" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/10 傍晚</span><h4>ぴよりん 小雞布丁</h4><p class="small">名古屋交趾雞蛋做的小雞造型布丁，名古屋站限定，必須冷藏不適合帶回台灣，當場吃最好。</p><p class="where">名古屋站 <a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%82%AB%E3%83%95%E3%82%A7%20%E3%82%B8%E3%83%A3%E3%83%B3%E3%82%B7%E3%82%A2%E3%83%BC%E3%83%8C%20%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85" target="_blank" rel="noopener">Cafe Gentiane</a> 等站內店（數量有限）</p></div>
     </div>
   </div>
 
   <div class="food-group">
     <h3>飛驒高山・白川鄉 <span class="pill">山國美食</span></h3>
     <div class="cards">
-      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_hidagyu" aria-label="放大檢視：飛驒牛燒肉"><img src="images/f_hidagyu.webp" alt="飛驒牛燒肉" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/8 午餐</span><h4>飛驒牛燒肉</h4><p class="small">岐阜的和牛品牌，油花細、入口即化。午餐套餐比晚餐划算很多。</p><p class="where">推薦：丸明 飛驒高山店（肉店直營）<br>備案：味藏天國（先查公休）</p></div>
-      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_gyusushi" aria-label="放大檢視：飛驒牛握壽司"><img src="images/f_gyusushi.webp" alt="飛驒牛握壽司" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/8 下午</span><h4>飛驒牛握壽司</h4><p class="small">炙燒飛驒牛握壽司放在蝦餅上，連盤子一起吃。三町古街排隊名物。</p><p class="where">推薦：こって牛（三町古街）</p></div>
-      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_mitarashi" aria-label="放大檢視：みだらし團子 御手洗團子"><img src="images/f_mitarashi.webp" alt="みだらし團子 御手洗團子" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/8 下午</span><h4>みだらし團子 御手洗團子</h4><p class="small">高山的是醬油烤糰子，鹹香不甜，跟其他地方完全不同。</p><p class="where">三町古街路邊攤</p></div>
-      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_takayamaramen" aria-label="放大檢視：高山拉麵 中華そば"><img src="images/f_takayamaramen.webp" alt="高山拉麵 中華そば" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/8 晚或 2/10 午</span><h4>高山拉麵 中華そば</h4><p class="small">細捲麵、清爽醬油湯，冬天喝很暖。份量不大，孩子可一人一碗。</p><p class="where">推薦：まさごそば、豆天狗<br>備案：高山站周邊拉麵店</p></div>
-      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_hoba" aria-label="放大檢視：朴葉味噌"><img src="images/f_hoba.webp" alt="朴葉味噌" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">排在 2/9 晚餐</span><h4>朴葉味噌</h4><p class="small">在朴樹葉上烤味噌、蔥和飛驒牛，配白飯一流，是飛驒鄉土料理。</p><p class="where">推薦：京や（古民家地爐）</p></div>
-      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_korokke" aria-label="放大檢視：飛驒牛可樂餅"><img src="images/f_korokke.webp" alt="飛驒牛可樂餅" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/9 白川鄉</span><h4>飛驒牛可樂餅</h4><p class="small">雪地裡一個熱可樂餅，大人小孩都喜歡，白川鄉與高山老街都買得到。</p><p class="where">白川鄉荻町、三町古街攤位</p></div>
-      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_pudding" aria-label="放大檢視：高山布丁・飛驒牛包子"><img src="images/f_pudding.webp" alt="高山布丁・飛驒牛包子" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">2/10 古街</span><h4>高山布丁・飛驒牛包子</h4><p class="small">小瓶裝布丁與飛驒牛肉包，邊逛邊吃的點心。</p><p class="where">飛驒高山プリン亭、三町古街各店</p></div>
-      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_soba" aria-label="放大檢視：手打蕎麥・五平餅"><img src="images/f_soba.webp" alt="手打蕎麥・五平餅" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">2/9 白川鄉</span><h4>手打蕎麥・五平餅</h4><p class="small">山村樸素滋味。五平餅是串起來烤的米餅，抹甜味噌醬。</p><p class="where">白川鄉合掌造餐廳（如「いろり」）</p></div>
+      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_hidagyu" aria-label="放大檢視：飛驒牛燒肉"><img src="images/f_hidagyu.webp" alt="飛驒牛燒肉" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/8 午餐</span><h4>飛驒牛燒肉</h4><p class="small">岐阜的和牛品牌，油花細、入口即化。午餐套餐比晚餐划算很多。</p><p class="where">推薦：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E4%B8%B8%E6%98%8E%20%E9%A3%9B%E9%A8%A8%E9%AB%98%E5%B1%B1%E5%BA%97" target="_blank" rel="noopener">丸明 飛驒高山店</a>（肉店直營）<br>備案：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E5%91%B3%E8%94%B5%E5%A4%A9%E5%9B%BD%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">味藏天國</a>（先查公休）</p></div>
+      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_gyusushi" aria-label="放大檢視：飛驒牛握壽司"><img src="images/f_gyusushi.webp" alt="飛驒牛握壽司" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/8 下午</span><h4>飛驒牛握壽司</h4><p class="small">炙燒飛驒牛握壽司放在蝦餅上，連盤子一起吃。三町古街排隊名物。</p><p class="where">推薦：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%93%E3%81%A3%E3%81%A6%E7%89%9B%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">こって牛</a>（三町古街）</p></div>
+      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_mitarashi" aria-label="放大檢視：みだらし團子 御手洗團子"><img src="images/f_mitarashi.webp" alt="みだらし團子 御手洗團子" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/8 下午</span><h4>みだらし團子 御手洗團子</h4><p class="small">高山的是醬油烤糰子，鹹香不甜，跟其他地方完全不同。</p><p class="where"><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%95%E3%82%93%E3%81%BE%E3%81%A1%E9%80%9A%E3%82%8A%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">三町古街</a>路邊攤</p></div>
+      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_takayamaramen" aria-label="放大檢視：高山拉麵 中華そば"><img src="images/f_takayamaramen.webp" alt="高山拉麵 中華そば" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/8 晚或 2/10 午</span><h4>高山拉麵 中華そば</h4><p class="small">細捲麵、清爽醬油湯，冬天喝很暖。份量不大，孩子可一人一碗。</p><p class="where">推薦：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%BE%E3%81%95%E3%81%94%E3%81%9D%E3%81%B0%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">まさごそば</a>、<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E8%B1%86%E5%A4%A9%E7%8B%97%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">豆天狗</a><br>備案：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E9%AB%98%E5%B1%B1%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3%20%E9%AB%98%E5%B1%B1%E9%A7%85" target="_blank" rel="noopener">高山站周邊拉麵店</a></p></div>
+      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_hoba" aria-label="放大檢視：朴葉味噌"><img src="images/f_hoba.webp" alt="朴葉味噌" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">排在 2/9 晚餐</span><h4>朴葉味噌</h4><p class="small">在朴樹葉上烤味噌、蔥和飛驒牛，配白飯一流，是飛驒鄉土料理。</p><p class="where">推薦：<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E4%BA%AC%E3%82%84%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">京や</a>（古民家地爐）</p></div>
+      <div class="fcard is-must"><div class="thumb"><button type="button" class="zoom" data-k="f_korokke" aria-label="放大檢視：飛驒牛可樂餅"><img src="images/f_korokke.webp" alt="飛驒牛可樂餅" width="800" height="500" loading="lazy" decoding="async"></button><span class="stamp eat"><b>必吃</b><small>MUST EAT</small></span></div><span class="when">排在 2/9 白川鄉</span><h4>飛驒牛可樂餅</h4><p class="small">雪地裡一個熱可樂餅，大人小孩都喜歡，白川鄉與高山老街都買得到。</p><p class="where"><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E7%99%BD%E5%B7%9D%E9%83%B7%20%E8%8D%BB%E7%94%BA" target="_blank" rel="noopener">白川鄉荻町</a>、<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%95%E3%82%93%E3%81%BE%E3%81%A1%E9%80%9A%E3%82%8A%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">三町古街</a>攤位</p></div>
+      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_pudding" aria-label="放大檢視：高山布丁・飛驒牛包子"><img src="images/f_pudding.webp" alt="高山布丁・飛驒牛包子" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">2/10 古街</span><h4>高山布丁・飛驒牛包子</h4><p class="small">小瓶裝布丁與飛驒牛肉包，邊逛邊吃的點心。</p><p class="where"><a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E9%A3%9B%E9%A8%A8%E9%AB%98%E5%B1%B1%E3%83%97%E3%83%AA%E3%83%B3%E4%BA%AD" target="_blank" rel="noopener">飛驒高山プリン亭</a>、<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%95%E3%82%93%E3%81%BE%E3%81%A1%E9%80%9A%E3%82%8A%20%E9%AB%98%E5%B1%B1" target="_blank" rel="noopener">三町古街</a>各店</p></div>
+      <div class="fcard"><div class="thumb"><button type="button" class="zoom" data-k="f_soba" aria-label="放大檢視：手打蕎麥・五平餅"><img src="images/f_soba.webp" alt="手打蕎麥・五平餅" width="800" height="500" loading="lazy" decoding="async"></button></div><span class="when">2/9 白川鄉</span><h4>手打蕎麥・五平餅</h4><p class="small">山村樸素滋味。五平餅是串起來烤的米餅，抹甜味噌醬。</p><p class="where">白川鄉合掌造餐廳（如「<a class="gm" href="https://www.google.com/maps/search/?api=1&query=%E3%81%84%E3%82%8D%E3%82%8A%20%E7%99%BD%E5%B7%9D%E9%83%B7" target="_blank" rel="noopener">いろり</a>」）</p></div>
     </div>
   </div>
 </section>
@@ -813,7 +916,11 @@ html.lb-on{overflow:hidden}
       <li><b>必吃／必買：</b>卡片照片右上角改成爆炸星印章，一眼就看得到。</li>
       <li><b>照片放大：</b>點任一張照片可全螢幕檢視完整構圖與高解析版，左右鍵或手機左右滑動切換同一區的照片。</li>
       <li><b>版面：</b>改成明亮的旅遊風格：飄雪的天空封面、登機證樣式的航班、7 天總覽小卡；每天一個代表色，和地圖標記同色。</li>
-      <li><b>地圖：</b>改用互動地圖，可依日期切換、點標記看官網與 Google 地圖導航。</li>
+      <li><b>每日行程連結：</b>行程與備案中提到的店家、景點名稱，點一下就會開 Google 地圖。</li>
+      <li><b>行程照片：</b>每日行程提到的景點附上小照片；菜名點一下會跳出美食照片與介紹。美食推薦新增名古屋交趾雞親子丼、鬼まんじゅう。</li>
+      <li><b>美食店家連結：</b>美食推薦卡片（以及行程中跳出的美食小卡）裡的店家名稱，點一下開 Google 地圖。</li>
+      <li><b>地圖：</b>改用互動地圖，可依日期切換、點標記看官網與 Google 地圖導航。依 OpenStreetMap 校正名花之里、吉卜力公園、高山古街一帶的標記位置。</li>
+      <li><b>附近推薦：</b>手機定位後，列出離你最近的景點、餐廳和小吃，附步行時間、今天可能公休的提醒和導航，地圖上也會標出你的位置。出發前可選名古屋站、高山等地點先預覽。</li>
     </ul>
   </div>
 </section>
@@ -822,7 +929,7 @@ html.lb-on{overflow:hidden}
 
 <footer class="site-foot"><div class="wrap">
   <p>照片取自 Wikimedia Commons，依各作者授權使用並經裁切；部分為同類料理、商品或季節不同的示意照，不代表推薦店家的實際樣貌。門票、營業時間、公休日、點燈與列車班次可能變動，出發前請以各官網為準。</p>
-  <details class="credits"><summary>照片來源與授權（57 張）</summary><ol>
+  <details class="credits"><summary>照片來源與授權（69 張）</summary><ol>
     <li>抵達名古屋・則武之森散步：<a href="https://commons.wikimedia.org/wiki/File:2000_series_BLUE_%CE%BCSKY_2.jpg" target="_blank" rel="noopener">2000 series BLUE μSKY 2.jpg</a> · ButuCC · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
     <li>樂高樂園冒險日：<a href="https://commons.wikimedia.org/wiki/File:Legoland_japan.jpg" target="_blank" rel="noopener">Legoland japan.jpg</a> · Bariston · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
     <li>吉卜力公園一整天：<a href="https://commons.wikimedia.org/wiki/File:Ghibli_Park_-_GhibliPark293.jpg" target="_blank" rel="noopener">Ghibli Park - GhibliPark293.jpg</a> · lumoplank · <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">CC0</a></li>
@@ -880,10 +987,34 @@ html.lb-on{overflow:hidden}
     <li>名古屋城 金鯱周邊：<a href="https://commons.wikimedia.org/wiki/File:Kinshachi_crow.jpg" target="_blank" rel="noopener">Kinshachi crow.jpg</a> · 名古屋太郎 · <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
     <li>吉卜力公園限定商品：<a href="https://commons.wikimedia.org/wiki/File:Ghibli_Park_-_GhibliPark279.jpg" target="_blank" rel="noopener">Ghibli Park - GhibliPark279.jpg</a> · lumoplank · <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">CC0</a></li>
     <li>樂高樂園日本限定：<a href="https://commons.wikimedia.org/wiki/File:LEGOLAND_Japan_-_53400777471.jpg" target="_blank" rel="noopener">LEGOLAND Japan - 53400777471.jpg</a> · othree · <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a></li>
+    <li>SEA LIFE 名古屋：<a href="https://commons.wikimedia.org/wiki/File:SEA_LIFE_Nagoya.jpg" target="_blank" rel="noopener">SEA LIFE Nagoya.jpg</a> · Alex and Dolphine · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+    <li>吉卜力大倉庫：<a href="https://commons.wikimedia.org/wiki/File:Ghibli_Park_-_GhibliPark285.jpg" target="_blank" rel="noopener">Ghibli Park - GhibliPark285.jpg</a> · lumoplank · <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">CC0</a></li>
+    <li>名古屋城：<a href="https://commons.wikimedia.org/wiki/File:Tenshu_of_Nagoya_Castle_20230111.jpg" target="_blank" rel="noopener">Tenshu of Nagoya Castle 20230111.jpg</a> · ノボホショコロトソ · <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+    <li>名古屋城本丸御殿：<a href="https://commons.wikimedia.org/wiki/File:Inside_view_of_Hommaru_Palace_of_Nagoya_Castle_9.JPG" target="_blank" rel="noopener">Inside view of Hommaru Palace of Nagoya Castle 9.JPG</a> · そらみみ · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+    <li>金シャチ横丁：<a href="https://commons.wikimedia.org/wiki/File:Kinshachi_Yokocho.jpg" target="_blank" rel="noopener">Kinshachi Yokocho.jpg</a> · Bariston · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+    <li>名花之里燈海：<a href="https://commons.wikimedia.org/wiki/File:Nabana_no_Sato_Illumination.jpg" target="_blank" rel="noopener">Nabana no Sato Illumination.jpg</a> · Hustvedt · <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+    <li>三町古街：<a href="https://commons.wikimedia.org/wiki/File:One_of_the_three_main_streets_in_Sanmachi-Suji_(6156038234).jpg" target="_blank" rel="noopener">One of the three main streets in Sanmachi-Suji (6156038234).jpg</a> · Maarten Heerlien from Voorschoten, The Netherlands · <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a></li>
+    <li>三町古街（2/10 採買）：<a href="https://commons.wikimedia.org/wiki/File:Hida_Takayama_old_town_streets_(48519369602).jpg" target="_blank" rel="noopener">Hida Takayama old town streets (48519369602).jpg</a> · Raita Futo from Tokyo, Japan · <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a></li>
+    <li>中橋：<a href="https://commons.wikimedia.org/wiki/File:Nakabashi_Bridge_on_Miyagawa_River_20150123-1.JPG" target="_blank" rel="noopener">Nakabashi Bridge on Miyagawa River 20150123-1.JPG</a> · そらみみ · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+    <li>白川鄉 和田家：<a href="https://commons.wikimedia.org/wiki/File:Wada_House-01.jpg" target="_blank" rel="noopener">Wada House-01.jpg</a> · Bernard Gagnon · <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+    <li>鬼まんじゅう 番薯蒸糕：<a href="https://commons.wikimedia.org/wiki/File:%E9%AC%BC%E3%81%BE%E3%82%93%E3%81%98%E3%82%85%E3%81%86%EF%BC%88%E4%B8%8D%E6%9C%BD%E5%9C%92%EF%BC%89Oni_Manjyu,_Aichi.jpg" target="_blank" rel="noopener">鬼まんじゅう（不朽園）Oni Manjyu, Aichi.jpg</a> · 漱石の猫 · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+    <li>名古屋交趾雞親子丼：<a href="https://commons.wikimedia.org/wiki/File:Oyakodon_003.jpg" target="_blank" rel="noopener">Oyakodon 003.jpg</a> · Ocdp · <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">CC0</a></li>
   </ol></details>
   <p>航班依 2026/10/17 訂單：去程 CI154 2/4 07:40 TPE→11:10 NGO；回程 MM723 2/10 22:50 NGO→2/11 01:30 TPE。行程更新於 2026/10/22。</p>
 </div></footer>
 
+<dialog class="dish-pop" id="dishPop" aria-labelledby="dpTitle">
+  <div class="dp-card">
+    <div class="dp-photo"><img alt="" width="800" height="500"></div>
+    <div class="dp-body">
+      <span class="dp-when"></span>
+      <h3 id="dpTitle"></h3>
+      <p class="dp-desc"></p>
+      <p class="dp-where"></p>
+    </div>
+    <button type="button" class="dp-close" aria-label="關閉" autofocus>×</button>
+  </div>
+</dialog>
 <dialog class="lb" id="lightbox" aria-label="照片檢視">
   <figure class="lb-fig">
     <img class="lb-img" alt="">
@@ -893,7 +1024,7 @@ html.lb-on{overflow:hidden}
   <button type="button" class="lb-nav lb-next" aria-label="下一張">›</button>
   <button type="button" class="lb-close" aria-label="關閉" autofocus>×</button>
 </dialog>
-<script type="application/json" id="photoCredits">{"d1": ["ButuCC", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:2000_series_BLUE_%CE%BCSKY_2.jpg"], "d2": ["Bariston", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Legoland_japan.jpg"], "d3": ["lumoplank", "CC0", "https://commons.wikimedia.org/wiki/File:Ghibli_Park_-_GhibliPark293.jpg"], "d4": ["cyber0515", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Winter_Illumination_at_Nabana-no-Sato.jpg"], "d5": ["MaedaAkihiko", "CC0", "https://commons.wikimedia.org/wiki/File:JRC_HC85-D106_Hida-25.jpg"], "d6": ["Suicasmo", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Shirakawa-go_20170202.jpg"], "d7": ["KimonBerlin", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Morning_market_(11272886764).jpg"], "f_hitsumabushi": ["Banku", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Hitsumabushi_2.JPG"], "f_misokatsu": ["Akahito Yamabe", "CC0", "https://commons.wikimedia.org/wiki/File:Yabaton%27s_misokatsu_%EF%BC%88Nagoya_soul_food%EF%BC%89.jpg"], "f_tebasaki": ["くろふね", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:%E6%89%8B%E7%BE%BD%E5%85%88%E5%94%90%E6%8F%9A%E3%81%92%EF%BC%88%E9%A2%A8%E6%9D%A5%E5%9D%8A%E6%9D%B1%E5%B2%A1%E5%B4%8E%E9%A7%85%E5%89%8D%E5%BA%97%EF%BC%89.jpg"], "f_misonikomi": ["Asturio Cantabrio", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Kariya_Kisan_Misonikomi_Udon_2020-11_ac_(2).jpg"], "f_kishimen": ["円周率３パーセント", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85_%E3%82%8F%E3%81%8B%E3%82%81%E3%81%8D%E3%81%97%E3%82%81%E3%82%93_%E9%BA%BA%E5%A4%A7%E7%9B%9B_20241005_070728.jpg"], "f_morning": ["akira yamada", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:%E3%83%A2%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0%E5%90%8D%E5%8F%A4%E5%B1%8B%E3%82%BB%E3%83%83%E3%83%88%E3%81%AE%E5%B0%8F%E5%80%89%E3%83%88%E3%83%BC%E3%82%B9%E3%83%88_(8923375578).jpg"], "f_tenmusu": ["m-louis from Ichinomiya, Aichi", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Tenmusu_by_m-louis_in_Aichi.jpg"], "f_ankake": ["Asturio Cantabrio", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Ankake_Spaghetti_Yokoi_2021-08_ac.jpg"], "f_piyorin": ["Kyu3a", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Piyorin_-_2.jpg"], "f_hidagyu": ["Gofukuji", "CC0", "https://commons.wikimedia.org/wiki/File:Hida_beef_with_Hoba-miso.jpg"], "f_gyusushi": ["Miyuki Meinaka", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Sushi,_Hida_Beef.jpg"], "f_mitarashi": ["大野 一将", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Midarashi_dango,_local_food_in_Takayama,_Takayama,_2016.jpg"], "f_hoba": ["Andrea Schaffer from Sydney, Australia", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Breakfast_at_Sumiyoshi_ryokan_(3810540426).jpg"], "f_korokke": ["Ocdp", "CC0", "https://commons.wikimedia.org/wiki/File:Potato_croquettes_001.jpg"], "f_pudding": ["Raita Futo from Tokyo, Japan", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Hida_Takayama_old_town_streets_(48519201716).jpg"], "f_soba": ["Kunmap", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:%E4%BA%94%E5%B9%B3%E9%A4%85.jpg"], "s_maglev": ["t-konno", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:%E3%83%AA%E3%83%8B%E3%82%A2%E3%83%BB%E9%89%84%E9%81%93%E9%A4%A8%EF%BC%88SCMAGLEV_and_Railway_Park%EF%BC%89_-_panoramio_(4).jpg"], "s_aquarium": ["Hyppolyte de Saint-Rambert", "CC BY 4.0", "https://commons.wikimedia.org/wiki/File:Port_of_Nagoya_Public_Aquarium_(Minato-ku,_Nagoya)_VLux5_hdsr_s08.jpg"], "s_science": ["Tomio344456", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Nagoya_Cty_Science_Museum_03,_Sakae_Naka_Ward_Nagoya_2020.jpg"], "s_higashiyama": ["KKPCW", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Koala_in_Higashiyama_Zoo_-_4.jpg"], "s_toyota": ["KKPCW（Kyu3）", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Toyota_Commemorative_Museum_of_Industry_and_Technology_-_3.jpg"], "s_noritake": ["Tomio344456", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Noritake_Garden02,_Nishi_Ward_Nagoya_2014.jpg"], "s_osu": ["Asturio Cantabrio", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Osu_Kannon_main_hall_2025-02_ac_(1).jpg"], "s_atsuta": ["Bariston", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Atsuta_Shrine.jpg"], "s_oasis": ["Alpsdake", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Oasis_21_and_Nagoya_TV_Tower.JPG"], "s_flight": ["Bariston", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:FLIGHT_OF_DREAMS2.jpg"], "s_jinya": ["そらみみ", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Entrance_of_Takayama_Jinya_House_in_a_snowy_day.JPG"], "s_hidanosato": ["Balou46", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:JP-Takayama-hida-no-sato-2.jpg"], "s_yatai": ["Mti", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Takayama_festival_Yatai_Kaikan_No,6.JPG"], "s_furukawa": ["Asturio Cantabrio", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Setogawa_Canal,_White_Walled_Storehouse_ac_(4).jpg"], "s_shinhotaka": ["Alpsdake", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Shinhotaka_Ropeway_(2018-06-22).jpg"], "g_yukari": ["Kyu3a", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:%E5%9D%82%E8%A7%92%E7%B7%8F%E6%9C%AC%E8%88%97%E3%81%AE%E3%82%86%E3%81%8B%E3%82%8A_-_1.jpg"], "g_sennari": ["Ocdp", "CC0", "https://commons.wikimedia.org/wiki/File:Ryoguchiya_Korekiyo_001.jpg"], "g_snacks": ["Jorge from Brazil", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Japanese_Omiyage_in_2014_(13335201323).jpg"], "g_miso": ["Evelyn-rose", "CC0", "https://commons.wikimedia.org/wiki/File:Maruya-hatcho-miso-10.jpg"], "g_akakabu": ["ProjectManhattan", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Red_turnips.jpg"], "g_apple": ["bryan... from Taipei, Taiwan", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Hida-Takayama_Miyagawa_Morning_Market_(15668520238).jpg"], "g_shirakawa": ["Zairon", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Shirakawa_Gassho-zukuri_40.jpg"], "g_ittobori": ["gundam2345", "CC BY 3.0", "https://commons.wikimedia.org/wiki/File:%E5%AE%9F%E6%BC%94%E4%B8%80%E4%BD%8D%E4%B8%80%E5%88%80%E5%BD%AB_(%E5%B2%90%E9%98%9C%E7%9C%8C%E9%AB%98%E5%B1%B1%E5%B8%82)_-_panoramio.jpg"], "g_shunkei": ["Marie-Sophie Mejan", "CC BY 4.0", "https://commons.wikimedia.org/wiki/File:Classic_houses_in_city.jpg"], "g_noritakeware": ["Asturio Cantabrio", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Old_Noritake_ac_(4).jpg"], "g_arimatsu": ["漱石の猫", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Arimatsu_Shibori_21%E4%B8%96%E7%B4%80%E3%81%AE%E6%9C%89%E6%9D%BE%E7%B5%9E%E8%A3%BD%E5%93%81_%E3%82%B9%E3%82%AB%E3%83%BC%E3%83%95.jpg"], "g_ghibli": ["lumoplank", "CC0", "https://commons.wikimedia.org/wiki/File:Ghibli_Park_-_GhibliPark279.jpg"], "g_lego": ["othree", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:LEGOLAND_Japan_-_53400777471.jpg"], "f_takayamaramen": ["Craford at Japanese Wikipedia", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Takayama_ramen.jpg"], "g_uiro": ["小太刀", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:CodazziUiro1.jpg"], "g_sake": ["Kat Clay from Sydney, Australia", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Sake_shop_-Takayama.jpg"], "g_sarubobo": ["百楽兎", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Sarubobo_Colorful.JPG"], "g_kinshachi": ["名古屋太郎", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Kinshachi_crow.jpg"], "f_taiwanramen": ["Kanesue", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Misen_Taiwan_Ramen_20180929.jpg"]}</script>
+<script type="application/json" id="photoCredits">{"d1": ["ButuCC", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:2000_series_BLUE_%CE%BCSKY_2.jpg"], "d2": ["Bariston", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Legoland_japan.jpg"], "d3": ["lumoplank", "CC0", "https://commons.wikimedia.org/wiki/File:Ghibli_Park_-_GhibliPark293.jpg"], "d4": ["cyber0515", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Winter_Illumination_at_Nabana-no-Sato.jpg"], "d5": ["MaedaAkihiko", "CC0", "https://commons.wikimedia.org/wiki/File:JRC_HC85-D106_Hida-25.jpg"], "d6": ["Suicasmo", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Shirakawa-go_20170202.jpg"], "d7": ["KimonBerlin", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Morning_market_(11272886764).jpg"], "f_hitsumabushi": ["Banku", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Hitsumabushi_2.JPG"], "f_misokatsu": ["Akahito Yamabe", "CC0", "https://commons.wikimedia.org/wiki/File:Yabaton%27s_misokatsu_%EF%BC%88Nagoya_soul_food%EF%BC%89.jpg"], "f_tebasaki": ["くろふね", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:%E6%89%8B%E7%BE%BD%E5%85%88%E5%94%90%E6%8F%9A%E3%81%92%EF%BC%88%E9%A2%A8%E6%9D%A5%E5%9D%8A%E6%9D%B1%E5%B2%A1%E5%B4%8E%E9%A7%85%E5%89%8D%E5%BA%97%EF%BC%89.jpg"], "f_misonikomi": ["Asturio Cantabrio", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Kariya_Kisan_Misonikomi_Udon_2020-11_ac_(2).jpg"], "f_kishimen": ["円周率３パーセント", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:%E5%90%8D%E5%8F%A4%E5%B1%8B%E9%A7%85_%E3%82%8F%E3%81%8B%E3%82%81%E3%81%8D%E3%81%97%E3%82%81%E3%82%93_%E9%BA%BA%E5%A4%A7%E7%9B%9B_20241005_070728.jpg"], "f_morning": ["akira yamada", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:%E3%83%A2%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0%E5%90%8D%E5%8F%A4%E5%B1%8B%E3%82%BB%E3%83%83%E3%83%88%E3%81%AE%E5%B0%8F%E5%80%89%E3%83%88%E3%83%BC%E3%82%B9%E3%83%88_(8923375578).jpg"], "f_tenmusu": ["m-louis from Ichinomiya, Aichi", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Tenmusu_by_m-louis_in_Aichi.jpg"], "f_ankake": ["Asturio Cantabrio", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Ankake_Spaghetti_Yokoi_2021-08_ac.jpg"], "f_piyorin": ["Kyu3a", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Piyorin_-_2.jpg"], "f_hidagyu": ["Gofukuji", "CC0", "https://commons.wikimedia.org/wiki/File:Hida_beef_with_Hoba-miso.jpg"], "f_gyusushi": ["Miyuki Meinaka", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Sushi,_Hida_Beef.jpg"], "f_mitarashi": ["大野 一将", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Midarashi_dango,_local_food_in_Takayama,_Takayama,_2016.jpg"], "f_hoba": ["Andrea Schaffer from Sydney, Australia", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Breakfast_at_Sumiyoshi_ryokan_(3810540426).jpg"], "f_korokke": ["Ocdp", "CC0", "https://commons.wikimedia.org/wiki/File:Potato_croquettes_001.jpg"], "f_pudding": ["Raita Futo from Tokyo, Japan", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Hida_Takayama_old_town_streets_(48519201716).jpg"], "f_soba": ["Kunmap", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:%E4%BA%94%E5%B9%B3%E9%A4%85.jpg"], "s_maglev": ["t-konno", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:%E3%83%AA%E3%83%8B%E3%82%A2%E3%83%BB%E9%89%84%E9%81%93%E9%A4%A8%EF%BC%88SCMAGLEV_and_Railway_Park%EF%BC%89_-_panoramio_(4).jpg"], "s_aquarium": ["Hyppolyte de Saint-Rambert", "CC BY 4.0", "https://commons.wikimedia.org/wiki/File:Port_of_Nagoya_Public_Aquarium_(Minato-ku,_Nagoya)_VLux5_hdsr_s08.jpg"], "s_science": ["Tomio344456", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Nagoya_Cty_Science_Museum_03,_Sakae_Naka_Ward_Nagoya_2020.jpg"], "s_higashiyama": ["KKPCW", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Koala_in_Higashiyama_Zoo_-_4.jpg"], "s_toyota": ["KKPCW（Kyu3）", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Toyota_Commemorative_Museum_of_Industry_and_Technology_-_3.jpg"], "s_noritake": ["Tomio344456", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Noritake_Garden02,_Nishi_Ward_Nagoya_2014.jpg"], "s_osu": ["Asturio Cantabrio", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Osu_Kannon_main_hall_2025-02_ac_(1).jpg"], "s_atsuta": ["Bariston", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Atsuta_Shrine.jpg"], "s_oasis": ["Alpsdake", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Oasis_21_and_Nagoya_TV_Tower.JPG"], "s_flight": ["Bariston", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:FLIGHT_OF_DREAMS2.jpg"], "s_jinya": ["そらみみ", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Entrance_of_Takayama_Jinya_House_in_a_snowy_day.JPG"], "s_hidanosato": ["Balou46", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:JP-Takayama-hida-no-sato-2.jpg"], "s_yatai": ["Mti", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Takayama_festival_Yatai_Kaikan_No,6.JPG"], "s_furukawa": ["Asturio Cantabrio", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Setogawa_Canal,_White_Walled_Storehouse_ac_(4).jpg"], "s_shinhotaka": ["Alpsdake", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Shinhotaka_Ropeway_(2018-06-22).jpg"], "g_yukari": ["Kyu3a", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:%E5%9D%82%E8%A7%92%E7%B7%8F%E6%9C%AC%E8%88%97%E3%81%AE%E3%82%86%E3%81%8B%E3%82%8A_-_1.jpg"], "g_sennari": ["Ocdp", "CC0", "https://commons.wikimedia.org/wiki/File:Ryoguchiya_Korekiyo_001.jpg"], "g_snacks": ["Jorge from Brazil", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Japanese_Omiyage_in_2014_(13335201323).jpg"], "g_miso": ["Evelyn-rose", "CC0", "https://commons.wikimedia.org/wiki/File:Maruya-hatcho-miso-10.jpg"], "g_akakabu": ["ProjectManhattan", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Red_turnips.jpg"], "g_apple": ["bryan... from Taipei, Taiwan", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Hida-Takayama_Miyagawa_Morning_Market_(15668520238).jpg"], "g_shirakawa": ["Zairon", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Shirakawa_Gassho-zukuri_40.jpg"], "g_ittobori": ["gundam2345", "CC BY 3.0", "https://commons.wikimedia.org/wiki/File:%E5%AE%9F%E6%BC%94%E4%B8%80%E4%BD%8D%E4%B8%80%E5%88%80%E5%BD%AB_(%E5%B2%90%E9%98%9C%E7%9C%8C%E9%AB%98%E5%B1%B1%E5%B8%82)_-_panoramio.jpg"], "g_shunkei": ["Marie-Sophie Mejan", "CC BY 4.0", "https://commons.wikimedia.org/wiki/File:Classic_houses_in_city.jpg"], "g_noritakeware": ["Asturio Cantabrio", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Old_Noritake_ac_(4).jpg"], "g_arimatsu": ["漱石の猫", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Arimatsu_Shibori_21%E4%B8%96%E7%B4%80%E3%81%AE%E6%9C%89%E6%9D%BE%E7%B5%9E%E8%A3%BD%E5%93%81_%E3%82%B9%E3%82%AB%E3%83%BC%E3%83%95.jpg"], "g_ghibli": ["lumoplank", "CC0", "https://commons.wikimedia.org/wiki/File:Ghibli_Park_-_GhibliPark279.jpg"], "g_lego": ["othree", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:LEGOLAND_Japan_-_53400777471.jpg"], "f_takayamaramen": ["Craford at Japanese Wikipedia", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Takayama_ramen.jpg"], "g_uiro": ["小太刀", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:CodazziUiro1.jpg"], "g_sake": ["Kat Clay from Sydney, Australia", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Sake_shop_-Takayama.jpg"], "g_sarubobo": ["百楽兎", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Sarubobo_Colorful.JPG"], "g_kinshachi": ["名古屋太郎", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Kinshachi_crow.jpg"], "f_taiwanramen": ["Kanesue", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Misen_Taiwan_Ramen_20180929.jpg"], "s_sealife": ["Alex and Dolphine", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:SEA_LIFE_Nagoya.jpg"], "s_warehouse": ["lumoplank", "CC0", "https://commons.wikimedia.org/wiki/File:Ghibli_Park_-_GhibliPark285.jpg"], "s_castle": ["ノボホショコロトソ", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Tenshu_of_Nagoya_Castle_20230111.jpg"], "s_hommaru": ["そらみみ", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Inside_view_of_Hommaru_Palace_of_Nagoya_Castle_9.JPG"], "s_kinshachi": ["Bariston", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Kinshachi_Yokocho.jpg"], "s_nabana": ["Hustvedt", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Nabana_no_Sato_Illumination.jpg"], "s_sanmachi": ["Maarten Heerlien from Voorschoten, The Netherlands", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:One_of_the_three_main_streets_in_Sanmachi-Suji_(6156038234).jpg"], "s_sanmachi2": ["Raita Futo from Tokyo, Japan", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Hida_Takayama_old_town_streets_(48519369602).jpg"], "s_nakabashi": ["そらみみ", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Nakabashi_Bridge_on_Miyagawa_River_20150123-1.JPG"], "s_wada": ["Bernard Gagnon", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Wada_House-01.jpg"], "f_onimanju": ["漱石の猫", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:%E9%AC%BC%E3%81%BE%E3%82%93%E3%81%98%E3%82%85%E3%81%86%EF%BC%88%E4%B8%8D%E6%9C%BD%E5%9C%92%EF%BC%89Oni_Manjyu,_Aichi.jpg"], "f_oyakodon": ["Ocdp", "CC0", "https://commons.wikimedia.org/wiki/File:Oyakodon_003.jpg"]}</script>
 <script>
 (function(){
   var dlg=document.getElementById('lightbox');
@@ -968,52 +1099,53 @@ html.lb-on{overflow:hidden}
    ['d1','stay','名站二丁目民宿',35.1772,136.8826,'','2-chome-27-1 Meieki, Nishi Ward, Nagoya','2/4–2/8 住宿，16:00 後入住'],
    ['d1','move','名古屋站',35.1709,136.8815,'https://www.meitetsu.co.jp/','Nagoya Station','μ-SKY 抵達；JR、近鐵、青波線都從這裡出發'],
    ['d1','food','矢場とん エスカ店',35.1702,136.8789,'https://www.yabaton.com/','Yabaton Esca Nagoya','必吃・味噌豬排（2/4 午餐）'],
-   ['d1','spot','ノリタケの森',35.1801,136.8806,'https://www.noritake.co.jp/mori/','Noritake Garden Nagoya','紅磚庭園＋盤子彩繪，週一休'],
+   ['d1','spot','ノリタケの森',35.1787,136.8811,'https://www.noritake.co.jp/mori/','Noritake Garden Nagoya','紅磚庭園＋盤子彩繪，週一休'],
    ['d1','food','世界の山ちゃん',35.1676,136.8858,'https://www.yamachan.co.jp/','Sekai no Yamachan Meieki','必吃・手羽先（2/4 晚餐）'],
    ['d2','food','Komeda 珈琲',35.1724,136.8847,'https://www.komeda.co.jp/','Komeda Coffee Nagoya Station','名古屋式早餐'],
    ['d2','spot','LEGOLAND Japan',35.0503,136.8434,'https://www.legoland.jp/','LEGOLAND Japan','青波線金城埠頭站'],
    ['d2','food','山本屋本店',35.1690,136.8838,'https://www.yamamotoyahonten.co.jp/','Yamamotoya Honten Nagoya Station','必吃・味噌燉烏龍麵（2/5 晚餐）'],
-   ['d3','spot','吉卜力公園',35.1716,137.0896,'https://ghibli-park.jp/','Ghibli Park','需預約；地鐵東山線轉 Linimo'],
-   ['d3','food','あつた蓬莱軒 松坂屋店',35.1647,136.9070,'https://www.houraiken.com/','Atsuta Horaiken Matsuzakaya','必吃・鰻魚飯三吃（2/6 晚餐）'],
+   ['d3','spot','吉卜力公園',35.1736,137.0894,'https://ghibli-park.jp/','Ghibli Park','需預約；地鐵東山線轉 Linimo'],
+   ['d3','food','あつた蓬莱軒 松坂屋店',35.1646,136.9083,'https://www.houraiken.com/','Atsuta Horaiken Matsuzakaya','必吃・鰻魚飯三吃（2/6 晚餐）'],
    ['d4','spot','名古屋城',35.1856,136.8991,'https://www.nagoyajo.city.nagoya.jp/','Nagoya Castle','本丸御殿、天守外觀'],
    ['d4','food','金シャチ横丁',35.1830,136.9030,'https://kinshachi-yokocho.jp/','Kinshachi Yokocho','城門口美食街（2/7 午餐）'],
    ['d4','move','近鐵長島站',35.0912,136.6985,'https://www.nagashima-onsen.co.jp/nabana/access/train02.html','Kintetsu Nagashima Station','轉名花之里接駁巴士'],
-   ['d4','spot','名花之里 燈海',35.0738,136.6970,'https://www.nagashima-onsen.co.jp/nabana/illumination/index.html','Nabana no Sato','光之隧道；門票含 ¥1,000 金券'],
+   ['d4','spot','名花之里 燈海',35.0801,136.7044,'https://www.nagashima-onsen.co.jp/nabana/illumination/index.html','Nabana no Sato','光之隧道；門票含 ¥1,000 金券'],
    ['d5','move','JR 高山站',36.1409,137.2513,'https://www.jr-odekake.net/railroad/train/hida/','Takayama Station','特急飛驒號，名古屋約 2.5 小時'],
    ['d5','stay','Mercure Hida Takayama',36.1385,137.2494,'https://mercure-hida-takayama.com/','Mercure Hida Takayama','2/8–2/10 住宿，15:00 入住'],
-   ['d5','food','丸明 飛驒高山店',36.1409,137.2547,'https://www.hidagyu-maruaki.co.jp/','Maruaki Hida Takayama','必吃・飛驒牛燒肉（2/8 午餐）'],
-   ['d5','spot','三町古街',36.1412,137.2609,'https://www.hidatakayama.or.jp/','Sanmachi Suji Takayama','古い町並，邊走邊吃'],
+   ['d5','food','丸明 飛驒高山店',36.1426,137.2543,'https://www.hidagyu-maruaki.co.jp/','Maruaki Hida Takayama','必吃・飛驒牛燒肉（2/8 午餐）'],
+   ['d5','spot','三町古街',36.1413,137.2596,'https://www.hidatakayama.or.jp/','Sanmachi Suji Takayama','古い町並，邊走邊吃'],
    ['d5','food','こって牛',36.1413,137.2603,'','Kotte Ushi Takayama','必吃・飛驒牛握壽司'],
-   ['d5','food','まさごそば',36.1436,137.2571,'','Masago Soba Takayama','高山拉麵（2/8 晚餐）'],
+   ['d5','food','まさごそば',36.1413,137.2575,'','Masago Soba Takayama','高山拉麵（2/8 晚餐）'],
    ['d6','move','高山濃飛巴士中心',36.1404,137.2505,'https://www.nouhibus.co.jp/highwaybus/kanazawa/','Takayama Nohi Bus Center','往白川鄉，約 50 分'],
    ['d6','spot','白川鄉合掌村',36.2575,136.9063,'https://shirakawa-go.gr.jp/','Shirakawa-go','荻町散步、和田家'],
    ['d6','spot','城山展望台',36.2632,136.9077,'','Shiroyama Viewpoint Shirakawa-go','合掌村全景拍照點'],
-   ['d6','food','京や',36.1453,137.2604,'','Kyoya Takayama','朴葉味噌飛驒牛（2/9 晚餐）'],
-   ['d7','spot','宮川朝市',36.1423,137.2600,'https://www.hidatakayama.or.jp/','Miyagawa Morning Market','每日開到中午'],
-   ['d7','spot','陣屋前朝市',36.1394,137.2584,'','Jinya-mae Morning Market','與宮川朝市步行約 10 分'],
+   ['d6','food','京や',36.1463,137.2590,'','Kyoya Takayama','朴葉味噌飛驒牛（2/9 晚餐）'],
+   ['d7','spot','宮川朝市',36.1447,137.2579,'https://www.hidatakayama.or.jp/','Miyagawa Morning Market','每日開到中午'],
+   ['d7','spot','陣屋前朝市',36.1395,137.2591,'','Jinya-mae Morning Market','與宮川朝市步行約 10 分'],
    ['d7','food','JR 名古屋高島屋',35.1707,136.8826,'https://www.jr-takashimaya.co.jp/','JR Nagoya Takashimaya','B1 伴手禮集中採買'],
    ['d7','move','中部國際機場 T1',34.8584,136.8054,'https://www.flypeach.com/','Chubu Centrair International Airport','Peach MM723 22:50 起飛'],
-   ['b','spot','磁浮・鐵道館',35.0471,136.8510,'https://museum.jr-central.co.jp/','SCMAGLEV and Railway Park','週二休'],
+   ['b','spot','磁浮・鐵道館',35.0490,136.8511,'https://museum.jr-central.co.jp/','SCMAGLEV and Railway Park','週二休'],
    ['b','spot','名古屋港水族館',35.0907,136.8784,'https://nagoyaaqua.jp/','Port of Nagoya Public Aquarium','冬季週一休'],
    ['b','spot','名古屋市科學館',35.1650,136.8996,'https://www.ncsm.city.nagoya.jp/','Nagoya City Science Museum','週一休'],
    ['b','spot','東山動植物園',35.1568,136.9762,'https://www.higashiyama.city.nagoya.jp/','Higashiyama Zoo','週一休'],
-   ['b','spot','豐田產業技術紀念館',35.1834,136.8771,'https://www.tcmit.org/','Toyota Commemorative Museum of Industry and Technology','週一休'],
+   ['b','spot','豐田產業技術紀念館',35.1826,136.8765,'https://www.tcmit.org/','Toyota Commemorative Museum of Industry and Technology','週一休'],
    ['b','spot','大須商店街',35.1593,136.9017,'https://osu.co.jp/','Osu Shopping Street','雨天有拱廊'],
    ['b','spot','熱田神宮',35.1270,136.9087,'https://www.atsutajingu.or.jp/','Atsuta Jingu','名古屋最重要神社'],
    ['b','spot','Oasis 21',35.1710,136.9101,'','Oasis 21 Nagoya','免費夜景'],
    ['b','spot','FLIGHT OF DREAMS',34.8611,136.8072,'https://flightofdreams.jp/','Flight of Dreams Centrair','機場內 787 展示'],
-   ['b','spot','高山陣屋',36.1391,137.2579,'https://jinya.gifu.jp/','Takayama Jinya','江戶時代官所'],
-   ['b','spot','飛驒之里',36.1364,137.2377,'','Hida Folk Village','合掌屋民俗村'],
-   ['b','spot','高山祭屋台會館',36.1471,137.2621,'','Takayama Festival Floats Exhibition Hall','室內'],
+   ['b','spot','高山陣屋',36.1396,137.2576,'https://jinya.gifu.jp/','Takayama Jinya','江戶時代官所'],
+   ['b','spot','飛驒之里',36.1317,137.2357,'','Hida Folk Village','合掌屋民俗村'],
+   ['b','spot','高山祭屋台會館',36.1484,137.2602,'','Takayama Festival Floats Exhibition Hall','室內'],
    ['b','spot','飛驒古川',36.2380,137.1866,'','Hida Furukawa','JR 約 15 分'],
    ['b','spot','新穗高纜車',36.2876,137.5750,'https://shinhotaka-ropeway.jp/','Shinhotaka Ropeway','高山搭巴士約 1.5 小時']
   ];
+  window.TRIP_PLACES=P; // the near-me panel ranks these by distance
   var ROUTES=[
    {d:['d1','d7'],t:'jr',n:'名鐵 μ-SKY',c:[[34.8584,136.8054],[34.887,136.838],[34.96,136.90],[35.03,136.912],[35.124,136.913],[35.1685,136.884]]},
    {d:['d2','b'],t:'jr',n:'青波線',c:[[35.1709,136.8815],[35.13,136.866],[35.09,136.856],[35.0503,136.8434]]},
-   {d:['d3'],t:'jr',n:'地鐵東山線＋Linimo',c:[[35.1709,136.8815],[35.1705,136.908],[35.168,136.97],[35.183,137.020],[35.1716,137.0896]]},
+   {d:['d3'],t:'jr',n:'地鐵東山線＋Linimo',c:[[35.1709,136.8815],[35.1705,136.908],[35.168,136.97],[35.183,137.020],[35.1736,137.0894]]},
    {d:['d4'],t:'jr',n:'近鐵名古屋線',c:[[35.1709,136.8815],[35.13,136.80],[35.11,136.73],[35.0912,136.6985]]},
-   {d:['d4'],t:'bus',n:'名花之里接駁巴士',c:[[35.0912,136.6985],[35.0738,136.6970]]},
+   {d:['d4'],t:'bus',n:'名花之里接駁巴士',c:[[35.0912,136.6985],[35.0801,136.7044]]},
    {d:['d5','d7'],t:'jr',n:'JR 特急飛驒號',c:[[35.1709,136.8815],[35.31,136.80],[35.409,136.756],[35.43,136.88],[35.437,137.016],[35.55,137.10],[35.65,137.17],[35.806,137.244],[35.886,137.205],[35.96,137.20],[36.04,137.24],[36.1409,137.2513]]},
    {d:['d6'],t:'bus',n:'濃飛巴士 高山⇄白川鄉',c:[[36.1404,137.2505],[36.17,137.17],[36.21,137.06],[36.24,136.97],[36.2575,136.9063]]}
   ];
@@ -1111,6 +1243,15 @@ html.lb-on{overflow:hidden}
   });
   document.getElementById('mapChips').addEventListener('click',function(e){
     var c=e.target.closest('.chip'); if(c) show(c.getAttribute('data-f'));
+  });
+
+  // the near-me panel announces the visitor's position; mark it on the map
+  var here=null;
+  document.addEventListener('trip:here',function(e){
+    var ll=[e.detail.lat,e.detail.lng];
+    if(here){ here.setLatLng(ll); return; }
+    here=L.marker(ll,{icon:L.divIcon({className:'mk-wrap',html:'<span class="mk-here"></span>',iconSize:[22,22],iconAnchor:[11,11]}),zIndexOffset:1000,keyboard:false})
+      .bindTooltip('你在這裡',{direction:'top',offset:[0,-10]}).addTo(map);
   });
 
   restyle();
@@ -1227,6 +1368,174 @@ html.lb-on{overflow:hidden}
   }
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) set(e.target.id); }); },{rootMargin:'-40% 0px -55% 0px'});
   Object.keys(byId).forEach(function(id){ var el=document.getElementById(id); if(el) io.observe(el); });
+})();
+</script>
+
+<script>
+// dish names in the itinerary open that dish's card from the food section as a pop-up
+(function(){
+  var dlg=document.getElementById('dishPop');
+  if(!dlg||typeof dlg.showModal!=='function') return;
+  var ph=dlg.querySelector('.dp-photo'), img=ph.querySelector('img'), opener=null;
+  function fill(sel,card,from){ var el=dlg.querySelector(sel), src=card.querySelector(from); el.innerHTML=src?src.innerHTML:''; el.hidden=!src; }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('.dish'); if(!a) return;
+    var b=document.querySelector('#food .zoom[data-k="'+a.getAttribute('data-food')+'"]'); if(!b) return;
+    e.preventDefault();
+    var card=b.closest('.fcard'), th=b.querySelector('img');
+    img.src=th.currentSrc||th.src; img.alt=th.alt;
+    var old=ph.querySelector('.stamp'); if(old) ph.removeChild(old);
+    fill('.dp-when',card,'.when'); fill('h3',card,'h4'); fill('.dp-desc',card,'p.small'); fill('.dp-where',card,'.where');
+    opener=a; document.documentElement.classList.add('lb-on'); dlg.showModal();
+    var st=card.querySelector('.stamp');
+    if(st){ st=st.cloneNode(true); st.classList.remove('pop'); ph.appendChild(st); st.classList.add('pop'); }
+  });
+  dlg.querySelector('.dp-close').addEventListener('click',function(){dlg.close();});
+  dlg.addEventListener('click',function(e){ if(e.target===dlg) dlg.close(); });
+  dlg.addEventListener('close',function(){ document.documentElement.classList.remove('lb-on'); if(opener) opener.focus(); });
+})();
+</script>
+<script>
+// near me: rank this page's sights, restaurants and snacks by distance from the visitor, or from a spot picked to preview
+(function(){
+  var go=document.getElementById('nearGo'); if(!go) return;
+  var status=document.getElementById('nearStatus'), list=document.getElementById('nearList'), more=document.getElementById('nearMore');
+  var gm=document.getElementById('nearGm'), gmLinks=document.getElementById('nearGmLinks'), areasBox=document.getElementById('nearAreas'), kinds=document.getElementById('nearKinds');
+  var KIND={spot:'景',food:'食',snack:'點'};
+  // map places that read better as a snack or sweet stop than as a meal
+  var SNACKS={'Komeda 珈琲':1,'こって牛':1,'JR 名古屋高島屋':1};
+  // stops that are not on the map: [kind, name, lat, lng, google query, note]
+  var EXTRA=[
+   ['food','まるや本店 JR名古屋駅店',35.1702,136.8833,'まるや本店 JR名古屋駅店','鰻魚飯三吃，在站內うまいもん通り；蓬莱軒排太久時的備案'],
+   ['food','風来坊（名古屋站西側）',35.1698,136.8783,'風来坊 名駅','手羽先元祖，醬汁偏甜，孩子容易接受'],
+   ['snack','住よし（JR 月台）',35.1716,136.8804,'住よし JR名古屋駅','月台上的立食碁子麵，等車 15 分鐘就能吃完'],
+   ['snack','ぴよりん（名古屋站內）',35.1706,136.8820,'ぴよりんSHOP 名古屋駅','站內限定小雞布丁，需冷藏，買了當場吃'],
+   ['food','矢場とん 矢場町本店',35.1617,136.9062,'矢場とん 矢場町本店','味噌豬排本店，在榮和大須之間'],
+   ['food','世界の山ちゃん 本店',35.1680,136.9134,'世界の山ちゃん 本店','手羽先本店，看完 Oasis 21 夜景可順路'],
+   ['snack','新雀本店',35.1587,136.9014,'新雀本店 大須','大須的みたらし團子老店，現烤，名古屋是甜醬油口味'],
+   ['food','味仙 矢場店',35.1618,136.9056,'味仙 矢場店','台灣拉麵，很辣，大人限定'],
+   ['food','あつた蓬莱軒 本店',35.1202,136.9069,'あつた蓬莱軒 本店','鰻魚飯三吃老舖本店，熱田神宮南門走路約 7 分'],
+   ['snack','宮きしめん 熱田神宮店',35.1246,136.9087,'宮きしめん 熱田神宮店','神宮境內的碁子麵小店，參拜完暖暖身'],
+   ['food','メイカーズ・ピア',35.0505,136.8472,'メイカーズピア','樂高樂園旁的餐廳街，入園前或離園後吃飯'],
+   ['food','セントレア 4F 餐廳街',34.8590,136.8052,'中部国際空港 スカイタウン','回程登機前最後補吃名古屋めし'],
+   ['snack','坂口屋',36.1418,137.2596,'坂口屋 高山','三町的飛驒牛握壽司名店，和こって牛擇一，看哪家人少'],
+   ['food','豆天狗 本店',36.1438,137.2599,'豆天狗 本店 高山','高山拉麵，清醬油湯細捲麵'],
+   ['food','味藏天國',36.1394,137.2519,'味蔵天国 高山','飛驒牛燒肉，丸明客滿時的備案，公休日先查'],
+   ['snack','高山プリン亭',36.1413,137.2598,'高山プリン亭','小瓶高山布丁，邊逛三町邊吃'],
+   ['snack','舩坂酒造店',36.1407,137.2597,'舩坂酒造店','三町老酒藏，大人可試飲地酒'],
+   ['spot','中橋',36.1400,137.2592,'中橋 高山','宮川上的紅色橋，雪景拍照點'],
+   ['spot','高山昭和館',36.1441,137.2600,'高山昭和館','重現昭和年代的街景、玩具和柑仔店，全室內'],
+   ['spot','日下部民藝館・吉島家住宅',36.1465,137.2585,'日下部民藝館','兩棟相鄰的江戶町家，挑高木樑很壯觀'],
+   ['spot','飛驒國分寺',36.1433,137.2537,'飛騨国分寺','車站往古街的路上，三重塔和千年大銀杏'],
+   ['spot','和田家',36.2599,136.9076,'和田家 白川郷','荻町最大的合掌造民家，可入內參觀'],
+   ['food','お食事処 いろり',36.2608,136.9070,'お食事処 いろり 白川郷','合掌村裡的地爐餐廳，朴葉味噌定食、蕎麥麵'],
+   ['food','基太の庄',36.2535,136.9033,'基太の庄 白川郷','飛驒牛朴葉味噌和手打蕎麥，在村子南側']
+  ];
+  // [name, lat, lng, day colour]: centres to preview, also used to say where the visitor is
+  var AREAS=[['名古屋站',35.1709,136.8815,'d1'],['榮',35.1696,136.9083,'d3'],['大須',35.1593,136.9017,'d4'],['名古屋城',35.1840,136.8995,'d4'],['熱田神宮',35.1270,136.9087,'b'],
+   ['金城埠頭・樂高',35.0503,136.8450,'d2'],['中部機場',34.8584,136.8054,'d7'],['高山站',36.1409,137.2513,'d5'],['三町古街',36.1413,137.2596,'d5'],['白川鄉',36.2575,136.9063,'d6']];
+  // Google Maps searches for whatever the list does not cover
+  var GM=[['拉麵','ラーメン'],['咖啡廳','カフェ'],['甜點','スイーツ'],['便利商店','コンビニ'],['藥妝店','ドラッグストア'],['廁所','トイレ']];
+  var RANGE=20000, STEP=8, DAY='日一二三四五六';
+
+  var places=(window.TRIP_PLACES||[]).filter(function(p){return p[1]==='spot'||p[1]==='food';})
+    .map(function(p){return [SNACKS[p[2]]?'snack':p[1],p[2],p[3],p[4],p[6],p[7]];})
+    .concat(EXTRA)
+    .map(function(p){ var m=/週([日一二三四五六])休/.exec(p[5]); return {k:p[0],n:p[1],lat:p[2],lng:p[3],q:p[4],t:p[5],off:m?DAY.indexOf(m[1]):-1}; });
+  var centre=null, kind='all', shown=STEP;
+
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function dist(a,b,c,d){
+    var r=Math.PI/180, x=Math.sin((c-a)*r/2), y=Math.sin((d-b)*r/2);
+    return 12742e3*Math.asin(Math.sqrt(x*x+Math.cos(a*r)*Math.cos(c*r)*y*y));
+  }
+  function km(m){ return m<1000?Math.round(m/10)*10+' m':(m<1e4?(m/1000).toFixed(1):Math.round(m/1000).toLocaleString())+' km'; }
+  // streets are not straight and small legs are slow: about 1.3× the straight line at 70 m a minute
+  function walk(m){ return m<=2000?'走路約 '+Math.max(1,Math.round(m*1.3/70))+' 分':'建議搭車'; }
+  function jpDay(){
+    try{ return ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Tokyo',weekday:'short'}).format(new Date())); }
+    catch(e){ return new Date().getDay(); }
+  }
+  function ranked(c){
+    return places.map(function(p){return {p:p,d:dist(c.lat,c.lng,p.lat,p.lng)};}).sort(function(a,b){return a.d-b.d;});
+  }
+  function areaName(c){
+    var best=null, bd=2500;
+    AREAS.forEach(function(a){ var d=dist(c.lat,c.lng,a[1],a[2]); if(d<bd){bd=d;best=a[0];} });
+    return best;
+  }
+
+  function render(){
+    if(!centre){ list.hidden=more.hidden=gm.hidden=true; return; }
+    var today=jpDay(), ll=centre.lat.toFixed(5)+','+centre.lng.toFixed(5);
+    var rows=ranked(centre).filter(function(r){return r.d<=RANGE&&(kind==='all'||r.p.k===kind);});
+    list.innerHTML=rows.slice(0,shown).map(function(r){
+      var p=r.p;
+      // from the live position Google Maps keeps tracking the phone; a previewed spot is passed as the start
+      var nav='https://www.google.com/maps/dir/?api=1'+(centre.gps?'':'&origin='+ll)+'&destination='+encodeURIComponent(p.q)+'&travelmode='+(r.d<=2000?'walking':'transit');
+      return '<li class="ni k-'+p.k+'"><span class="ni-mk" aria-hidden="true">'+KIND[p.k]+'</span><b class="ni-name">'+esc(p.n)+'</b><span class="ni-note">'+esc(p.t)+'</span>'
+        +'<span class="ni-foot"><span class="ni-dist">'+km(r.d)+'・'+walk(r.d)+'</span>'+(p.off===today?'<span class="ni-off">今天可能公休</span>':'')
+        +'<a class="ni-go" href="'+nav+'" target="_blank" rel="noopener">導航 ↗</a></span></li>';
+    }).join('')||'<li class="ni-none">這附近沒有收錄這一類，換個類別，或用下面的 Google 地圖找。</li>';
+    list.hidden=false;
+    more.hidden=rows.length<=shown;
+    gmLinks.innerHTML=GM.map(function(g){
+      return '<a href="https://www.google.com/maps/search/'+encodeURIComponent(g[1])+'/@'+ll+',16z" target="_blank" rel="noopener">'+g[0]+' ↗</a>';
+    }).join('');
+    gm.hidden=false;
+  }
+  // centre the list on c; false (with a note) when nothing on the trip is within reach
+  function use(c){
+    var first=ranked(c)[0];
+    if(!first||first.d>RANGE){
+      centre=null; render();
+      status.innerHTML='你目前離行程地點都很遠'+(first?'（最近的「'+esc(first.p.n)+'」約 '+km(first.d)+'）':'')+'。到了當地再按一次，或先選下面的地點預覽。';
+      return false;
+    }
+    centre=c; shown=STEP; render();
+    return true;
+  }
+  function pick(btn){
+    [].forEach.call(areasBox.children,function(b){ var on=b===btn; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); });
+  }
+  function locate(quiet){
+    if(!navigator.geolocation){ if(!quiet) status.textContent='這個瀏覽器不支援定位，請先選下面的地點。'; return; }
+    go.disabled=true; go.textContent='定位中…';
+    navigator.geolocation.getCurrentPosition(function(pos){
+      go.disabled=false; go.textContent='重新定位';
+      var c={lat:pos.coords.latitude,lng:pos.coords.longitude,gps:true}, acc=Math.round(pos.coords.accuracy||0), a;
+      pick(null);
+      if(!use(c)) return;
+      a=areaName(c);
+      status.innerHTML=(a?'你在 <b>'+esc(a)+'</b> 附近':'<b>已找到你的位置</b>')+'・誤差約 '+acc+' m'+(acc>300?'，距離僅供參考':'');
+      document.dispatchEvent(new CustomEvent('trip:here',{detail:{lat:c.lat,lng:c.lng}}));
+    },function(err){
+      go.disabled=false; go.textContent='用我的位置找';
+      if(quiet) return;
+      status.textContent=err.code===1?'沒有定位權限。請到手機設定允許瀏覽器使用位置（iPhone：設定 › 隱私權與安全性 › 定位服務 › Safari 網站），或先選下面的地點。'
+        :err.code===3?'定位逾時，到室外或靠窗再按一次。':'暫時抓不到位置，稍後再試，或先選下面的地點。';
+    },{enableHighAccuracy:true,timeout:15000,maximumAge:quiet?60000:0}); // a tap always asks for a fresh fix
+  }
+
+  areasBox.innerHTML=AREAS.map(function(a,i){
+    return '<button type="button" class="chip place" data-i="'+i+'" aria-pressed="false" style="--cc:var(--c-'+a[3]+')">'+esc(a[0])+'</button>';
+  }).join('');
+  areasBox.addEventListener('click',function(e){
+    var b=e.target.closest('.chip'); if(!b) return;
+    var a=AREAS[+b.getAttribute('data-i')];
+    pick(b);
+    if(use({lat:a[1],lng:a[2],gps:false})) status.innerHTML='以 <b>'+esc(a[0])+'</b> 為中心，導航也從這裡算起。';
+  });
+  kinds.addEventListener('click',function(e){
+    var b=e.target.closest('.chip'); if(!b) return;
+    kind=b.getAttribute('data-k'); shown=STEP;
+    [].forEach.call(kinds.children,function(x){ var on=x===b; x.classList.toggle('on',on); x.setAttribute('aria-pressed',on); });
+    render();
+  });
+  more.addEventListener('click',function(){ shown+=STEP; render(); });
+  go.addEventListener('click',function(){ locate(false); });
+  // permission given on an earlier visit: locate right away, no prompt appears
+  try{ navigator.permissions.query({name:'geolocation'}).then(function(r){ if(r.state==='granted') locate(true); },function(){}); }catch(e){}
 })();
 </script>
 
