@@ -4,139 +4,264 @@
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;900&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@500..900&family=Noto+Sans+TC:wght@400;500;700&display=swap">
 </head><body>
 <style>
-/* Layout: 冬夜藍 × 燈海金。單欄閱讀、黏頂目錄、每日卡片固定 16:10 實拍照片 */
+/* Layout: 晴天雪國旅遊書。滿版天空封面（飄雪＋明信片），黏頂膠囊目錄，每天一個代表色（與地圖同色），美食／伴手禮／交通用淡色滿版色帶分段 */
 :root{
-  --bg:#f3f6f8; --paper:#ffffff; --ink:#132a3a; --muted:#56697a; --line:#d7e0e7;
-  --navy:#103d55; --gold:#b9821c; --gold-soft:#fbf1dc; --red:#c2412d; --red-soft:#fde9e4;
-  --green:#2f7d5b; --green-soft:#e3f2ea; --chip:#e9eff3;
-  --display:"Noto Serif TC","Songti TC",serif;
+  --bg:#f3f8fd; --paper:#ffffff; --ink:#18304b; --muted:#56687e; --line:#dbe6f1; --tint:#ebf3fb;
+  --sky:#1b84dc; --sky-ink:#1567b5; --sky-soft:#e1effc; --on-sky:#ffffff;
+  --sun:#ffc22e; --sun-soft:#fff2cc; --on-sun:#3a2600;
+  --persimmon:#ea5a26; --berry:#d92f48; --berry-soft:#fde7ea;
+  --matcha:#178650; --matcha-soft:#dff3e8; --on-matcha:#ffffff;
+  --band-warm:#fff6df; --band-pink:#fdeef1; --band-cool:#e4f0fb;
+  --hero-1:#86c4ff; --hero-2:#cfe7ff; --hill:#e2effb; --title:#0d3a6b;
+  --shadow:0 1px 2px rgba(24,64,110,.06),0 6px 20px rgba(24,64,110,.08);
+  --shadow-up:0 2px 6px rgba(24,64,110,.08),0 18px 40px rgba(24,64,110,.16);
+  --display:"Chiron GoRound TC","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
   --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --c-d1:#1b84dc; --c-d2:#e2432a; --c-d3:#25924d; --c-d4:#8550d0; --c-d5:#cf6a0a; --c-d6:#0f8a88; --c-d7:#d33a76; --c-b:#5f7288;
+  --map-sea:#c4e3f6; --map-land:#fdfcf7; --map-land2:#eef1e7; --map-edge:#b6c4c9; --map-rail:#1565b8; --map-bus:#ea5a26; --map-text:#56687e;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0c1820; --paper:#13232e; --ink:#e6eef3; --muted:#9db0bf; --line:#26394a;
-  --navy:#8cc4e0; --gold:#e8b453; --gold-soft:#2e2614; --red:#f08a74; --red-soft:#3a1f1a;
-  --green:#7fcfa6; --green-soft:#16302a; --chip:#1c3140; color-scheme:dark}}
+  --bg:#0c1627; --paper:#14233b; --ink:#e8f0fa; --muted:#a0b2c8; --line:#26395a; --tint:#1a2c48;
+  --sky:#6db6ff; --sky-ink:#93c9ff; --sky-soft:#173252; --on-sky:#06203d;
+  --sun:#ffd055; --sun-soft:#352b10; --on-sun:#3a2600;
+  --persimmon:#ff8a5c; --berry:#ff6f84; --berry-soft:#3b1a25;
+  --matcha:#5fd39b; --matcha-soft:#12342a; --on-matcha:#06281a;
+  --band-warm:#17202f; --band-pink:#1a1a2c; --band-cool:#0f1e35;
+  --hero-1:#07183a; --hero-2:#143163; --hill:#12223d; --title:#ffffff;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+  --shadow-up:0 2px 6px rgba(0,0,0,.35),0 18px 40px rgba(0,0,0,.4);
+  --c-d1:#3a95e6; --c-d2:#ee5a40; --c-d3:#36a862; --c-d4:#9a68e4; --c-d5:#e0801c; --c-d6:#1ba29f; --c-d7:#e5568d; --c-b:#7a8ca2;
+  --map-sea:#0d2036; --map-land:#1d2c44; --map-land2:#17243a; --map-edge:#34496a; --map-rail:#6db6ff; --map-bus:#ff8a5c; --map-text:#a0b2c8;
+  color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0c1820; --paper:#13232e; --ink:#e6eef3; --muted:#9db0bf; --line:#26394a;
-  --navy:#8cc4e0; --gold:#e8b453; --gold-soft:#2e2614; --red:#f08a74; --red-soft:#3a1f1a;
-  --green:#7fcfa6; --green-soft:#16302a; --chip:#1c3140; color-scheme:dark}
+  --bg:#0c1627; --paper:#14233b; --ink:#e8f0fa; --muted:#a0b2c8; --line:#26395a; --tint:#1a2c48;
+  --sky:#6db6ff; --sky-ink:#93c9ff; --sky-soft:#173252; --on-sky:#06203d;
+  --sun:#ffd055; --sun-soft:#352b10; --on-sun:#3a2600;
+  --persimmon:#ff8a5c; --berry:#ff6f84; --berry-soft:#3b1a25;
+  --matcha:#5fd39b; --matcha-soft:#12342a; --on-matcha:#06281a;
+  --band-warm:#17202f; --band-pink:#1a1a2c; --band-cool:#0f1e35;
+  --hero-1:#07183a; --hero-2:#143163; --hill:#12223d; --title:#ffffff;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+  --shadow-up:0 2px 6px rgba(0,0,0,.35),0 18px 40px rgba(0,0,0,.4);
+  --c-d1:#3a95e6; --c-d2:#ee5a40; --c-d3:#36a862; --c-d4:#9a68e4; --c-d5:#e0801c; --c-d6:#1ba29f; --c-d7:#e5568d; --c-b:#7a8ca2;
+  --map-sea:#0d2036; --map-land:#1d2c44; --map-land2:#17243a; --map-edge:#34496a; --map-rail:#6db6ff; --map-bus:#ff8a5c; --map-text:#a0b2c8;
+  color-scheme:dark}
+
+/* icons: line drawings used as masks, so they take any token color */
+:root{
+  --i-plane:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z'/%3E%3C/svg%3E");
+  --i-train:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='5' y='3' width='14' height='14' rx='3'/%3E%3Cpath d='M5 10h14M12 3v7M8.5 21 10 17M15.5 21 14 17'/%3E%3Ccircle cx='9' cy='13.5' r='.6'/%3E%3Ccircle cx='15' cy='13.5' r='.6'/%3E%3C/svg%3E");
+  --i-bus:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='3' width='16' height='15' rx='3'/%3E%3Cpath d='M4 11h16M7 21v-3M17 21v-3M9 6.5h6'/%3E%3Ccircle cx='8' cy='14.5' r='.6'/%3E%3Ccircle cx='16' cy='14.5' r='.6'/%3E%3C/svg%3E");
+  --i-car:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 17v-5l2.2-5.2A1.5 1.5 0 0 1 8.6 6h6.8a1.5 1.5 0 0 1 1.4.8L19 12v5zM3.5 12h17M6.5 17v2.5M17.5 17v2.5'/%3E%3Ccircle cx='8.5' cy='14.5' r='.6'/%3E%3Ccircle cx='15.5' cy='14.5' r='.6'/%3E%3C/svg%3E");
+  --i-lights:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1'/%3E%3Ccircle cx='12' cy='12' r='2.5'/%3E%3C/svg%3E");
+  --i-moon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z'/%3E%3C/svg%3E");
+  --i-umbrella:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 12a10 10 0 0 0-20 0zM12 12v7a2 2 0 0 0 4 0M12 2v1'/%3E%3C/svg%3E");
+  --i-alert:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9.5'/%3E%3Cpath d='M12 7.5v5.5M12 16.5h.01'/%3E%3C/svg%3E");
+  --i-check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+  --i-wave:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 10'%3E%3Cpath d='M0 5Q6 0 12 5T24 5' fill='none' stroke='black' stroke-width='3.2'/%3E%3C/svg%3E");
+}
+
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.75;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+html{scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.75;overflow-x:clip}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:1200;background:var(--bg)}
-a{color:var(--navy);text-underline-offset:3px}
-a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.wrap{max-width:980px;margin:0 auto}
-h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.3;margin:0}
-h2{font-size:clamp(24px,4vw,32px)}
+a{color:var(--sky-ink);text-underline-offset:3px;text-decoration-thickness:1.5px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.wrap{max-width:1040px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{font-family:var(--display);font-weight:900;text-wrap:balance;line-height:1.28;margin:0;letter-spacing:.01em}
+h2{font-size:clamp(28px,4.6vw,40px)}
 h3{font-size:20px}
 p{margin:0}
-.eyebrow{font-size:12px;letter-spacing:.14em;color:var(--gold);font-weight:700;text-transform:uppercase}
+.eyebrow{font:800 12.5px/1.2 var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--sky-ink)}
 .muted{color:var(--muted)}
 .small{font-size:13.5px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
-/* hero */
-.hero{padding-block:40px 28px;display:grid;gap:18px}
-.hero h1{font-size:clamp(32px,7vw,56px);font-weight:900;color:var(--navy)}
-.hero h1 em{font-style:normal;color:var(--gold)}
-.hero-lede{max-width:62ch;color:var(--muted)}
-.flights{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
-.ticket{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:grid;gap:6px;position:relative}
-.ticket .tag{font-size:12px;font-weight:700;padding:2px 10px;border-radius:99px;justify-self:start}
-.ticket.out .tag{background:var(--green-soft);color:var(--green)}
-.ticket.back .tag{background:var(--gold-soft);color:var(--gold)}
-.ticket .route{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:22px;font-variant-numeric:tabular-nums}
-.ticket .route span.ar{flex:1;border-top:1px dashed var(--line);position:relative}
-.ticket .meta{font-size:13.5px;color:var(--muted)}
-.ticket .key{font-size:13.5px;background:var(--chip);border-radius:8px;padding:8px 10px}
+/* hero: winter sky, falling snow, three postcards from the trip */
+.hero{position:relative;overflow:hidden;isolation:isolate;background:linear-gradient(180deg,var(--hero-1) 0%,var(--hero-2) 48%,var(--bg) 100%)}
+.snow{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.hills{position:absolute;left:0;bottom:0;width:100%;height:clamp(48px,8vw,104px);z-index:-1;display:block}
+.hills .h-back{fill:var(--hill)}
+.hills .h-front{fill:var(--bg)}
+.hero > .wrap{padding-block:clamp(28px,6vw,64px) clamp(64px,9vw,108px);display:grid;gap:clamp(28px,4.5vw,44px)}
+.hero-top{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:28px;align-items:center}
+@media (max-width:840px){.hero-top{grid-template-columns:1fr}}
+.hero-copy{display:grid;gap:18px;justify-items:start;min-width:0}
+.kicker{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.kicker .dates{background:var(--paper);color:var(--ink);font:900 13.5px/1 var(--display);padding:9px 14px;border-radius:99px;box-shadow:var(--shadow);font-variant-numeric:tabular-nums}
+.kicker .places{font:800 12px/1.3 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--title)}
+.hero h1{font-size:clamp(50px,10vw,98px);line-height:1.04;color:var(--title);letter-spacing:.03em}
+.hero h1 .l2{display:block;color:var(--persimmon);text-shadow:.05em .05em 0 var(--sun)}
+.hero-lede{max-width:36em;font-size:16px}
+.stickers{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:9px}
+.stickers li{display:inline-flex;align-items:center;gap:7px;font:800 14px/1 var(--display);padding:9px 14px;border-radius:99px;background:var(--paper);box-shadow:var(--shadow)}
+.stickers li:nth-child(odd){transform:rotate(-2deg)}
+.stickers li:nth-child(even){transform:rotate(1.5deg)}
+.stickers i{width:10px;height:10px;border-radius:50%;background:var(--sc)}
+.countdown{display:inline-flex;align-items:baseline;gap:8px;background:var(--sun);color:var(--on-sun);padding:10px 18px 11px;border-radius:16px;font:800 15px/1 var(--display);box-shadow:0 4px 0 color-mix(in srgb,var(--sun) 55%,#7a4a00)}
+.countdown b{font-size:34px;font-weight:900;font-variant-numeric:tabular-nums}
 
-/* nav */
-nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:1100;background:var(--bg);border-bottom:1px solid var(--line);
-  margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
-nav.toc .in{max-width:980px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding-block:8px;scrollbar-width:none}
-nav.toc a{white-space:nowrap;text-decoration:none;color:var(--ink);font-size:14px;padding:6px 12px;border-radius:99px}
-nav.toc a:hover{background:var(--chip)}
+.postcards{position:relative;height:clamp(250px,32vw,350px);min-width:0;width:100%}
+@media (max-width:840px){.postcards{height:clamp(210px,58vw,320px);max-width:520px;justify-self:center}}
+.pc{--r:0deg;position:absolute;width:56%;background:var(--paper);padding:8px 8px 28px;border-radius:6px;box-shadow:var(--shadow-up);text-decoration:none;color:var(--ink);transform:rotate(var(--r));transition:transform .35s cubic-bezier(.2,.9,.3,1.3)}
+.pc::before{content:"";position:absolute;top:-9px;left:50%;width:62px;height:20px;margin-left:-31px;background:color-mix(in srgb,var(--sun) 72%,transparent);transform:rotate(-5deg);border-radius:2px}
+.pc img{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:16/11;object-fit:cover;border-radius:3px}
+/* the date tag sits on the photo's top-left corner, the one part of each card the others never cover */
+.pc span{position:absolute;left:16px;top:16px;font:900 12.5px/1 var(--display);color:#fff;background:var(--tc);padding:6px 10px;border-radius:99px;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.pc:nth-child(1){--r:-7deg;--tc:var(--c-d2);left:0;top:10%}
+.pc:nth-child(2){--r:5deg;--tc:var(--c-d6);right:0;top:0;z-index:2}
+.pc:nth-child(3){--r:-2deg;--tc:var(--c-d4);left:24%;bottom:0;z-index:3}
+.pc:hover,.pc:focus-visible{transform:rotate(0deg) translateY(-6px) scale(1.05);z-index:5}
+@media (prefers-reduced-motion:no-preference){
+  .pc{animation:pc-drop .8s cubic-bezier(.2,.9,.3,1.25) backwards}
+  .pc:nth-child(2){animation-delay:.12s}
+  .pc:nth-child(3){animation-delay:.24s}
+}
+@keyframes pc-drop{from{transform:translateY(-40px) rotate(calc(var(--r) * -2))}to{transform:rotate(var(--r))}}
 
-section{padding-block:44px 8px;scroll-margin-top:60px}
-.sec-head{display:grid;gap:6px;margin-bottom:20px}
+/* boarding passes: a main part and a stub, notched where the perforation runs */
+.flights{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:18px}
+.pass{display:grid;min-width:0;filter:drop-shadow(0 6px 14px rgba(24,64,110,.16))}
+.pass.out{--pc:var(--c-d1)}
+.pass.back{--pc:var(--c-d2)}
+.pass-main,.pass-stub{background:var(--paper);padding:16px 20px}
+.pass-main{border-radius:20px 20px 0 0;display:grid;gap:12px;
+  -webkit-mask:radial-gradient(circle 11px at 0 100%,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 11px at 100% 100%,#0000 97%,#000) right/51% 100% no-repeat;
+  mask:radial-gradient(circle 11px at 0 100%,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 11px at 100% 100%,#0000 97%,#000) right/51% 100% no-repeat}
+.pass-stub{border-radius:0 0 20px 20px;border-top:2px dashed var(--line);font-size:13.5px;line-height:1.65;
+  -webkit-mask:radial-gradient(circle 11px at 0 0,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 11px at 100% 0,#0000 97%,#000) right/51% 100% no-repeat;
+  mask:radial-gradient(circle 11px at 0 0,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 11px at 100% 0,#0000 97%,#000) right/51% 100% no-repeat}
+.pass-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
+.pass .tag{font:900 13px/1 var(--display);color:#fff;background:var(--pc);padding:7px 12px;border-radius:99px}
+.pass .flt{font:800 13px/1 var(--display);letter-spacing:.06em;color:var(--muted)}
+.route{display:grid;grid-template-columns:auto minmax(40px,1fr) auto;align-items:center;gap:14px}
+.route .ap{display:grid;gap:4px}
+.route .ap:last-child{text-align:right}
+.route .ap b{font:900 clamp(32px,6vw,42px)/1 var(--display);letter-spacing:.04em}
+.route .ap span{font:800 15px/1 var(--display);color:color-mix(in srgb,var(--pc) 80%,var(--ink));font-variant-numeric:tabular-nums}
+.route .ap sup{font-size:10.5px;margin-left:2px}
+.route .path{position:relative;height:2px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 11px)}
+.route .path::after{content:"";position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-13px;background:var(--pc);-webkit-mask:var(--i-plane) center/contain no-repeat;mask:var(--i-plane) center/contain no-repeat;transform:rotate(45deg)}
+.pass .meta{font-size:13px;color:var(--muted)}
+
+/* sticky table of contents */
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:1100;background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+nav.toc .in{position:relative;display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+nav.toc .in::-webkit-scrollbar{display:none}
+nav.toc a{white-space:nowrap;text-decoration:none;color:var(--ink);font:800 14px/1 var(--display);padding:9px 14px;border-radius:99px;transition:background .2s,color .2s}
+nav.toc a:hover{background:var(--sky-soft)}
+nav.toc a.on{background:var(--sky);color:var(--on-sky)}
+
+/* sections; .band paints a full-width tint behind one section without widening the page */
+main section{padding-block:60px 12px}
+section.band{background:var(--band);box-shadow:0 0 0 100vmax var(--band);clip-path:inset(0 -100vmax);padding-bottom:52px;margin-top:48px}
+.band.warm{--band:var(--band-warm)}
+.band.pink{--band:var(--band-pink)}
+.band.cool{--band:var(--band-cool)}
+.sec-head{display:grid;gap:8px;justify-items:start;margin-bottom:26px}
+.sec-head h2{position:relative;padding-bottom:14px}
+.sec-head h2::after{content:"";position:absolute;left:0;bottom:0;width:88px;height:10px;background:var(--sun);-webkit-mask:var(--i-wave) left/24px 10px repeat-x;mask:var(--i-wave) left/24px 10px repeat-x}
 .sec-head p{max-width:65ch;color:var(--muted)}
 
 /* change log */
-.changes{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:grid;gap:10px}
-.changes ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+.changes{background:var(--paper);border-radius:20px;padding:20px 24px;box-shadow:var(--shadow)}
+.changes ul{margin:0;padding-left:1.2em;display:grid;gap:6px}
+.changes li::marker{color:var(--sky)}
+
+/* pill links */
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.links a{font:800 13px/1 var(--display);text-decoration:none;padding:9px 13px;border-radius:99px;background:var(--sky-soft);color:var(--sky-ink);transition:background .2s,color .2s}
+.links a:hover{background:var(--sky);color:var(--on-sky)}
 
 /* stays */
-.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
-.box{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:grid;gap:8px;align-content:start;min-width:0}
-.box h3{font-size:18px}
+.stays{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:18px}
+.stay{background:var(--paper);border-radius:24px;padding:22px 24px;display:grid;gap:14px;align-content:start;box-shadow:var(--shadow);min-width:0}
+.stay-top{display:flex;gap:14px;align-items:center;min-width:0}
+.nights{flex:none;display:grid;place-content:center;justify-items:center;width:68px;height:68px;border-radius:50%;background:var(--sc);color:#fff;font:900 12.5px/1 var(--display);transform:rotate(-6deg);box-shadow:0 3px 0 color-mix(in srgb,var(--sc) 55%,#000)}
+.nights b{font-size:28px;line-height:.95}
+.stay-top > div{display:grid;gap:4px;min-width:0}
+.stay h3{font-size:21px}
+.io{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.io > div{background:var(--tint);border-radius:16px;padding:10px 14px;display:grid;gap:3px}
+.io span{font:800 11.5px/1 var(--display);letter-spacing:.12em;color:var(--muted)}
+.io b{font:900 17px/1.2 var(--display);font-variant-numeric:tabular-nums}
+.io em{font-style:normal;font-size:13px;color:var(--muted)}
 
-/* days */
-.days{display:grid;gap:22px}
-.day{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr)}
-@media (max-width:760px){.day{grid-template-columns:1fr}}
-.art{aspect-ratio:16/10;max-width:100%;width:100%;align-self:start;position:relative;background:#173b52}
-.art img,.thumb img{width:100%;height:100%;object-fit:cover;display:block;background:#2a2f36}
-.art .dno{position:absolute;left:12px;top:10px;font-family:var(--mono);font-size:12px;color:#fff;background:rgba(0,0,0,.35);padding:2px 8px;border-radius:6px}
-.day-body{padding:18px 20px 20px;display:grid;gap:12px;min-width:0}
-.day-top{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline}
-.date{font-family:var(--mono);font-size:14px;color:var(--gold)}
-.pill{font-size:12px;padding:1px 9px;border-radius:99px;background:var(--chip);color:var(--muted)}
-ol.tl{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-ol.tl li{display:grid;grid-template-columns:92px minmax(0,1fr);gap:10px}
-ol.tl time{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:2px}
-@media (max-width:420px){ol.tl li{grid-template-columns:1fr;gap:0}}
-.meal{background:var(--gold-soft);border-radius:8px;padding:2px 8px;margin-inline:-8px}
+/* 7-day overview strip */
+.strip{list-style:none;margin:0 0 30px;padding:4px 2px 12px;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(132px,1fr);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory}
+.strip li{scroll-snap-align:start;min-width:0;--dc-ink:color-mix(in srgb,var(--dc) 78%,var(--ink))}
+.strip li:nth-child(1){--dc:var(--c-d1)}.strip li:nth-child(2){--dc:var(--c-d2)}.strip li:nth-child(3){--dc:var(--c-d3)}.strip li:nth-child(4){--dc:var(--c-d4)}
+.strip li:nth-child(5){--dc:var(--c-d5)}.strip li:nth-child(6){--dc:var(--c-d6)}.strip li:nth-child(7){--dc:var(--c-d7)}
+.strip a{display:grid;gap:4px;align-content:start;height:100%;text-decoration:none;color:var(--ink);background:var(--paper);border-radius:18px;padding:8px 8px 12px;box-shadow:var(--shadow);transition:transform .25s cubic-bezier(.2,.9,.3,1.3),box-shadow .25s}
+.strip a:hover{transform:translateY(-4px);box-shadow:var(--shadow-up)}
+.strip img{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:12px;background:var(--tint)}
+.strip .s-date{margin-top:6px;font:900 12.5px/1 var(--display);color:var(--dc-ink);font-variant-numeric:tabular-nums}
+.strip b{font:900 14px/1.35 var(--display)}
+.strip .s-city{font-size:12px;line-height:1.4;color:var(--muted)}
+.strip li.today a{box-shadow:0 0 0 3px var(--dc),var(--shadow-up)}
+.strip li.today .s-date::after{content:"今天";margin-left:6px;padding:2px 6px;border-radius:99px;background:var(--dc);color:#fff;font-size:11px}
+
+/* day cards */
+#day1{--dc:var(--c-d1)}#day2{--dc:var(--c-d2)}#day3{--dc:var(--c-d3)}#day4{--dc:var(--c-d4)}#day5{--dc:var(--c-d5)}#day6{--dc:var(--c-d6)}#day7{--dc:var(--c-d7)}
+.days{display:grid;gap:28px}
+.day{--dc-ink:color-mix(in srgb,var(--dc) 78%,var(--ink));--dc-soft:color-mix(in srgb,var(--dc) 11%,var(--paper));
+  background:var(--paper);border-radius:28px;overflow:hidden;overflow:clip;display:grid;grid-template-columns:minmax(0,370px) minmax(0,1fr);box-shadow:var(--shadow)}
+.art{position:sticky;top:calc(70px + env(safe-area-inset-top,0px));align-self:start;padding:14px;max-width:100%}
+.art .zoom{height:auto;aspect-ratio:16/10;border-radius:20px;overflow:hidden;background:var(--dc-soft)}
+.art img,.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.art .dno{position:absolute;left:26px;top:24px;z-index:1;pointer-events:none;font:900 14px/1 var(--display);letter-spacing:.06em;color:#fff;background:var(--dc);padding:8px 12px;border-radius:12px;transform:rotate(-5deg);box-shadow:0 3px 0 color-mix(in srgb,var(--dc) 55%,#000)}
+@media (max-width:780px){
+  .day{grid-template-columns:1fr}
+  .art{position:relative;top:auto;padding:12px 12px 0}
+  .art .dno{left:22px;top:22px}
+}
+.day-body{padding:24px 26px 26px 12px;display:grid;gap:16px;min-width:0}
+@media (max-width:780px){.day-body{padding:16px 18px 22px}}
+.day-top{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}
+.day-top h3{order:3;flex-basis:100%;font-size:clamp(22px,2.6vw,27px)}
+.date{font:900 13.5px/1 var(--display);color:#fff;background:var(--dc);padding:8px 12px;border-radius:99px;font-variant-numeric:tabular-nums}
+.pill{font:800 12.5px/1 var(--display);padding:7px 11px;border-radius:99px;background:var(--tint);color:var(--muted)}
+.day .pill{background:var(--dc-soft);color:var(--dc-ink)}
+ol.tl{list-style:none;margin:0;padding:0;display:grid;gap:4px;position:relative}
+ol.tl::before{content:"";position:absolute;left:8px;top:14px;bottom:14px;width:2px;background:repeating-linear-gradient(180deg,color-mix(in srgb,var(--dc) 45%,var(--paper)) 0 5px,transparent 5px 10px)}
+ol.tl li{position:relative;display:grid;grid-template-columns:94px minmax(0,1fr);gap:10px;padding:7px 12px 7px 30px;border-radius:14px}
+ol.tl li::before{content:"";position:absolute;left:3px;top:13px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:3px solid var(--dc)}
+ol.tl time{font:800 14px/1.75 var(--display);color:var(--dc-ink);font-variant-numeric:tabular-nums}
+ol.tl li.meal{background:var(--sun-soft)}
+ol.tl li.meal::before{background:var(--sun);border-color:var(--sun)}
+@media (max-width:440px){ol.tl li{grid-template-columns:1fr;gap:0}}
 .must{display:inline-block;font:900 12.5px/1.55 var(--display);color:#fff;letter-spacing:.08em;padding:0 8px 0 6px;margin-right:6px;vertical-align:1px;
   border-radius:6px;background:linear-gradient(135deg,#ff6a3d,#e0201b 60%,#b3100f);transform:rotate(-3deg);
   box-shadow:0 2px 0 #7d0b0b,0 3px 10px rgba(224,32,27,.45);text-shadow:0 1px 0 rgba(0,0,0,.3)}
 .must::before{content:"★";margin-right:3px;color:#ffe066}
-.plan-b{border-left:3px solid var(--green);background:var(--green-soft);padding:10px 14px;border-radius:0 10px 10px 0;font-size:14px}
-.plan-b b{color:var(--green)}
-.warn{border-left:3px solid var(--red);background:var(--red-soft);padding:10px 14px;border-radius:0 10px 10px 0;font-size:14px}
-.links{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px}
+.plan-b,.warn{position:relative;border-radius:18px;padding:13px 16px 13px 50px;font-size:14px}
+.plan-b::before,.warn::before{content:"";position:absolute;left:17px;top:15px;width:21px;height:21px;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat;background:currentColor}
+.plan-b{--m:var(--i-umbrella);background:var(--matcha-soft)}
+.plan-b::before{background:var(--matcha)}
+.plan-b b{color:var(--matcha)}
+.warn{--m:var(--i-alert);background:var(--berry-soft)}
+.warn::before{background:var(--berry)}
+.warn b{color:var(--berry)}
 
-/* food */
-.legend{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:14px;margin-bottom:14px}
-.food-group{display:grid;gap:12px;margin-bottom:28px}
-.food-group > h3{display:flex;gap:10px;align-items:baseline}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-.fcard{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:6px;align-content:start;min-width:0}
-.fcard.is-must{border-color:var(--red);box-shadow:inset 0 3px 0 var(--red)}
-.fcard h4{margin:0;font-size:16.5px;font-family:var(--display)}
-.fcard .where{font-size:13.5px}
-.fcard .when{font-size:12.5px;color:var(--gold);font-weight:700}
-
-/* map */
-.mapfig{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:12px;overflow-x:auto}
-.mapfig svg{display:block;width:100%;min-width:560px;height:auto}
-.places{display:grid;gap:18px;margin-top:20px}
-.places h3{font-size:17px;margin-bottom:6px}
-table{border-collapse:collapse;width:100%;font-size:14px}
-.tbl{overflow-x:auto;background:var(--paper);border:1px solid var(--line);border-radius:12px}
-th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-tr:last-child td{border-bottom:0}
-th{font-size:12.5px;color:var(--muted);font-weight:500;background:var(--chip)}
-td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
-td a{white-space:nowrap}
-
-/* checklist */
-.check{display:grid;gap:6px}
-.check label{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:8px;background:var(--paper);border:1px solid var(--line);cursor:pointer}
-.check input{margin-top:6px;accent-color:var(--navy)}
-.check input:checked + span{text-decoration:line-through;color:var(--muted)}
-footer{padding-block:48px 56px;color:var(--muted);font-size:13px;display:grid;gap:8px}
-@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
-
-/* card thumbnails */
-.thumb{aspect-ratio:16/10;max-width:calc(100% + 32px);margin:-14px -16px 6px;overflow:hidden;border-radius:11px 11px 0 0;background:#2a2f36;position:relative}
-.fcard.is-must{box-shadow:none;border-width:2px}
-.fcard.must-buy{border-color:#e88a00}
+/* food, spot and gift cards */
+.legend{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;font-size:14px;margin-bottom:18px}
+.food-group{display:grid;gap:16px;margin-bottom:34px}
+.food-group:last-child{margin-bottom:0}
+.food-group > h3{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:23px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:18px}
+.fcard{background:var(--paper);border-radius:22px;padding:14px 16px 18px;display:grid;gap:8px;align-content:start;min-width:0;box-shadow:var(--shadow);transition:transform .3s cubic-bezier(.2,.9,.3,1.25),box-shadow .3s}
+.fcard:hover{transform:translateY(-5px);box-shadow:var(--shadow-up)}
+.fcard h4{font-size:18px}
+.fcard .where{font-size:13.5px;background:var(--tint);border-radius:12px;padding:8px 11px}
+.fcard .when{justify-self:start;font:800 12.5px/1 var(--display);padding:6px 10px;border-radius:99px;color:color-mix(in srgb,var(--persimmon) 82%,var(--ink));background:color-mix(in srgb,var(--persimmon) 13%,var(--paper))}
+.spot-cards .fcard .when{color:var(--matcha);background:var(--matcha-soft)}
 .fcard .links{margin-top:auto}
-.spot-cards .fcard{gap:7px}
+.thumb{position:relative;aspect-ratio:16/10;max-width:calc(100% + 32px);margin:-14px -16px 6px;overflow:hidden;border-radius:22px 22px 0 0;background:var(--tint)}
+.thumb img{transition:transform .6s cubic-bezier(.2,.8,.3,1)}
+.fcard:hover .thumb img{transform:scale(1.05)}
 
 /* 必吃・必買 stamps: starburst slapped on the photo corner */
 .stamp{position:absolute;top:8px;right:8px;width:86px;height:86px;display:grid;place-content:center;justify-items:center;gap:2px;
@@ -155,19 +280,108 @@ footer{padding-block:48px 56px;color:var(--muted);font-size:13px;display:grid;ga
 @keyframes stamp-wiggle{0%,100%{transform:rotate(-12deg) scale(1)}30%{transform:rotate(-2deg) scale(1.14)}65%{transform:rotate(-18deg) scale(1.04)}}
 @media (max-width:420px){.stamp{width:76px;height:76px}.stamp b{font-size:22px}}
 
-/* photo credits */
-.credits summary{cursor:pointer;color:var(--ink)}
-.credits ol{margin:10px 0 0;padding-left:1.4em;display:grid;gap:3px;font-size:12px;columns:1}
+/* map */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{--cc:var(--c-b);display:inline-flex;align-items:center;gap:7px;font:800 14px/1 var(--display);padding:9px 14px 9px 11px;border-radius:99px;border:0;background:var(--paper);color:var(--ink);cursor:pointer;box-shadow:var(--shadow);transition:background .2s,color .2s,transform .2s}
+.chip::before{content:"";width:11px;height:11px;border-radius:50%;background:var(--cc)}
+.chip:hover{transform:translateY(-2px)}
+.chip[data-f="d1"]{--cc:var(--c-d1)}.chip[data-f="d2"]{--cc:var(--c-d2)}.chip[data-f="d3"]{--cc:var(--c-d3)}.chip[data-f="d4"]{--cc:var(--c-d4)}
+.chip[data-f="d5"]{--cc:var(--c-d5)}.chip[data-f="d6"]{--cc:var(--c-d6)}.chip[data-f="d7"]{--cc:var(--c-d7)}
+.chip[data-f="all"]::before{background:conic-gradient(var(--c-d1) 0 14%,var(--c-d2) 0 28%,var(--c-d3) 0 42%,var(--c-d4) 0 57%,var(--c-d5) 0 71%,var(--c-d6) 0 85%,var(--c-d7) 0)}
+.chip.on{background:var(--cc);color:#fff}
+.chip.on::before{background:#fff}
+.chip[data-f="all"].on{background:var(--ink);color:var(--bg)}
+.mapwrap{position:relative;border-radius:26px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow)}
+#tripMap{height:540px;background:var(--map-sea);font-family:var(--body)}
+@media (max-width:600px){#tripMap{height:440px}}
+.map-legend{display:flex;flex-wrap:wrap;gap:6px 14px;padding:10px 14px;background:var(--paper);border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);align-items:center}
+.lg-line{display:inline-block;width:22px;height:0;border-top:4px solid var(--map-rail);vertical-align:middle;margin-right:5px}
+.lg-line.bus{border-top:3px dashed var(--map-bus)}
+.lg-mk{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--muted);color:#fff;font-size:11px;font-weight:700;margin-right:5px;vertical-align:-4px}
+
+.mk-wrap{background:none;border:0}
+.mk{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;color:#fff;font:900 13px/1 var(--display);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35)}
+.mk.cat-stay{border-radius:8px}
+.mk.cat-move{width:24px;height:24px;margin:2px;font-size:11px;opacity:.95}
+.mk-d1{background:var(--c-d1)}.mk-d2{background:var(--c-d2)}.mk-d3{background:var(--c-d3)}.mk-d4{background:var(--c-d4)}
+.mk-d5{background:var(--c-d5)}.mk-d6{background:var(--c-d6)}.mk-d7{background:var(--c-d7)}.mk-b{background:var(--c-b)}
+.town-lbl{background:none;border:0;font:700 12px/1 var(--display);color:var(--map-text);white-space:nowrap;transform:translate(-50%,-50%);pointer-events:none;text-shadow:0 0 3px var(--map-land),0 0 3px var(--map-land)}
+.town-lbl.pref{font-size:15px;letter-spacing:.3em;opacity:.55}
+.leaflet-container a.leaflet-popup-close-button{color:var(--muted)}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--paper);color:var(--ink);box-shadow:0 6px 20px rgba(0,0,0,.22)}
+.leaflet-popup-content-wrapper{border-radius:16px}
+.leaflet-popup-content{margin:12px 14px;font-family:var(--body);font-size:14px;line-height:1.55}
+.pp{display:grid;gap:4px}
+.pp b{font:900 15.5px/1.35 var(--display)}
+.pp-day{justify-self:start;color:#fff;font:800 11.5px/1.6 var(--display);padding:1px 9px;border-radius:99px}
+.pp-links{display:flex;gap:12px;margin-top:4px}
+.pp-links a{color:var(--sky-ink);font-weight:700}
+.leaflet-bar a{background:var(--paper);color:var(--ink);border-bottom-color:var(--line)}
+.leaflet-bar a:hover{background:var(--tint)}
+.leaflet-control-attribution{background:var(--paper)!important;color:var(--muted)!important;font-size:10px}
+.leaflet-tooltip{font-family:var(--body);font-size:12.5px}
+
+.place-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:16px;margin-top:20px}
+.pl-group{background:var(--paper);border-radius:20px;padding:14px 16px;min-width:0;box-shadow:var(--shadow)}
+.pl-group h3{font-size:16.5px;display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.pl-group .dot{width:11px;height:11px;border-radius:50%}
+.pl-group ul{list-style:none;margin:0;padding:0;display:grid}
+.pl-group li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 10px;padding:7px 0;border-top:1px solid var(--line);font-size:14px}
+.pl-group li:first-child{border-top:0}
+.pl-name{font:inherit;background:none;border:0;padding:0;color:var(--ink);cursor:pointer;text-align:left;display:flex;align-items:center}
+.pl-name:hover{color:var(--sky-ink);text-decoration:underline}
+.pl-links{display:flex;gap:10px;font-size:13px}
+
+/* transport tiles */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.tbox{display:grid;grid-template-columns:48px minmax(0,1fr);gap:14px;align-items:start;background:var(--paper);border-radius:22px;padding:18px 20px;box-shadow:var(--shadow)}
+.tbox h3{font-size:18px;margin-bottom:4px}
+.ico{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:color-mix(in srgb,var(--ic) 14%,var(--paper))}
+.ico::before{content:"";width:25px;height:25px;background:var(--ic);-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
+.ico.plane{--m:var(--i-plane);--ic:var(--c-d1)}
+.ico.lights{--m:var(--i-lights);--ic:var(--c-d4)}
+.ico.train{--m:var(--i-train);--ic:var(--c-d5)}
+.ico.bus{--m:var(--i-bus);--ic:var(--c-d6)}
+.ico.moon{--m:var(--i-moon);--ic:var(--c-d7)}
+.ico.car{--m:var(--i-car);--ic:var(--c-d2)}
+
+/* budget table and checklist */
+table{border-collapse:collapse;width:100%;font-size:14px}
+.tbl{overflow-x:auto;background:var(--paper);border-radius:22px;box-shadow:var(--shadow);margin-bottom:28px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font:800 12.5px/1.4 var(--display);letter-spacing:.06em;color:var(--sky-ink);background:var(--sky-soft)}
+td.num{font:800 14.5px/1.6 var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
+td a{white-space:nowrap}
+.progress-row{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.progress{flex:1;height:12px;border-radius:99px;background:var(--tint);overflow:hidden}
+.progress span{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--matcha),var(--sun));transition:width .45s cubic-bezier(.2,.9,.3,1.1)}
+#count{font:900 14px/1 var(--display);white-space:nowrap;color:var(--ink);font-variant-numeric:tabular-nums}
+.check{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:10px}
+.check label{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;border-radius:16px;background:var(--paper);box-shadow:var(--shadow);cursor:pointer;transition:background .2s}
+.check label:has(input:checked){background:var(--matcha-soft)}
+.check input{-webkit-appearance:none;appearance:none;flex:none;display:grid;place-items:center;width:24px;height:24px;margin:1px 0 0;border-radius:50%;border:2.5px solid var(--line);background:var(--paper);cursor:pointer;transition:background .2s,border-color .2s}
+.check input::after{content:"";width:14px;height:14px;background:var(--on-matcha);-webkit-mask:var(--i-check) center/contain no-repeat;mask:var(--i-check) center/contain no-repeat;transform:scale(0);transition:transform .25s cubic-bezier(.2,1.6,.4,1)}
+.check input:checked{background:var(--matcha);border-color:var(--matcha)}
+.check input:checked::after{transform:scale(1)}
+.check input:checked + span{text-decoration:line-through;color:var(--muted)}
+
+/* footer */
+.site-foot{position:relative;margin-top:72px;background:var(--band-cool)}
+.site-foot::before{content:"";position:absolute;left:0;right:0;bottom:calc(100% - 1px);height:36px;background:var(--band-cool);-webkit-mask:var(--m-hill) bottom/100% 100% no-repeat;mask:var(--m-hill) bottom/100% 100% no-repeat;
+  --m-hill:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 36' preserveAspectRatio='none'%3E%3Cpath d='M0 36V22C160 4 300 2 470 16s330 22 520 4 330-16 450 2v14z'/%3E%3C/svg%3E")}
+.site-foot .wrap{padding-block:40px 56px;display:grid;gap:10px;color:var(--muted);font-size:13px}
+.credits summary{cursor:pointer;color:var(--ink);font-weight:700}
+.credits ol{margin:10px 0 0;padding-left:1.4em;display:grid;gap:3px;font-size:12px}
 .credits a{color:var(--muted)}
 
 /* photo zoom: thumbnails are buttons; the viewer is a full-screen dialog on its own dark ground in both themes */
 .zoom{display:block;position:relative;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in;font:inherit}
-.zoom:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
+.zoom:focus-visible{outline:3px solid var(--sun);outline-offset:-3px}
 .zoom::after{content:"";position:absolute;right:10px;bottom:10px;width:32px;height:32px;border-radius:50%;
   background:rgba(8,18,26,.62) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.5 15.5L21 21M10.5 7.5v6M7.5 10.5h6'/%3E%3C/svg%3E") center/17px no-repeat;opacity:0;transition:opacity .2s}
 .zoom:hover::after,.zoom:focus-visible::after{opacity:1}
 @media (hover:none){.zoom::after{opacity:.9;width:28px;height:28px;background-size:15px}}
-.art .dno{z-index:1;pointer-events:none}
 html.lb-on{overflow:hidden}
 .lb{padding:0;margin:0;border:0;width:100%;height:100%;max-width:none;max-height:none;background:transparent;color:#eef3f6;overflow:hidden}
 .lb[open]{display:grid;place-items:center}
@@ -175,15 +389,15 @@ html.lb-on{overflow:hidden}
 .lb-fig{margin:0;width:100%;height:100%;display:grid;align-content:center;justify-items:center;gap:12px;min-width:0;
   padding:calc(60px + env(safe-area-inset-top,0px)) max(72px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(72px,env(safe-area-inset-left,0px))}
 .lb-img{display:block;max-width:100%;max-height:calc(100vh - 190px);max-height:calc(100dvh - 190px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));
-  width:auto;height:auto;object-fit:contain;border-radius:8px;box-shadow:0 12px 40px rgba(0,0,0,.5);touch-action:pan-y pinch-zoom;user-select:none}
+  width:auto;height:auto;object-fit:contain;border-radius:10px;box-shadow:0 12px 40px rgba(0,0,0,.5);touch-action:pan-y pinch-zoom;user-select:none}
 .lb-cap{display:grid;gap:3px;text-align:center;max-width:62ch;font-size:13px;line-height:1.55;color:#a9b9c6}
-.lb-title{font:600 18px/1.4 var(--display);color:#fff;text-wrap:balance}
-.lb-count{font:500 12px/1 var(--mono);letter-spacing:.1em;color:#e8b453}
+.lb-title{font:900 18px/1.4 var(--display);color:#fff;text-wrap:balance}
+.lb-count{font:800 12px/1 var(--display);letter-spacing:.1em;color:#ffd055;font-variant-numeric:tabular-nums}
 .lb-cap a{color:#cfe0ec}
 .lb button{font:inherit;color:#fff;cursor:pointer;border:1px solid rgba(255,255,255,.18);background:rgba(20,34,46,.72);
   display:grid;place-items:center;border-radius:50%;-webkit-tap-highlight-color:transparent}
 .lb button:hover{background:rgba(40,62,80,.9)}
-.lb button:focus-visible{outline:2px solid #e8b453;outline-offset:2px}
+.lb button:focus-visible{outline:2px solid #ffd055;outline-offset:2px}
 .lb-close{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:calc(12px + env(safe-area-inset-right,0px));width:44px;height:44px;font-size:26px;line-height:1}
 .lb-nav{position:fixed;top:50%;width:52px;height:52px;margin-top:-26px;font-size:30px;line-height:1}
 .lb-prev{left:calc(12px + env(safe-area-inset-left,0px))}
@@ -201,130 +415,97 @@ html.lb-on{overflow:hidden}
 @keyframes lb-in{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
 @keyframes lb-fade{from{opacity:0}to{opacity:1}}
 
-/* map tokens */
-:root{--map-sea:#cfe2ec;--map-land:#f7f3ea;--map-land2:#e6e0d3;--map-edge:#b9ad98;--map-rail:#103d55;--map-bus:#b9821c;--map-text:#56697a}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--map-sea:#0f2230;--map-land:#22323e;--map-land2:#1a2731;--map-edge:#3b5163;--map-rail:#8cc4e0;--map-bus:#e8b453;--map-text:#9db0bf}}
-:root[data-theme="dark"]{--map-sea:#0f2230;--map-land:#22323e;--map-land2:#1a2731;--map-edge:#3b5163;--map-rail:#8cc4e0;--map-bus:#e8b453;--map-text:#9db0bf}
-:root{--c-d1:#2f7fb8;--c-d2:#d9532a;--c-d3:#3d8f55;--c-d4:#b5831f;--c-d5:#7a55b0;--c-d6:#22918f;--c-d7:#c2364a;--c-b:#5f6f7c}
-
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.chip{font:inherit;font-size:14px;padding:5px 14px;border-radius:99px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
-.chip:hover{border-color:var(--navy)}
-.chip.on{background:var(--navy);border-color:var(--navy);color:var(--bg)}
-.mapwrap{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
-#tripMap{height:540px;background:var(--map-sea);font-family:var(--body)}
-@media (max-width:600px){#tripMap{height:440px}}
-.map-legend{display:flex;flex-wrap:wrap;gap:6px 14px;padding:8px 12px;background:var(--paper);border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);align-items:center}
-.lg-line{display:inline-block;width:22px;height:0;border-top:4px solid var(--map-rail);vertical-align:middle;margin-right:5px}
-.lg-line.bus{border-top:3px dashed var(--map-bus)}
-.lg-mk{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--muted);color:#fff;font-size:11px;font-weight:700;margin-right:5px;vertical-align:-4px}
-
-.mk-wrap{background:none;border:0}
-.mk{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;color:#fff;font:700 13px/1 var(--body);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35)}
-.mk.cat-stay{border-radius:7px}
-.mk.cat-move{width:24px;height:24px;margin:2px;font-size:11px;opacity:.95}
-.mk-d1{background:var(--c-d1)}.mk-d2{background:var(--c-d2)}.mk-d3{background:var(--c-d3)}.mk-d4{background:var(--c-d4)}
-.mk-d5{background:var(--c-d5)}.mk-d6{background:var(--c-d6)}.mk-d7{background:var(--c-d7)}.mk-b{background:var(--c-b)}
-.town-lbl{background:none;border:0;font:600 12px/1 var(--body);color:var(--map-text);white-space:nowrap;transform:translate(-50%,-50%);pointer-events:none;text-shadow:0 0 3px var(--map-land),0 0 3px var(--map-land)}
-.town-lbl.pref{font-size:15px;letter-spacing:.3em;opacity:.55;font-family:var(--display)}
-.leaflet-container a.leaflet-popup-close-button{color:var(--muted)}
-.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--paper);color:var(--ink);box-shadow:0 4px 16px rgba(0,0,0,.25)}
-.leaflet-popup-content{margin:12px 14px;font-family:var(--body);font-size:14px;line-height:1.55}
-.pp{display:grid;gap:4px}
-.pp b{font-size:15.5px;font-family:var(--display)}
-.pp-day{justify-self:start;color:#fff;font-size:11.5px;padding:1px 8px;border-radius:99px}
-.pp-links{display:flex;gap:12px;margin-top:4px}
-.pp-links a{color:var(--navy);font-weight:500}
-.leaflet-bar a{background:var(--paper);color:var(--ink);border-bottom-color:var(--line)}
-.leaflet-bar a:hover{background:var(--chip)}
-.leaflet-control-attribution{background:var(--paper)!important;color:var(--muted)!important;font-size:10px}
-.leaflet-tooltip{font-family:var(--body);font-size:12.5px}
-
-.place-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:18px}
-.pl-group{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-width:0}
-.pl-group h3{font-size:16px;display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.pl-group .dot{width:10px;height:10px;border-radius:50%}
-.pl-group ul{list-style:none;margin:0;padding:0;display:grid}
-.pl-group li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 10px;padding:6px 0;border-top:1px solid var(--line);font-size:14px}
-.pl-group li:first-child{border-top:0}
-.pl-name{font:inherit;background:none;border:0;padding:0;color:var(--ink);cursor:pointer;text-align:left;display:flex;align-items:center}
-.pl-name:hover{color:var(--navy);text-decoration:underline}
-.pl-links{display:flex;gap:10px;font-size:13px}
-
 /* leaflet 1.9.4 */
  .leaflet-pane, .leaflet-tile, .leaflet-marker-icon, .leaflet-marker-shadow, .leaflet-tile-container, .leaflet-pane > svg, .leaflet-pane > canvas, .leaflet-zoom-box, .leaflet-image-layer, .leaflet-layer { position: absolute; left: 0; top: 0; } .leaflet-container { overflow: hidden; } .leaflet-tile, .leaflet-marker-icon, .leaflet-marker-shadow { -webkit-user-select: none; -moz-user-select: none; user-select: none; -webkit-user-drag: none; } .leaflet-tile::selection { background: transparent; } .leaflet-safari .leaflet-tile { image-rendering: -webkit-optimize-contrast; } .leaflet-safari .leaflet-tile-container { width: 1600px; height: 1600px; -webkit-transform-origin: 0 0; } .leaflet-marker-icon, .leaflet-marker-shadow { display: block; } .leaflet-container .leaflet-overlay-pane svg { max-width: none !important; max-height: none !important; } .leaflet-container .leaflet-marker-pane img, .leaflet-container .leaflet-shadow-pane img, .leaflet-container .leaflet-tile-pane img, .leaflet-container img.leaflet-image-layer, .leaflet-container .leaflet-tile { max-width: none !important; max-height: none !important; width: auto; padding: 0; } .leaflet-container img.leaflet-tile { mix-blend-mode: plus-lighter; } .leaflet-container.leaflet-touch-zoom { -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y; } .leaflet-container.leaflet-touch-drag { -ms-touch-action: pinch-zoom; touch-action: none; touch-action: pinch-zoom; } .leaflet-container.leaflet-touch-drag.leaflet-touch-zoom { -ms-touch-action: none; touch-action: none; } .leaflet-container { -webkit-tap-highlight-color: transparent; } .leaflet-container a { -webkit-tap-highlight-color: rgba(51, 181, 229, 0.4); } .leaflet-tile { filter: inherit; visibility: hidden; } .leaflet-tile-loaded { visibility: inherit; } .leaflet-zoom-box { width: 0; height: 0; -moz-box-sizing: border-box; box-sizing: border-box; z-index: 800; } .leaflet-overlay-pane svg { -moz-user-select: none; } .leaflet-pane { z-index: 400; } .leaflet-tile-pane { z-index: 200; } .leaflet-overlay-pane { z-index: 400; } .leaflet-shadow-pane { z-index: 500; } .leaflet-marker-pane { z-index: 600; } .leaflet-tooltip-pane { z-index: 650; } .leaflet-popup-pane { z-index: 700; } .leaflet-map-pane canvas { z-index: 100; } .leaflet-map-pane svg { z-index: 200; } .leaflet-vml-shape { width: 1px; height: 1px; } .lvml { behavior: url(#default#VML); display: inline-block; position: absolute; } .leaflet-control { position: relative; z-index: 800; pointer-events: visiblePainted; pointer-events: auto; } .leaflet-top, .leaflet-bottom { position: absolute; z-index: 1000; pointer-events: none; } .leaflet-top { top: 0; } .leaflet-right { right: 0; } .leaflet-bottom { bottom: 0; } .leaflet-left { left: 0; } .leaflet-control { float: left; clear: both; } .leaflet-right .leaflet-control { float: right; } .leaflet-top .leaflet-control { margin-top: 10px; } .leaflet-bottom .leaflet-control { margin-bottom: 10px; } .leaflet-left .leaflet-control { margin-left: 10px; } .leaflet-right .leaflet-control { margin-right: 10px; } .leaflet-fade-anim .leaflet-popup { opacity: 0; -webkit-transition: opacity 0.2s linear; -moz-transition: opacity 0.2s linear; transition: opacity 0.2s linear; } .leaflet-fade-anim .leaflet-map-pane .leaflet-popup { opacity: 1; } .leaflet-zoom-animated { -webkit-transform-origin: 0 0; -ms-transform-origin: 0 0; transform-origin: 0 0; } svg.leaflet-zoom-animated { will-change: transform; } .leaflet-zoom-anim .leaflet-zoom-animated { -webkit-transition: -webkit-transform 0.25s cubic-bezier(0,0,0.25,1); -moz-transition: -moz-transform 0.25s cubic-bezier(0,0,0.25,1); transition: transform 0.25s cubic-bezier(0,0,0.25,1); } .leaflet-zoom-anim .leaflet-tile, .leaflet-pan-anim .leaflet-tile { -webkit-transition: none; -moz-transition: none; transition: none; } .leaflet-zoom-anim .leaflet-zoom-hide { visibility: hidden; } .leaflet-interactive { cursor: pointer; } .leaflet-grab { cursor: -webkit-grab; cursor: -moz-grab; cursor: grab; } .leaflet-crosshair, .leaflet-crosshair .leaflet-interactive { cursor: crosshair; } .leaflet-popup-pane, .leaflet-control { cursor: auto; } .leaflet-dragging .leaflet-grab, .leaflet-dragging .leaflet-grab .leaflet-interactive, .leaflet-dragging .leaflet-marker-draggable { cursor: move; cursor: -webkit-grabbing; cursor: -moz-grabbing; cursor: grabbing; } .leaflet-marker-icon, .leaflet-marker-shadow, .leaflet-image-layer, .leaflet-pane > svg path, .leaflet-tile-container { pointer-events: none; } .leaflet-marker-icon.leaflet-interactive, .leaflet-image-layer.leaflet-interactive, .leaflet-pane > svg path.leaflet-interactive, svg.leaflet-image-layer.leaflet-interactive path { pointer-events: visiblePainted; pointer-events: auto; } .leaflet-container { background: #ddd; outline-offset: 1px; } .leaflet-container a { color: #0078A8; } .leaflet-zoom-box { border: 2px dotted #38f; background: rgba(255,255,255,0.5); } .leaflet-container { font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; font-size: 12px; font-size: 0.75rem; line-height: 1.5; } .leaflet-bar { box-shadow: 0 1px 5px rgba(0,0,0,0.65); border-radius: 4px; } .leaflet-bar a { background-color: #fff; border-bottom: 1px solid #ccc; width: 26px; height: 26px; line-height: 26px; display: block; text-align: center; text-decoration: none; color: black; } .leaflet-bar a, .leaflet-control-layers-toggle { background-position: 50% 50%; background-repeat: no-repeat; display: block; } .leaflet-bar a:hover, .leaflet-bar a:focus { background-color: #f4f4f4; } .leaflet-bar a:first-child { border-top-left-radius: 4px; border-top-right-radius: 4px; } .leaflet-bar a:last-child { border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; border-bottom: none; } .leaflet-bar a.leaflet-disabled { cursor: default; background-color: #f4f4f4; color: #bbb; } .leaflet-touch .leaflet-bar a { width: 30px; height: 30px; line-height: 30px; } .leaflet-touch .leaflet-bar a:first-child { border-top-left-radius: 2px; border-top-right-radius: 2px; } .leaflet-touch .leaflet-bar a:last-child { border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; } .leaflet-control-zoom-in, .leaflet-control-zoom-out { font: bold 18px 'Lucida Console', Monaco, monospace; text-indent: 1px; } .leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out { font-size: 22px; } .leaflet-control-layers { box-shadow: 0 1px 5px rgba(0,0,0,0.4); background: #fff; border-radius: 5px; } .leaflet-control-layers-toggle { background-image: url(images/layers.png); width: 36px; height: 36px; } .leaflet-retina .leaflet-control-layers-toggle { background-image: url(images/layers-2x.png); background-size: 26px 26px; } .leaflet-touch .leaflet-control-layers-toggle { width: 44px; height: 44px; } .leaflet-control-layers .leaflet-control-layers-list, .leaflet-control-layers-expanded .leaflet-control-layers-toggle { display: none; } .leaflet-control-layers-expanded .leaflet-control-layers-list { display: block; position: relative; } .leaflet-control-layers-expanded { padding: 6px 10px 6px 6px; color: #333; background: #fff; } .leaflet-control-layers-scrollbar { overflow-y: scroll; overflow-x: hidden; padding-right: 5px; } .leaflet-control-layers-selector { margin-top: 2px; position: relative; top: 1px; } .leaflet-control-layers label { display: block; font-size: 13px; font-size: 1.08333em; } .leaflet-control-layers-separator { height: 0; border-top: 1px solid #ddd; margin: 5px -10px 5px -6px; } .leaflet-default-icon-path { background-image: url(images/marker-icon.png); } .leaflet-container .leaflet-control-attribution { background: #fff; background: rgba(255, 255, 255, 0.8); margin: 0; } .leaflet-control-attribution, .leaflet-control-scale-line { padding: 0 5px; color: #333; line-height: 1.4; } .leaflet-control-attribution a { text-decoration: none; } .leaflet-control-attribution a:hover, .leaflet-control-attribution a:focus { text-decoration: underline; } .leaflet-attribution-flag { display: inline !important; vertical-align: baseline !important; width: 1em; height: 0.6669em; } .leaflet-left .leaflet-control-scale { margin-left: 5px; } .leaflet-bottom .leaflet-control-scale { margin-bottom: 5px; } .leaflet-control-scale-line { border: 2px solid #777; border-top: none; line-height: 1.1; padding: 2px 5px 1px; white-space: nowrap; -moz-box-sizing: border-box; box-sizing: border-box; background: rgba(255, 255, 255, 0.8); text-shadow: 1px 1px #fff; } .leaflet-control-scale-line:not(:first-child) { border-top: 2px solid #777; border-bottom: none; margin-top: -2px; } .leaflet-control-scale-line:not(:first-child):not(:last-child) { border-bottom: 2px solid #777; } .leaflet-touch .leaflet-control-attribution, .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar { box-shadow: none; } .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar { border: 2px solid rgba(0,0,0,0.2); background-clip: padding-box; } .leaflet-popup { position: absolute; text-align: center; margin-bottom: 20px; } .leaflet-popup-content-wrapper { padding: 1px; text-align: left; border-radius: 12px; } .leaflet-popup-content { margin: 13px 24px 13px 20px; line-height: 1.3; font-size: 13px; font-size: 1.08333em; min-height: 1px; } .leaflet-popup-content p { margin: 17px 0; margin: 1.3em 0; } .leaflet-popup-tip-container { width: 40px; height: 20px; position: absolute; left: 50%; margin-top: -1px; margin-left: -20px; overflow: hidden; pointer-events: none; } .leaflet-popup-tip { width: 17px; height: 17px; padding: 1px; margin: -10px auto 0; pointer-events: auto; -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); } .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: white; color: #333; box-shadow: 0 3px 14px rgba(0,0,0,0.4); } .leaflet-container a.leaflet-popup-close-button { position: absolute; top: 0; right: 0; border: none; text-align: center; width: 24px; height: 24px; font: 16px/24px Tahoma, Verdana, sans-serif; color: #757575; text-decoration: none; background: transparent; } .leaflet-container a.leaflet-popup-close-button:hover, .leaflet-container a.leaflet-popup-close-button:focus { color: #585858; } .leaflet-popup-scrolled { overflow: auto; } .leaflet-oldie .leaflet-popup-content-wrapper { -ms-zoom: 1; } .leaflet-oldie .leaflet-popup-tip { width: 24px; margin: 0 auto; -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)"; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678); } .leaflet-oldie .leaflet-control-zoom, .leaflet-oldie .leaflet-control-layers, .leaflet-oldie .leaflet-popup-content-wrapper, .leaflet-oldie .leaflet-popup-tip { border: 1px solid #999; } .leaflet-div-icon { background: #fff; border: 1px solid #666; } .leaflet-tooltip { position: absolute; padding: 6px; background-color: #fff; border: 1px solid #fff; border-radius: 3px; color: #222; white-space: nowrap; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; pointer-events: none; box-shadow: 0 1px 3px rgba(0,0,0,0.4); } .leaflet-tooltip.leaflet-interactive { cursor: pointer; pointer-events: auto; } .leaflet-tooltip-top:before, .leaflet-tooltip-bottom:before, .leaflet-tooltip-left:before, .leaflet-tooltip-right:before { position: absolute; pointer-events: none; border: 6px solid transparent; background: transparent; content: ""; } .leaflet-tooltip-bottom { margin-top: 6px; } .leaflet-tooltip-top { margin-top: -6px; } .leaflet-tooltip-bottom:before, .leaflet-tooltip-top:before { left: 50%; margin-left: -6px; } .leaflet-tooltip-top:before { bottom: 0; margin-bottom: -12px; border-top-color: #fff; } .leaflet-tooltip-bottom:before { top: 0; margin-top: -12px; margin-left: -6px; border-bottom-color: #fff; } .leaflet-tooltip-left { margin-left: -6px; } .leaflet-tooltip-right { margin-left: 6px; } .leaflet-tooltip-left:before, .leaflet-tooltip-right:before { top: 50%; margin-top: -6px; } .leaflet-tooltip-left:before { right: 0; margin-right: -12px; border-left-color: #fff; } .leaflet-tooltip-right:before { left: 0; margin-left: -12px; border-right-color: #fff; } @media print { .leaflet-control { -webkit-print-color-adjust: exact; print-color-adjust: exact; } } 
 </style>
 
-<div class="wrap">
 <header class="hero">
-  <div class="eyebrow">Nagoya · Takayama · Shirakawa-go · 2027.02.04–02.10</div>
-  <h1>名古屋 <em>親子冬遊</em></h1>
-  <p class="hero-lede">7 天 6 夜，2 大 2 小。樂高、吉卜力、名古屋城與名花之里燈海，再搭 JR 進飛驒高山吃飛驒牛、看白川鄉雪景。行程已依實際航班重排：第一天中午就開玩，最後一天晚班機，高山朝市逛完再回名古屋買伴手禮。</p>
-  <div class="flights">
-    <div class="ticket out">
-      <span class="tag">去程 · 2/4（四）</span>
-      <div class="route"><span>TPE 07:40</span><span class="ar"></span><span>11:10 NGO</span></div>
-      <div class="meta">中華航空 CI154 · 桃園 T2 → 中部國際機場 T1 · 2h30m</div>
-      <div class="key">清晨 05:30 前到桃園 T2 報到。機捷首班直達車 05:30 才從台北車站發車，太趕，建議預約機場接送或自行開車。</div>
+  <canvas class="snow" aria-hidden="true"></canvas>
+  <svg class="hills" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"><path class="h-back" d="M0 70C160 30 300 26 470 52s330 50 520 18 330-44 450-24v74H0z"/><path class="h-front" d="M0 100c220-30 420-26 640-8s420 28 600 4c90-12 150-12 200-6v30H0z"/></svg>
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="hero-copy">
+        <div class="kicker"><span class="dates">2027 · 2/4（四）→ 2/10（三）</span><span class="places">Nagoya · Takayama · Shirakawa-go</span></div>
+        <h1>名古屋<span class="l2">親子冬遊</span></h1>
+        <p class="hero-lede">7 天 6 夜，2 大 2 小。樂高、吉卜力、名古屋城與名花之里燈海，再搭 JR 進飛驒高山吃飛驒牛、看白川鄉雪景。行程已依實際航班重排：第一天中午就開玩，最後一天晚班機，高山朝市逛完再回名古屋買伴手禮。</p>
+        <ul class="stickers" aria-label="旅程重點">
+          <li style="--sc:var(--c-d1)"><i></i>7 天 6 夜</li>
+          <li style="--sc:var(--c-d7)"><i></i>2 大 2 小</li>
+          <li style="--sc:var(--c-d2)"><i></i>樂高・吉卜力</li>
+          <li style="--sc:var(--c-d4)"><i></i>名花之里燈海</li>
+          <li style="--sc:var(--c-d6)"><i></i>白川鄉雪景</li>
+          <li style="--sc:var(--c-d5)"><i></i>飛驒牛</li>
+        </ul>
+        <p class="countdown" id="countdown" aria-live="polite">出發倒數 <b>102</b> 天</p>
+      </div>
+      <div class="postcards">
+        <a class="pc" href="#day2"><img src="images/d2.webp" alt="樂高樂園" width="800" height="500" decoding="async"><span>2/5 樂高樂園</span></a>
+        <a class="pc" href="#day6"><img src="images/d6.webp" alt="白川鄉合掌村雪景" width="800" height="500" decoding="async"><span>2/9 白川鄉</span></a>
+        <a class="pc" href="#day4"><img src="images/d4.webp" alt="名花之里燈海" width="800" height="500" decoding="async"><span>2/7 名花之里燈海</span></a>
+      </div>
     </div>
-    <div class="ticket back">
-      <span class="tag">回程 · 2/10（三）</span>
-      <div class="route"><span>NGO 22:50</span><span class="ar"></span><span>01:30 TPE</span></div>
-      <div class="meta">樂桃航空 MM723 · 中部 T1 → 桃園 T1 · 抵台已是 2/11 凌晨</div>
-      <div class="key">Peach 手提行李每人合計 7kg（含安檢後買的東西）。伴手禮多的話，先在官網加購託運行李。凌晨抵台機捷已收班，請預約接送。</div>
+    <div class="flights">
+      <div class="pass out">
+        <div class="pass-main">
+          <div class="pass-head"><span class="tag">去程 · 2/4（四）</span><span class="flt">CI154 · 中華航空</span></div>
+          <div class="route"><span class="ap"><b>TPE</b><span>07:40</span></span><span class="path" aria-hidden="true"></span><span class="ap"><b>NGO</b><span>11:10</span></span></div>
+          <p class="meta">桃園 T2 → 中部國際機場 T1 · 2h30m</p>
+        </div>
+        <p class="pass-stub">清晨 05:30 前到桃園 T2 報到。機捷首班直達車 05:30 才從台北車站發車，太趕，建議預約機場接送或自行開車。</p>
+      </div>
+      <div class="pass back">
+        <div class="pass-main">
+          <div class="pass-head"><span class="tag">回程 · 2/10（三）</span><span class="flt">MM723 · 樂桃航空</span></div>
+          <div class="route"><span class="ap"><b>NGO</b><span>22:50</span></span><span class="path" aria-hidden="true"></span><span class="ap"><b>TPE</b><span>01:30<sup>+1</sup></span></span></div>
+          <p class="meta">中部 T1 → 桃園 T1 · 抵台已是 2/11 凌晨</p>
+        </div>
+        <p class="pass-stub">Peach 手提行李每人合計 7kg（含安檢後買的東西）。伴手禮多的話，先在官網加購託運行李。凌晨抵台機捷已收班，請預約接送。</p>
+      </div>
     </div>
   </div>
 </header>
 
-<nav class="toc" aria-label="目錄"><div class="in">
-  <a href="#changes">本次調整</a><a href="#stays">住宿</a><a href="#itinerary">每日行程</a><a href="#food">美食推薦</a><a href="#spots">景點備案</a><a href="#gifts">必買伴手禮</a><a href="#map">地圖與連結</a><a href="#transport">交通</a><a href="#ready">預算・待辦</a>
+<nav class="toc" aria-label="目錄"><div class="in wrap">
+  <a href="#stays">住宿</a><a href="#itinerary">每日行程</a><a href="#food">美食推薦</a><a href="#spots">景點備案</a><a href="#gifts">必買伴手禮</a><a href="#map">地圖與連結</a><a href="#transport">交通</a><a href="#ready">預算・待辦</a><a href="#changes">更新紀錄</a>
 </div></nav>
 
-<section id="changes">
-  <div class="sec-head"><span class="eyebrow">What changed</span><h2>依航班重排的重點</h2></div>
-  <div class="changes">
-    <ul>
-      <li><b>2/4 抵達日：</b>11:10 落地，下午已可安排輕鬆行程。新增名古屋站午餐（味噌豬排）＋民宿旁的ノリタケの森（則武之森），晚餐吃手羽先。</li>
-      <li><b>2/10 返程日：</b>晚班機 22:50，不必一早離開高山。早上逛宮川朝市、中午吃高山拉麵，約 13:00–14:00 搭 JR 回名古屋，傍晚在名古屋站集中採買伴手禮、吃最後一頓，20:00 前到機場。</li>
-      <li><b>每天的午晚餐</b>都排入行程，並附備案餐廳；<span class="must">必吃</span>標示代表「不吃會後悔」。</li>
-      <li><b>新增單元：</b>美食推薦、景點備案（雨雪天／多出時間可追加）、必買伴手禮（可帶回台灣的食物與當地特色商品）、地圖與官網連結。</li>
-      <li><b>照片：</b>每日行程、美食、伴手禮、景點備案的插畫全部換成實拍照片（Wikimedia Commons 可自由使用授權），統一 16:10 裁切、捲動到才載入。</li>
-      <li><b>必吃／必買：</b>卡片照片右上角改成爆炸星印章，一眼就看得到。</li>
-      <li><b>照片放大：</b>點任一張照片可全螢幕檢視完整構圖與高解析版，左右鍵或手機左右滑動切換同一區的照片。</li>
-      <li><b>地圖：</b>改用互動地圖，可依日期切換、點標記看官網與 Google 地圖導航。</li>
-    </ul>
-  </div>
-</section>
-
+<main class="wrap">
 <section id="stays">
   <div class="sec-head"><span class="eyebrow">Stays</span><h2>已訂住宿</h2><p>時間皆為日本當地時間（比台灣快 1 小時）。</p></div>
-  <div class="grid2">
-    <div class="box">
-      <span class="date">2/4–2/8 · 4 晚</span>
-      <h3>名古屋名站二丁目民宿</h3>
+  <div class="stays">
+    <article class="stay" style="--sc:var(--c-d1)">
+      <div class="stay-top"><span class="nights"><b>4</b>晚</span><div><span class="eyebrow">Nagoya · 2/4–2/8</span><h3>名古屋名站二丁目民宿</h3></div></div>
       <p class="small muted">Yoshi 的整套房源 · 91㎡ · 室內抱石牆 · 2 大 2 小</p>
-      <p class="small"><b>入住</b> 2/4（四）16:00 後　<b>退房</b> 2/8（一）10:00 前</p>
+      <div class="io"><div><span>入住</span><b>2/4（四）</b><em>16:00 後</em></div><div><span>退房</span><b>2/8（一）</b><em>10:00 前</em></div></div>
       <p class="small">愛知縣名古屋市西區名站 2 丁目 27-1。名古屋站步行約 8 分，帶小孩與行李抓 15–20 分。</p>
       <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=2-chome-27-1%20Meieki%2C%20Nishi%20Ward%2C%20Nagoya" target="_blank" rel="noopener">Google 地圖 ↗</a></div>
-    </div>
-    <div class="box">
-      <span class="date">2/8–2/10 · 2 晚</span>
-      <h3>Mercure Hida Takayama</h3>
+    </article>
+    <article class="stay" style="--sc:var(--c-d6)">
+      <div class="stay-top"><span class="nights"><b>2</b>晚</span><div><span class="eyebrow">Takayama · 2/8–2/10</span><h3>Mercure Hida Takayama</h3></div></div>
       <p class="small muted">飛驒高山美居酒店</p>
-      <p class="small"><b>入住</b> 2/8（一）15:00 起　<b>退房</b> 2/10（三）11:00 前</p>
+      <div class="io"><div><span>入住</span><b>2/8（一）</b><em>15:00 起</em></div><div><span>退房</span><b>2/10（三）</b><em>11:00 前</em></div></div>
       <p class="small">岐阜縣高山市花里町 4-311-1。JR 高山站步行約 4 分，雪天帶行李抓 10–15 分。2/10 退房後可請櫃台寄放行李。</p>
       <div class="links"><a href="https://mercure-hida-takayama.com/access/" target="_blank" rel="noopener">飯店官網 ↗</a><a href="https://www.google.com/maps/search/?api=1&query=Mercure%20Hida%20Takayama" target="_blank" rel="noopener">Google 地圖 ↗</a></div>
-    </div>
+    </article>
   </div>
 </section>
 
 <section id="itinerary">
   <div class="sec-head"><span class="eyebrow">Day by day</span><h2>7 天 6 夜行程</h2><p>時段為親子節奏估算，非確認班次。黃底是用餐，綠框是當天備案。</p></div>
+  <ol class="strip" aria-label="7 天總覽">
+    <li><a href="#day1"><img src="images/d1.webp" alt="" width="800" height="500" loading="lazy" decoding="async"><span class="s-date">2/4 週四</span><b>抵達・則武之森</b><span class="s-city">住名古屋</span></a></li>
+    <li><a href="#day2"><img src="images/d2.webp" alt="" width="800" height="500" loading="lazy" decoding="async"><span class="s-date">2/5 週五</span><b>樂高樂園</b><span class="s-city">住名古屋</span></a></li>
+    <li><a href="#day3"><img src="images/d3.webp" alt="" width="800" height="500" loading="lazy" decoding="async"><span class="s-date">2/6 週六</span><b>吉卜力公園</b><span class="s-city">住名古屋</span></a></li>
+    <li><a href="#day4"><img src="images/d4.webp" alt="" width="800" height="500" loading="lazy" decoding="async"><span class="s-date">2/7 週日</span><b>名古屋城・燈海</b><span class="s-city">住名古屋</span></a></li>
+    <li><a href="#day5"><img src="images/d5.webp" alt="" width="800" height="500" loading="lazy" decoding="async"><span class="s-date">2/8 週一</span><b>飛驒號進高山</b><span class="s-city">住高山</span></a></li>
+    <li><a href="#day6"><img src="images/d6.webp" alt="" width="800" height="500" loading="lazy" decoding="async"><span class="s-date">2/9 週二</span><b>白川鄉合掌村</b><span class="s-city">住高山</span></a></li>
+    <li><a href="#day7"><img src="images/d7.webp" alt="" width="800" height="500" loading="lazy" decoding="async"><span class="s-date">2/10 週三</span><b>朝市・晚班機</b><span class="s-city">夜裡飛回台灣</span></a></li>
+  </ol>
   <div class="days">
 
   <!-- DAY 1 -->
   <article class="day" id="day1">
-    <div class="art"><span class="dno">DAY 01</span>
+    <div class="art"><span class="dno">DAY 1</span>
       <button type="button" class="zoom" data-k="d1" aria-label="放大檢視：抵達名古屋・則武之森散步"><img src="images/d1.webp" alt="抵達名古屋・則武之森散步" width="800" height="500" loading="lazy" decoding="async"></button></div>
     <div class="day-body">
       <div class="day-top"><span class="date">2/4 週四</span><h3>抵達名古屋・則武之森散步</h3><span class="pill">輕鬆</span></div>
@@ -344,7 +525,7 @@ html.lb-on{overflow:hidden}
 
   <!-- DAY 2 -->
   <article class="day" id="day2">
-    <div class="art"><span class="dno">DAY 02</span>
+    <div class="art"><span class="dno">DAY 2</span>
       <button type="button" class="zoom" data-k="d2" aria-label="放大檢視：樂高樂園冒險日"><img src="images/d2.webp" alt="樂高樂園冒險日" width="800" height="500" loading="lazy" decoding="async"></button></div>
     <div class="day-body">
       <div class="day-top"><span class="date">2/5 週五</span><h3>樂高樂園冒險日</h3><span class="pill">小孩最愛</span></div>
@@ -362,7 +543,7 @@ html.lb-on{overflow:hidden}
 
   <!-- DAY 3 -->
   <article class="day" id="day3">
-    <div class="art"><span class="dno">DAY 03</span>
+    <div class="art"><span class="dno">DAY 3</span>
       <button type="button" class="zoom" data-k="d3" aria-label="放大檢視：吉卜力公園一整天"><img src="images/d3.webp" alt="吉卜力公園一整天" width="800" height="500" loading="lazy" decoding="async"></button></div>
     <div class="day-body">
       <div class="day-top"><span class="date">2/6 週六</span><h3>吉卜力公園一整天</h3><span class="pill">需預約</span></div>
@@ -379,7 +560,7 @@ html.lb-on{overflow:hidden}
 
   <!-- DAY 4 -->
   <article class="day" id="day4">
-    <div class="art"><span class="dno">DAY 04</span>
+    <div class="art"><span class="dno">DAY 4</span>
       <button type="button" class="zoom" data-k="d4" aria-label="放大檢視：名古屋城 × 名花之里燈海"><img src="images/d4.webp" alt="名古屋城 × 名花之里燈海" width="800" height="500" loading="lazy" decoding="async"></button></div>
     <div class="day-body">
       <div class="day-top"><span class="date">2/7 週日</span><h3>名古屋城 × 名花之里燈海</h3><span class="pill">夜間亮點</span></div>
@@ -399,7 +580,7 @@ html.lb-on{overflow:hidden}
 
   <!-- DAY 5 -->
   <article class="day" id="day5">
-    <div class="art"><span class="dno">DAY 05</span>
+    <div class="art"><span class="dno">DAY 5</span>
       <button type="button" class="zoom" data-k="d5" aria-label="放大檢視：JR 特急飛驒號進高山・飛驒牛"><img src="images/d5.webp" alt="JR 特急飛驒號進高山・飛驒牛" width="800" height="500" loading="lazy" decoding="async"></button></div>
     <div class="day-body">
       <div class="day-top"><span class="date">2/8 週一</span><h3>JR 特急飛驒號進高山・飛驒牛</h3><span class="pill">換住宿</span></div>
@@ -418,7 +599,7 @@ html.lb-on{overflow:hidden}
 
   <!-- DAY 6 -->
   <article class="day" id="day6">
-    <div class="art"><span class="dno">DAY 06</span>
+    <div class="art"><span class="dno">DAY 6</span>
       <button type="button" class="zoom" data-k="d6" aria-label="放大檢視：高山往返白川鄉合掌村"><img src="images/d6.webp" alt="高山往返白川鄉合掌村" width="800" height="500" loading="lazy" decoding="async"></button></div>
     <div class="day-body">
       <div class="day-top"><span class="date">2/9 週二</span><h3>高山往返白川鄉合掌村</h3><span class="pill">雪景</span></div>
@@ -437,7 +618,7 @@ html.lb-on{overflow:hidden}
 
   <!-- DAY 7 -->
   <article class="day" id="day7">
-    <div class="art"><span class="dno">DAY 07</span>
+    <div class="art"><span class="dno">DAY 7</span>
       <button type="button" class="zoom" data-k="d7" aria-label="放大檢視：宮川朝市・名古屋採買・晚班機返台"><img src="images/d7.webp" alt="宮川朝市・名古屋採買・晚班機返台" width="800" height="500" loading="lazy" decoding="async"></button></div>
     <div class="day-body">
       <div class="day-top"><span class="date">2/10 週三</span><h3>宮川朝市・名古屋採買・晚班機返台</h3><span class="pill">晚班機 22:50</span></div>
@@ -460,7 +641,7 @@ html.lb-on{overflow:hidden}
   </div>
 </section>
 
-<section id="food">
+<section id="food" class="band warm">
   <div class="sec-head"><span class="eyebrow">Eat</span><h2>美食推薦</h2><p>每個都已排進上面的行程，標示是哪一天吃。餐廳分店多，找離當天動線最近的即可；營業時間與公休日請出發前再查。</p></div>
   <div class="legend"><span><span class="must">必吃</span>不吃會後悔</span><span class="muted">其餘為推薦或備案</span></div>
 
@@ -516,7 +697,7 @@ html.lb-on{overflow:hidden}
   </div>
 </section>
 
-<section id="gifts">
+<section id="gifts" class="band pink">
   <div class="sec-head"><span class="eyebrow">Souvenirs</span><h2>必買伴手禮</h2><p>排在 2/10：上午高山古街、傍晚名古屋站集中買。</p></div>
   <div class="warn"><b>帶回台灣前必看：</b>台灣禁止旅客攜帶日本肉類製品入境，<b>飛驒牛肉乾、含肉的咖哩或拉麵調理包、肉鬆</b>都不能帶，查到罰款很重。新鮮水果蔬菜（如朝市的蘋果）也不能帶。挑零食時看成分表，有「牛肉」「豚肉」「チキン」「エキス（肉萃取）」就別買。Peach 手提只有 7kg，伴手禮多請加購託運。</div>
 
@@ -574,15 +755,15 @@ html.lb-on{overflow:hidden}
   <div id="placeList" class="place-list"></div>
 </section>
 
-<section id="transport">
+<section id="transport" class="band cool">
   <div class="sec-head"><span class="eyebrow">Getting around</span><h2>交通重點</h2></div>
-  <div class="grid2">
-    <div class="box"><h3>機場 ⇄ 名古屋</h3><p class="small">名鐵 μ-SKY 中部國際機場 ⇄ 名鐵名古屋，約 28 分，全車指定席需加購 μ 票。2/10 建議 19:00 前上車。</p></div>
-    <div class="box"><h3>名花之里</h3><p class="small">近鐵名古屋 → 近鐵長島（約 20–25 分）→ 園區接駁巴士（約 10 分）。名鐵巴士中心也有直達巴士，單程 ¥1,000。</p></div>
-    <div class="box"><h3>名古屋 ⇄ 高山</h3><p class="small">JR 特急飛驒號，約 2.5 小時，約每小時一班。2/8 去程、2/10 回程都訂指定席；2/10 選 13:00–14:00 從高山發車的班次，雪天留誤點緩衝。</p></div>
-    <div class="box"><h3>高山 ⇄ 白川鄉</h3><p class="small">濃飛巴士，直達約 50 分，來回都先預約座位。巴士中心就在 JR 高山站旁。</p></div>
-    <div class="box"><h3>桃園機場深夜返家</h3><p class="small">2/11 01:30 抵達，機捷末班已過。預約機場接送最省力；或搭 24 小時的國光客運 1819 到台北車站。</p></div>
-    <div class="box"><h3>去程清晨</h3><p class="small">07:40 起飛需 05:30 前到桃園 T2，機捷趕不上，建議預約接送或自行開車停機場。</p></div>
+  <div class="tgrid">
+    <div class="tbox"><span class="ico plane" aria-hidden="true"></span><div><h3>機場 ⇄ 名古屋</h3><p class="small">名鐵 μ-SKY 中部國際機場 ⇄ 名鐵名古屋，約 28 分，全車指定席需加購 μ 票。2/10 建議 19:00 前上車。</p></div></div>
+    <div class="tbox"><span class="ico lights" aria-hidden="true"></span><div><h3>名花之里</h3><p class="small">近鐵名古屋 → 近鐵長島（約 20–25 分）→ 園區接駁巴士（約 10 分）。名鐵巴士中心也有直達巴士，單程 ¥1,000。</p></div></div>
+    <div class="tbox"><span class="ico train" aria-hidden="true"></span><div><h3>名古屋 ⇄ 高山</h3><p class="small">JR 特急飛驒號，約 2.5 小時，約每小時一班。2/8 去程、2/10 回程都訂指定席；2/10 選 13:00–14:00 從高山發車的班次，雪天留誤點緩衝。</p></div></div>
+    <div class="tbox"><span class="ico bus" aria-hidden="true"></span><div><h3>高山 ⇄ 白川鄉</h3><p class="small">濃飛巴士，直達約 50 分，來回都先預約座位。巴士中心就在 JR 高山站旁。</p></div></div>
+    <div class="tbox"><span class="ico moon" aria-hidden="true"></span><div><h3>桃園機場深夜返家</h3><p class="small">2/11 01:30 抵達，機捷末班已過。預約機場接送最省力；或搭 24 小時的國光客運 1819 到台北車站。</p></div></div>
+    <div class="tbox"><span class="ico car" aria-hidden="true"></span><div><h3>去程清晨</h3><p class="small">07:40 起飛需 05:30 前到桃園 T2，機捷趕不上，建議預約接送或自行開車停機場。</p></div></div>
   </div>
 </section>
 
@@ -605,6 +786,7 @@ html.lb-on{overflow:hidden}
     </tbody>
   </table></div>
 
+  <div class="progress-row"><div class="progress" aria-hidden="true"><span id="progFill"></span></div><p id="count">0 / 10 已完成</p></div>
   <div class="check" id="checklist">
     <label><input type="checkbox" id="c1"><span>預約 2/4 清晨去桃園 T2、2/11 凌晨從 T1 回家的接送</span></label>
     <label><input type="checkbox" id="c2"><span>Peach 加購回程託運行李（伴手禮）</span></label>
@@ -617,10 +799,28 @@ html.lb-on{overflow:hidden}
     <label><input type="checkbox" id="c9"><span>確認丸明 2/8 午餐與京や 2/9 晚餐營業</span></label>
     <label><input type="checkbox" id="c10"><span>準備防滑冬靴、手套、圍巾、暖暖包、替換襪</span></label>
   </div>
-  <p class="small muted" id="count" style="margin-top:8px">0 / 10 已完成</p>
 </section>
 
-<footer>
+<section id="changes">
+  <div class="sec-head"><span class="eyebrow">What changed</span><h2>依航班重排的重點</h2></div>
+  <div class="changes">
+    <ul>
+      <li><b>2/4 抵達日：</b>11:10 落地，下午已可安排輕鬆行程。新增名古屋站午餐（味噌豬排）＋民宿旁的ノリタケの森（則武之森），晚餐吃手羽先。</li>
+      <li><b>2/10 返程日：</b>晚班機 22:50，不必一早離開高山。早上逛宮川朝市、中午吃高山拉麵，約 13:00–14:00 搭 JR 回名古屋，傍晚在名古屋站集中採買伴手禮、吃最後一頓，20:00 前到機場。</li>
+      <li><b>每天的午晚餐</b>都排入行程，並附備案餐廳；<span class="must">必吃</span>標示代表「不吃會後悔」。</li>
+      <li><b>新增單元：</b>美食推薦、景點備案（雨雪天／多出時間可追加）、必買伴手禮（可帶回台灣的食物與當地特色商品）、地圖與官網連結。</li>
+      <li><b>照片：</b>每日行程、美食、伴手禮、景點備案的插畫全部換成實拍照片（Wikimedia Commons 可自由使用授權），統一 16:10 裁切、捲動到才載入。</li>
+      <li><b>必吃／必買：</b>卡片照片右上角改成爆炸星印章，一眼就看得到。</li>
+      <li><b>照片放大：</b>點任一張照片可全螢幕檢視完整構圖與高解析版，左右鍵或手機左右滑動切換同一區的照片。</li>
+      <li><b>版面：</b>改成明亮的旅遊風格：飄雪的天空封面、登機證樣式的航班、7 天總覽小卡；每天一個代表色，和地圖標記同色。</li>
+      <li><b>地圖：</b>改用互動地圖，可依日期切換、點標記看官網與 Google 地圖導航。</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot"><div class="wrap">
   <p>照片取自 Wikimedia Commons，依各作者授權使用並經裁切；部分為同類料理、商品或季節不同的示意照，不代表推薦店家的實際樣貌。門票、營業時間、公休日、點燈與列車班次可能變動，出發前請以各官網為準。</p>
   <details class="credits"><summary>照片來源與授權（57 張）</summary><ol>
     <li>抵達名古屋・則武之森散步：<a href="https://commons.wikimedia.org/wiki/File:2000_series_BLUE_%CE%BCSKY_2.jpg" target="_blank" rel="noopener">2000 series BLUE μSKY 2.jpg</a> · ButuCC · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
@@ -682,8 +882,7 @@ html.lb-on{overflow:hidden}
     <li>樂高樂園日本限定：<a href="https://commons.wikimedia.org/wiki/File:LEGOLAND_Japan_-_53400777471.jpg" target="_blank" rel="noopener">LEGOLAND Japan - 53400777471.jpg</a> · othree · <a href="https://creativecommons.org/licenses/by/2.0" target="_blank" rel="noopener">CC BY 2.0</a></li>
   </ol></details>
   <p>航班依 2026/10/17 訂單：去程 CI154 2/4 07:40 TPE→11:10 NGO；回程 MM723 2/10 22:50 NGO→2/11 01:30 TPE。行程更新於 2026/10/22。</p>
-</footer>
-</div>
+</div></footer>
 
 <dialog class="lb" id="lightbox" aria-label="照片檢視">
   <figure class="lb-fig">
@@ -940,13 +1139,14 @@ html.lb-on{overflow:hidden}
 <script>
 (function(){
   var boxes=[].slice.call(document.querySelectorAll('#checklist input'));
-  var out=document.getElementById('count');
+  var out=document.getElementById('count'), fill=document.getElementById('progFill');
   var KEY='ngy2027-check';
   var saved={};
   try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){}
   function upd(){
     var n=boxes.filter(function(b){return b.checked}).length;
-    out.textContent=n+' / '+boxes.length+' 已完成';
+    out.textContent=n===boxes.length?'全部準備好了，出發！':n+' / '+boxes.length+' 已完成';
+    if(fill) fill.style.width=(n/boxes.length*100)+'%';
   }
   boxes.forEach(function(b){
     if(saved[b.id])b.checked=true;
@@ -957,6 +1157,76 @@ html.lb-on{overflow:hidden}
     });
   });
   upd();
+})();
+</script>
+
+<script>
+// countdown to departure (Taiwan date), and mark today's tile during the trip
+(function(){
+  var el=document.getElementById('countdown'); if(!el) return;
+  var t;
+  try{ t=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); }
+  catch(e){ var d=new Date(); t=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+  var p=t.split('-'), n=Math.round((Date.UTC(2027,1,4)-Date.UTC(+p[0],p[1]-1,+p[2]))/864e5);
+  if(n>0) el.innerHTML='出發倒數 <b>'+n+'</b> 天';
+  else if(n>-7){
+    el.innerHTML='旅行中・第 <b>'+(1-n)+'</b> 天';
+    var li=document.querySelector('.strip li:nth-child('+(1-n)+')'); if(li) li.classList.add('today');
+  }
+  else el.textContent='旅程結束，歡迎回家';
+})();
+</script>
+<script>
+// snow over the hero sky; one still frame when motion is reduced, paused while off screen
+(function(){
+  var cv=document.querySelector('.hero .snow'); if(!cv||!cv.getContext) return;
+  var ctx=cv.getContext('2d'), fl=[], W=0, H=0, raf=0, on=true;
+  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function mk(top){ return {x:Math.random()*W, y:top?-6:Math.random()*H, r:1+Math.random()*2.6, v:.25+Math.random()*.65, a:Math.random()*6.283, w:.3+Math.random()*.7}; }
+  function size(){
+    var dpr=Math.min(window.devicePixelRatio||1,2), r=cv.getBoundingClientRect();
+    W=r.width; H=r.height; cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); ctx.setTransform(dpr,0,0,dpr,0,0);
+    var n=Math.round(Math.min(110,W*H/8000));
+    while(fl.length<n) fl.push(mk(false)); fl.length=n;
+    draw();
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<fl.length;i++){
+      var f=fl[i];
+      ctx.globalAlpha=.55+f.r/7; ctx.fillStyle='#fff';
+      ctx.beginPath(); ctx.arc(f.x,f.y,f.r,0,6.283); ctx.fill();
+    }
+  }
+  function tick(){
+    for(var i=0;i<fl.length;i++){
+      var f=fl[i]; f.y+=f.v; f.a+=.012; f.x+=Math.sin(f.a)*f.w*.5;
+      if(f.y>H+6) fl[i]=mk(true);
+    }
+    draw(); raf=on?requestAnimationFrame(tick):0;
+  }
+  size();
+  window.addEventListener('resize',function(){ size(); });
+  if(still) return;
+  function run(v){ on=v&&!document.hidden; if(on&&!raf) raf=requestAnimationFrame(tick); }
+  if('IntersectionObserver' in window) new IntersectionObserver(function(es){ run(es[0].isIntersecting); }).observe(cv);
+  else run(true);
+  document.addEventListener('visibilitychange',function(){ run(!document.hidden); });
+})();
+</script>
+<script>
+// highlight the section being read in the sticky contents bar
+(function(){
+  var bar=document.querySelector('nav.toc .in'); if(!bar||!('IntersectionObserver' in window)) return;
+  var links=[].slice.call(bar.querySelectorAll('a')), byId={}, cur=null;
+  links.forEach(function(a){ byId[a.getAttribute('href').slice(1)]=a; });
+  function set(id){
+    if(cur===id) return; cur=id;
+    links.forEach(function(a){ var on=a===byId[id]; a.classList.toggle('on',on); if(on) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current'); });
+    var a=byId[id]; if(a) bar.scrollTo({left:a.offsetLeft-(bar.clientWidth-a.offsetWidth)/2,behavior:'smooth'});
+  }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) set(e.target.id); }); },{rootMargin:'-40% 0px -55% 0px'});
+  Object.keys(byId).forEach(function(id){ var el=document.getElementById(id); if(el) io.observe(el); });
 })();
 </script>
 
